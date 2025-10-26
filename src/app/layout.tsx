@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import ScrollToTop from '@/components/ui/ScrollToTop'
 
 export const metadata: Metadata = {
   title: '101 Cast Stone | Italian-Inspired Architectural Elements',
@@ -82,7 +85,10 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <Header />
         {children}
+        <Footer />
+        <ScrollToTop />
       </body>
     </html>
   )
