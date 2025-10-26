@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Design System */
+:root {
+  /* Primary Colors */
+  --travertine-cream: #F5F1E8;
+  --warm-white: #FDFBF7;
+  --charcoal: #2C2C2C;
+  --slate-gray: #5A5A5A;
+
+  /* Accent Colors */
+  --tuscan-terracotta: #C7705F;
+  --aged-bronze: #6B5A3D;
+  --olive-green: #717C5E;
+  --deep-navy: #1A2B3D;
+
+  /* Spacing based on 8px grid */
+  --spacing-unit: 8px;
+
+  /* Golden Ratio */
+  --golden-ratio: 1.618;
+}
+
+/* Base Layer Styles */
+@layer base {
+  * {
+    @apply border-charcoal/10;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-warm-white text-charcoal;
+    @apply font-inter;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Heading Styles */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cormorant;
+    @apply tracking-wide;
+  }
+
+  h1 {
+    @apply text-display-lg md:text-display-xl;
+    @apply font-semibold;
+  }
+
+  h2 {
+    @apply text-heading-lg md:text-display-md;
+    @apply font-semibold;
+  }
+
+  h3 {
+    @apply text-heading-md md:text-heading-lg;
+    @apply font-medium;
+  }
+
+  h4 {
+    @apply text-heading-sm md:text-heading-md;
+    @apply font-medium;
+  }
+
+  /* Paragraph Styles */
+  p {
+    @apply text-body-md md:text-body-lg;
+    @apply leading-relaxed;
+    @apply text-slate-gray;
+  }
+
+  /* Link Styles */
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  a:hover {
+    @apply text-tuscan-terracotta;
+  }
+
+  /* Focus Visible Styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-tuscan-terracotta;
+  }
+
+  /* Selection Styles */
+  ::selection {
+    @apply bg-tuscan-terracotta/20 text-charcoal;
+  }
+
+  /* Scrollbar Styles */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-travertine-cream;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-gray/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-gray/50;
+  }
+}
+
+/* Component Layer Styles */
+@layer components {
+  /* Container with luxury margins */
+  .container-luxury {
+    @apply mx-auto px-[5%] md:px-[10%] lg:px-[15%];
+    @apply max-w-[1920px];
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  /* Button Base Styles */
+  .btn {
+    @apply inline-flex items-center justify-center;
+    @apply px-8 py-4;
+    @apply rounded-lg;
+    @apply font-inter font-medium;
+    @apply text-sm tracking-wide uppercase;
+    @apply transition-all duration-300;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-tuscan-terracotta text-warm-white;
+    @apply shadow-lg hover:shadow-luxury;
+    @apply hover:scale-[1.02];
+    @apply focus:ring-tuscan-terracotta;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-charcoal text-charcoal bg-transparent;
+    @apply hover:bg-charcoal hover:text-warm-white;
+    @apply focus:ring-charcoal;
+  }
+
+  .btn-outline {
+    @apply border-2 border-tuscan-terracotta text-tuscan-terracotta bg-transparent;
+    @apply hover:bg-tuscan-terracotta hover:text-warm-white;
+    @apply focus:ring-tuscan-terracotta;
+  }
+
+  /* Card Styles */
+  .card-luxury {
+    @apply bg-warm-white rounded-lg;
+    @apply shadow-lg hover:shadow-luxury;
+    @apply transition-all duration-300;
+    @apply overflow-hidden;
+  }
+
+  /* Text Gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-tuscan-terracotta to-aged-bronze;
+    @apply bg-clip-text text-transparent;
+  }
+
+  /* Ornamental Divider */
+  .divider-ornamental {
+    @apply relative h-px bg-gradient-to-r from-transparent via-slate-gray/30 to-transparent;
+  }
+
+  .divider-ornamental::after {
+    content: '❖';
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply px-4 bg-warm-white text-slate-gray/50 text-xs;
+  }
+}
+
+/* Utility Layer Styles */
+@layer utilities {
+  /* Golden Ratio Spacing */
+  .space-golden {
+    margin-bottom: calc(1rem * 1.618);
+  }
+
+  /* Luxury Shadow Variants */
+  .shadow-stone {
+    box-shadow: 0 10px 40px rgba(44, 44, 44, 0.1);
+  }
+
+  .shadow-carved {
+    box-shadow:
+      inset 0 2px 4px rgba(0, 0, 0, 0.06),
+      0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Text Shadow for Depth */
+  .text-shadow-soft {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Backdrop Blur Luxury */
+  .backdrop-luxury {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(253, 251, 247, 0.8);
+  }
+
+  /* Gradient Overlays */
+  .gradient-overlay-dark {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(44, 44, 44, 0.7) 100%
+    );
+  }
+
+  .gradient-overlay-light {
+    background: linear-gradient(
+      to top,
+      transparent 0%,
+      rgba(253, 251, 247, 0.9) 100%
+    );
+  }
+}
+
+/* Animation Utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    @apply bg-white text-black;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
