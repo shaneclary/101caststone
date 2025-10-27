@@ -1,7 +1,7 @@
 {
   "name": "101-cast-stone",
   "version": "1.0.0",
-  "description": "Ultimate luxury architectural cast stone website - Italian heritage meets cutting-edge technology",
+  "description": "Ultimate luxury architectural cast stone website - Forged in Stone. Born in California. Built to Endure.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,6 +20,8 @@
     "@react-three/postprocessing": "^2.16.3",
     "@react-three/rapier": "^1.4.0",
     "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^22.8.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

@@ -1,95 +1,96 @@
-import type { Metadata } from 'next'
-import './globals.css'
-import { cn } from '@/lib/utils'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import ScrollToTop from '@/components/ui/ScrollToTop'
+import "./globals.css";
+import { fontSans, fontDisplay } from "./fonts";
+import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: '101 Cast Stone | Italian-Inspired Architectural Elements',
-  description: 'Handcrafted cast stone columns, cornices, and architectural elements. 19 years of excellence combining Italian heritage with California craftsmanship.',
+  title: "101 Cast Stone — Maison California",
+  description: "Architectural cast stone from California. Crafted with silence, proportion, and permanence.",
   keywords: [
     'cast stone',
     'architectural elements',
     'columns',
     'cornices',
-    'corinthian columns',
-    'italian craftsmanship',
+    'mantels',
+    'fireplaces',
     'luxury architecture',
-    'custom stonework'
+    'custom stonework',
+    'california craftsmanship',
+    'maison california'
   ],
   authors: [{ name: '101 Cast Stone' }],
   creator: '101 Cast Stone',
   openGraph: {
-    title: '101 Cast Stone | Where Italian Heritage Meets California Craftsmanship',
-    description: 'Handcrafted architectural cast stone elements. Custom columns, cornices, and ornamental details for luxury residences.',
-    url: 'https://101caststone.com',
-    siteName: '101 Cast Stone',
-    images: [
-      {
-        url: '/images/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: '101 Cast Stone - Architectural Excellence',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
+    title: "101 Cast Stone — Maison California",
+    description: "Architectural cast stone from California. Proportion. Patina. Permanence.",
+    type: "website"
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: '101 Cast Stone',
-    description: 'Italian-inspired architectural cast stone elements',
-    images: ['/images/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
-}
+  icons: { icon: "/favicon.ico" }
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="theme-color" content="#F5F1E8" />
-        {/* Google Fonts - TODO: Uncomment when deployed to environment with internet access */}
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;500;600&family=Italiana&display=swap" rel="stylesheet" /> */}
-      </head>
-      <body
-        className={cn(
-          'min-h-screen bg-warm-white antialiased'
-        )}
-      >
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:bg-tuscan-terracotta focus:text-warm-white focus:rounded-lg"
-        >
-          Skip to main content
-        </a>
-        <Header />
-        {children}
-        <Footer />
-        <ScrollToTop />
+    <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`}>
+      <body className="bg-ivory text-basalt antialiased">
+        <div className="min-h-dvh flex flex-col">
+          <header className="sticky top-0 z-50 backdrop-blur-lg bg-[#f3eee6cc] border-b border-[#e8dfcf80] supports-[backdrop-filter]:bg-[#f3eee6bf] transition-colors">
+            <nav className="mx-auto max-w-6xl h-20 px-8 flex items-center justify-between">
+              <a href="/" className="flex flex-col hover:opacity-80 transition-opacity no-underline">
+                <div className="relative h-10 w-[180px]">
+                  <Image
+                    src="/images/logos/oneline.png"
+                    alt="101 Cast Stone"
+                    fill
+                    className="object-contain object-left"
+                    priority
+                  />
+                </div>
+                <span className="text-xs md:text-sm text-clay italic mt-1 whitespace-nowrap">Maison California · Est. 2001</span>
+              </a>
+              <div className="flex gap-8 text-[16px] text-clay">
+                <a className="hover:text-sienna transition-colors no-underline" href="/works">Works</a>
+                <a className="hover:text-sienna transition-colors no-underline" href="/process">Process</a>
+                <a className="hover:text-sienna transition-colors no-underline" href="/commissions">Commissions</a>
+                <a href="/contact" className="btn ml-4 no-underline">Begin a Conversation</a>
+              </div>
+            </nav>
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
+            <div className="mx-auto max-w-6xl px-6 py-12">
+              {/* Top row with logo and date */}
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[15px] text-clay mb-6">
+                <div className="relative h-8 w-[140px]">
+                  <Image
+                    src="/images/logos/oneline.png"
+                    alt="101 Cast Stone"
+                    fill
+                    className="object-contain object-left"
+                  />
+                </div>
+                <div>Maison California · Est. 2001</div>
+              </div>
+
+              {/* Centered Shield Logo */}
+              <div className="flex justify-center mb-6">
+                <div className="relative h-16 w-16 opacity-60 hover:opacity-90 transition-opacity">
+                  <Image
+                    src="/images/logos/shield-nobg.png"
+                    alt="101 Cast Stone Shield"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Tagline centered below shield */}
+              <div className="text-center text-[#7d6a55b3] italic text-[15px] pb-4">
+                Proportion. Patina. Permanence.
+              </div>
+            </div>
+          </footer>
+        </div>
       </body>
     </html>
-  )
+  );
 }

@@ -12,16 +12,16 @@ const nextConfig = {
       },
     ],
   },
-  webpack: (config) => {
-    // Shader files support (for future 3D implementation)
-    config.module.rules.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      exclude: /node_modules/,
-      use: ['raw-loader', 'glslify-loader'],
-    });
+  // webpack: (config) => {
+  //   // Shader files support (for future 3D implementation)
+  //   config.module.rules.push({
+  //     test: /\.(glsl|vs|fs|vert|frag)$/,
+  //     exclude: /node_modules/,
+  //     use: ['raw-loader', 'glslify-loader'],
+  //   });
 
-    return config;
-  },
+  //   return config;
+  // },
 };
 
 module.exports = nextConfig;

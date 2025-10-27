@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill /PID 31188 /F)",
+      "Bash(taskkill:*)",
+      "Bash(if exist .next\\ rd /s /q .next)",
+      "Bash(timeout /t 5)",
+      "Bash(cmd /c taskkill /F /PID 30436)",
+      "Bash(rm:*)",
+      "Bash(npx kill-port:*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(dir /b \"c:\\shaneclary\\101caststone\\src\\components\\sections\")",
+      "Bash(dir /b \"c:\\shaneclary\\101caststone\\src\\components\\ui\")",
+      "Bash(dir /b \"c:\\shaneclary\\101caststone\\src\\components\\layout\")",
+      "Bash(cmd /c \"if exist .next\\ rd /s /q .next\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

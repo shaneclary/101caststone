@@ -1,0 +1,298 @@
+101 CAST STONE - PRODUCTION LAUNCH CHECKLIST
+=================================================
+Maison California · Est. 2001
+Last Updated: 2025-10-27
+
+═══════════════════════════════════════════════
+🎨 DESIGN & CONTENT (HIGH PRIORITY)
+═══════════════════════════════════════════════
+
+[ ] IMAGES & MEDIA
+    [ ] Add hero images to /public/images/hero/
+        - Main homepage hero (architectural, ethereal)
+        - Works page hero
+        - Process page hero
+    [ ] Add product/project images to /public/images/products/
+        - Mantels & Fireplaces (at least 3-5 examples)
+        - Columns & Lintels (at least 3-5 examples)
+        - Garden & Water features (at least 3-5 examples)
+    [ ] Add project portfolio images to /public/images/projects/
+        - Mediterranean Estate project
+        - Historic Restoration project
+        - Garden Pavilion project
+    [ ] Add team photos (optional) to /public/images/team/
+    [ ] Add testimonial photos/avatars to /public/images/testimonials/
+    [ ] Replace logo with actual 101 Cast Stone logo in:
+        - /public/wordmark-101cs.svg (currently placeholder)
+        - Create favicon.ico
+        - Create apple-touch-icon.png
+        - Create og-image.png for social sharing
+
+[ ] CONTENT UPDATES
+    [ ] Update contact information:
+        - Real email address (currently: contact@101caststone.com)
+        - Real phone number (currently: (555) 101-STONE)
+        - Real address/location if displaying
+    [ ] Add real project descriptions to Works page
+    [ ] Verify all copy matches brand voice
+    [ ] Add actual client testimonials (if using Testimonials component)
+    [ ] Proofread all content for typos/accuracy
+
+[ ] SEO & METADATA
+    [ ] Update metadata in layout.tsx with real business info
+    [ ] Add comprehensive meta descriptions for each page
+    [ ] Add Open Graph images for social sharing
+    [ ] Add structured data (Schema.org JSON-LD):
+        - LocalBusiness schema
+        - Product schemas for offerings
+    [ ] Create robots.txt
+    [ ] Create sitemap.xml (Next.js can auto-generate)
+    [ ] Set up Google Analytics / tracking
+
+═══════════════════════════════════════════════
+🔧 TECHNICAL CLEANUP (MEDIUM PRIORITY)
+═══════════════════════════════════════════════
+
+[ ] UNUSED CODE REMOVAL
+    [ ] Remove/refactor old components with deprecated colors:
+        - src/components/sections/Hero.tsx (old design)
+        - src/components/sections/Manifesto.tsx (old design)
+        - src/components/sections/SignatureProducts.tsx (old colors)
+        - src/components/sections/FeaturedProjects.tsx (old colors)
+        - src/components/sections/CraftsmanshipShowcase.tsx (old colors)
+        - src/components/sections/CallToAction.tsx (old colors)
+        - src/components/sections/Testimonials.tsx (old colors)
+        - src/components/layout/Header.tsx (old design)
+        - src/components/layout/Footer.tsx (old design)
+        - src/components/ui/Button.tsx (old colors)
+        - src/components/ui/ContactForm.tsx (old colors)
+        - src/components/ui/Card.tsx (old colors)
+    [ ] Remove unused dependencies from package.json:
+        - @react-three/fiber, drei, postprocessing, rapier (if not using 3D)
+        - @studio-freight/lenis (if not using smooth scroll)
+        - gsap (if not using GSAP animations)
+        - framer-motion (if sticking with CSS animations)
+        - swiper (if not using carousels)
+        - next-themes (if not supporting dark mode)
+
+[ ] TAILWIND CONFIG
+    [ ] Remove old color definitions from tailwind.config.ts:
+        - tuscan-terracotta
+        - charcoal
+        - travertine-cream
+        - slate-gray
+        - aged-bronze
+        - Any other unused colors
+
+[ ] BUILD & PERFORMANCE
+    [ ] Fix build EPIPE error (Windows-specific, may not affect Vercel)
+    [ ] Run production build: npm run build
+    [ ] Test production build locally: npm start
+    [ ] Optimize images with next/image
+    [ ] Enable image optimization in next.config.js
+    [ ] Configure compression/caching headers
+
+═══════════════════════════════════════════════
+🗄️ BACKEND & DATABASE (IF NEEDED)
+═══════════════════════════════════════════════
+
+[ ] CONTACT FORM BACKEND
+    [ ] Choose email service:
+        - Option 1: Vercel's built-in API routes + Resend/SendGrid
+        - Option 2: Formspree/Formspark (no code needed)
+        - Option 3: Netlify Forms
+    [ ] Create API route: /api/contact
+    [ ] Add server-side validation
+    [ ] Add rate limiting / spam protection
+    [ ] Test email delivery
+
+[ ] CMS / CONTENT MANAGEMENT (Optional)
+    [ ] Decide if you need a CMS for:
+        - Project portfolio management
+        - Blog (if adding)
+        - Product catalog
+    [ ] Options:
+        - Sanity.io (headless CMS)
+        - Contentful
+        - Prismic
+        - Or keep static for now
+
+[ ] DATABASE (Only if needed for dynamic features)
+    [ ] Set up database (if needed):
+        - Vercel Postgres
+        - PlanetScale (MySQL)
+        - Supabase (Postgres + Auth)
+    [ ] Schema design for:
+        - Projects/Portfolio
+        - Inquiries/Leads (optional)
+        - Newsletter subscribers (optional)
+    [ ] Set up Prisma ORM (if using database)
+
+═══════════════════════════════════════════════
+🚀 DEPLOYMENT & HOSTING
+═══════════════════════════════════════════════
+
+[ ] VERCEL SETUP (RECOMMENDED)
+    [ ] Create Vercel account (vercel.com)
+    [ ] Connect GitHub repository
+    [ ] Import project to Vercel
+    [ ] Configure environment variables (if any):
+        - NEXT_PUBLIC_SITE_URL
+        - Email service API keys
+        - Analytics IDs
+    [ ] Set up custom domain:
+        - Purchase domain (e.g., 101caststone.com)
+        - Add domain in Vercel dashboard
+        - Update DNS records (A/CNAME)
+        - Wait for SSL certificate provisioning
+
+[ ] VERCEL CONFIG
+    [ ] Create vercel.json (if needed for redirects/headers)
+    [ ] Set up preview deployments for testing
+    [ ] Configure branch deployments (main = production)
+
+[ ] DNS & DOMAIN
+    [ ] Purchase domain if not owned
+    [ ] Point nameservers to Vercel or configure DNS:
+        - A record: 76.76.21.21
+        - CNAME: cname.vercel-dns.com
+    [ ] Verify domain ownership
+    [ ] Test www vs non-www redirect
+    [ ] Enable HTTPS/SSL (auto via Vercel)
+
+═══════════════════════════════════════════════
+✅ PRE-LAUNCH TESTING
+═══════════════════════════════════════════════
+
+[ ] FUNCTIONALITY TESTING
+    [ ] Test all navigation links work
+    [ ] Test all buttons/CTAs lead somewhere
+    [ ] Test contact form submission (when implemented)
+    [ ] Test on multiple browsers:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+    [ ] Test on mobile devices (iOS/Android)
+    [ ] Test on tablet sizes
+
+[ ] PERFORMANCE TESTING
+    [ ] Run Lighthouse audit (aim for 90+ scores)
+    [ ] Test page load speed on slow 3G
+    [ ] Optimize any slow-loading assets
+    [ ] Check Core Web Vitals:
+        - LCP (Largest Contentful Paint) < 2.5s
+        - FID (First Input Delay) < 100ms
+        - CLS (Cumulative Layout Shift) < 0.1
+
+[ ] ACCESSIBILITY (A11Y)
+    [ ] Run axe DevTools or WAVE evaluation
+    [ ] Test keyboard navigation (Tab, Enter, Esc)
+    [ ] Verify alt text on all images
+    [ ] Check color contrast ratios (WCAG AA)
+    [ ] Test with screen reader (if possible)
+
+[ ] CROSS-BROWSER COMPATIBILITY
+    [ ] Verify animations work consistently
+    [ ] Check font loading (Cormorant Garamond, Inter)
+    [ ] Test backdrop-blur support (may not work in older browsers)
+
+═══════════════════════════════════════════════
+📈 POST-LAUNCH
+═══════════════════════════════════════════════
+
+[ ] ANALYTICS & MONITORING
+    [ ] Set up Google Analytics 4
+    [ ] Set up Vercel Analytics (built-in)
+    [ ] Set up error monitoring (Sentry, LogRocket, etc.)
+    [ ] Monitor Core Web Vitals in Search Console
+
+[ ] MARKETING & SEO
+    [ ] Submit sitemap to Google Search Console
+    [ ] Submit sitemap to Bing Webmaster Tools
+    [ ] Set up Google Business Profile
+    [ ] Create social media pages (Instagram, LinkedIn, etc.)
+    [ ] Share launch announcement
+
+[ ] ONGOING MAINTENANCE
+    [ ] Regular dependency updates (npm outdated)
+    [ ] Monitor for security vulnerabilities
+    [ ] Backup strategy (Git handles code, need asset backup?)
+    [ ] Content updates schedule (new projects, blog posts, etc.)
+
+═══════════════════════════════════════════════
+🔐 SECURITY & COMPLIANCE
+═══════════════════════════════════════════════
+
+[ ] SECURITY
+    [ ] Add rate limiting to contact form API
+    [ ] Add CAPTCHA if spam becomes an issue (hCaptcha/reCAPTCHA)
+    [ ] Review environment variables (never commit secrets)
+    [ ] Enable Vercel security headers:
+        - X-Frame-Options
+        - X-Content-Type-Options
+        - Referrer-Policy
+
+[ ] LEGAL (If Required)
+    [ ] Privacy Policy page (if collecting any data)
+    [ ] Terms of Service page
+    [ ] Cookie consent banner (if using analytics/tracking)
+    [ ] GDPR compliance (if serving EU users)
+    [ ] Accessibility statement
+
+═══════════════════════════════════════════════
+💡 NICE-TO-HAVES (LOW PRIORITY)
+═══════════════════════════════════════════════
+
+[ ] ENHANCEMENTS
+    [ ] Add project filtering/categories on Works page
+    [ ] Add image gallery with lightbox for projects
+    [ ] Add newsletter signup form
+    [ ] Add blog section for project stories/process insights
+    [ ] Add 3D models/interactive elements (already have Three.js deps)
+    [ ] Add animations on scroll (AOS, Framer Motion)
+    [ ] Add live chat widget (if needed)
+    [ ] Add Instagram feed integration
+    [ ] Add client portal for project tracking (future phase)
+
+[ ] PERFORMANCE OPTIMIZATIONS
+    [ ] Implement ISR (Incremental Static Regeneration) if using CMS
+    [ ] Add service worker for offline support (PWA)
+    [ ] Implement lazy loading for below-fold images
+    [ ] Add loading skeletons for better perceived performance
+
+═══════════════════════════════════════════════
+📋 IMMEDIATE NEXT STEPS (DO FIRST)
+═══════════════════════════════════════════════
+
+1. [ ] Clean up old unused components causing CSS errors
+2. [ ] Add real images to /public/images/ folders
+3. [ ] Update contact information (email, phone)
+4. [ ] Run successful production build (npm run build)
+5. [ ] Deploy to Vercel
+6. [ ] Configure custom domain
+7. [ ] Test all pages on live URL
+
+═══════════════════════════════════════════════
+🎯 ESTIMATED TIMELINE
+═══════════════════════════════════════════════
+
+Quick Launch (1-2 days):
+- Fix CSS errors, add placeholder images, deploy to Vercel
+
+Soft Launch (1 week):
+- Real images, contact form, basic testing
+
+Full Launch (2-4 weeks):
+- All content, full testing, marketing setup, analytics
+
+═══════════════════════════════════════════════
+
+Notes:
+- Current design uses Loro Piana "quiet luxury" aesthetic
+- Color palette: Ivory, Sienna, Clay, Ecru, Basalt, Nickel
+- Fonts: Cormorant Garamond (display), Inter (body)
+- Framework: Next.js 14 App Router + Tailwind CSS
+- Hosting: Optimized for Vercel (zero config needed)
+
+Last review: October 27, 2025

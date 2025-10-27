@@ -1,6 +1,6 @@
 # 🏛️ 101 Cast Stone - Ultimate Luxury Website
 
-> **Where Italian Renaissance craftsmanship meets bleeding-edge web technology**
+> **Forged in Stone. Born in California. Built to Endure.**
 
 The most technologically advanced luxury architectural products website in existence, built for high-net-worth homeowners making 6-figure architectural purchases.
 

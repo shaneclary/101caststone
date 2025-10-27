@@ -2,236 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables for Design System */
+/* Material variables - Loro Piana Maison California */
 :root {
-  /* Primary Colors */
-  --travertine-cream: #F5F1E8;
-  --warm-white: #FDFBF7;
-  --charcoal: #2C2C2C;
-  --slate-gray: #5A5A5A;
+  --bg-ivory: #F3EEE6;
+  --ink-sienna: #9C8066;
+  --ink-basalt: #2E2B28;
+  --ink-clay: #7D6A55;
+  --edge-ecru: #EAE1D2;
+  --rule-nickel: #BBAE9B;
+  --loro-opacity-soft: 0.55;
 
-  /* Accent Colors */
-  --tuscan-terracotta: #C7705F;
-  --aged-bronze: #6B5A3D;
-  --olive-green: #717C5E;
-  --deep-navy: #1A2B3D;
-
-  /* Spacing based on 8px grid */
-  --spacing-unit: 8px;
-
-  /* Golden Ratio */
-  --golden-ratio: 1.618;
+  /* Maison Palette Tokens */
+  --sienna: #9C8066;
+  --clay: #7D6A55;
+  --ivory: #F3EEE6;
 }
 
-/* Base Layer Styles */
-@layer base {
-  * {
-    @apply border-charcoal/10;
-  }
-
-  html {
-    @apply scroll-smooth;
-  }
-
-  body {
-    @apply bg-warm-white text-charcoal;
-    @apply font-inter;
-    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Heading Styles */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-cormorant;
-    @apply tracking-wide;
-  }
-
-  h1 {
-    @apply text-display-lg md:text-display-xl;
-    @apply font-semibold;
-  }
-
-  h2 {
-    @apply text-heading-lg md:text-display-md;
-    @apply font-semibold;
-  }
-
-  h3 {
-    @apply text-heading-md md:text-heading-lg;
-    @apply font-medium;
-  }
-
-  h4 {
-    @apply text-heading-sm md:text-heading-md;
-    @apply font-medium;
-  }
-
-  /* Paragraph Styles */
-  p {
-    @apply text-body-md md:text-body-lg;
-    @apply leading-relaxed;
-    @apply text-slate-gray;
-  }
-
-  /* Link Styles */
-  a {
-    @apply transition-colors duration-300;
-  }
-
-  a:hover {
-    @apply text-tuscan-terracotta;
-  }
-
-  /* Focus Visible Styles */
-  *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-tuscan-terracotta;
-  }
-
-  /* Selection Styles */
-  ::selection {
-    @apply bg-tuscan-terracotta/20 text-charcoal;
-  }
-
-  /* Scrollbar Styles */
-  ::-webkit-scrollbar {
-    @apply w-2;
-  }
-
-  ::-webkit-scrollbar-track {
-    @apply bg-travertine-cream;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    @apply bg-slate-gray/30 rounded-full;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-slate-gray/50;
-  }
+/* Base */
+html, body {
+  background: var(--bg-ivory);
+  color: var(--ink-basalt);
 }
 
-/* Component Layer Styles */
-@layer components {
-  /* Container with luxury margins */
-  .container-luxury {
-    @apply mx-auto px-[5%] md:px-[10%] lg:px-[15%];
-    @apply max-w-[1920px];
-  }
-
-  /* Section spacing */
-  .section-padding {
-    @apply py-16 md:py-24 lg:py-32;
-  }
-
-  /* Button Base Styles */
-  .btn {
-    @apply inline-flex items-center justify-center;
-    @apply px-8 py-4;
-    @apply rounded-lg;
-    @apply font-inter font-medium;
-    @apply text-sm tracking-wide uppercase;
-    @apply transition-all duration-300;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
-  }
-
-  .btn-primary {
-    @apply bg-tuscan-terracotta text-warm-white;
-    @apply shadow-lg hover:shadow-luxury;
-    @apply hover:scale-[1.02];
-    @apply focus:ring-tuscan-terracotta;
-  }
-
-  .btn-secondary {
-    @apply border-2 border-charcoal text-charcoal bg-transparent;
-    @apply hover:bg-charcoal hover:text-warm-white;
-    @apply focus:ring-charcoal;
-  }
-
-  .btn-outline {
-    @apply border-2 border-tuscan-terracotta text-tuscan-terracotta bg-transparent;
-    @apply hover:bg-tuscan-terracotta hover:text-warm-white;
-    @apply focus:ring-tuscan-terracotta;
-  }
-
-  /* Card Styles */
-  .card-luxury {
-    @apply bg-warm-white rounded-lg;
-    @apply shadow-lg hover:shadow-luxury;
-    @apply transition-all duration-300;
-    @apply overflow-hidden;
-  }
-
-  /* Text Gradient */
-  .text-gradient {
-    @apply bg-gradient-to-r from-tuscan-terracotta to-aged-bronze;
-    @apply bg-clip-text text-transparent;
-  }
-
-  /* Ornamental Divider */
-  .divider-ornamental {
-    @apply relative h-px bg-gradient-to-r from-transparent via-slate-gray/30 to-transparent;
-  }
-
-  .divider-ornamental::after {
-    content: '❖';
-    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
-    @apply px-4 bg-warm-white text-slate-gray/50 text-xs;
-  }
+/* Subtle gradient overlay for depth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #F3EEE6 0%, #EDE3D2 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* Utility Layer Styles */
-@layer utilities {
-  /* Golden Ratio Spacing */
-  .space-golden {
-    margin-bottom: calc(1rem * 1.618);
-  }
-
-  /* Luxury Shadow Variants */
-  .shadow-stone {
-    box-shadow: 0 10px 40px rgba(44, 44, 44, 0.1);
-  }
-
-  .shadow-carved {
-    box-shadow:
-      inset 0 2px 4px rgba(0, 0, 0, 0.06),
-      0 4px 8px rgba(0, 0, 0, 0.05);
-  }
-
-  /* Text Shadow for Depth */
-  .text-shadow-soft {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Backdrop Blur Luxury */
-  .backdrop-luxury {
-    backdrop-filter: blur(12px) saturate(180%);
-    background-color: rgba(253, 251, 247, 0.8);
-  }
-
-  /* Gradient Overlays */
-  .gradient-overlay-dark {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(44, 44, 44, 0.7) 100%
-    );
-  }
-
-  .gradient-overlay-light {
-    background: linear-gradient(
-      to top,
-      transparent 0%,
-      rgba(253, 251, 247, 0.9) 100%
-    );
-  }
+::selection {
+  background: #E9DFC9;
 }
 
-/* Animation Utilities */
-@keyframes fadeInUp {
+/* Copy rhythm - refined */
+.prose {
+  @apply text-[18px] leading-[1.85] text-clay;
+}
+
+.prose h1, h1 {
+  @apply font-display tracking-[-0.015em] text-6xl md:text-[72px] leading-[1.05] text-basalt;
+}
+
+.prose h2, h2 {
+  @apply font-display text-4xl tracking-[-0.01em] leading-snug text-sienna-700;
+}
+
+.prose h3, h3 {
+  @apply font-display text-2xl leading-snug text-basalt;
+}
+
+/* Body text */
+body {
+  @apply text-[18px] leading-[1.85] text-clay;
+}
+
+/* Links & interactive - refined hairline underlines */
+a {
+  @apply underline decoration-[0.75px] decoration-nickel underline-offset-[6px];
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  @apply decoration-sienna;
+}
+
+/* Navigation links - no underline */
+nav a {
+  @apply no-underline;
+}
+
+/* Buttons - refined quieter luxury */
+.btn {
+  @apply inline-flex items-center justify-center px-7 py-3 rounded-lg text-sm tracking-wide font-medium;
+  background: linear-gradient(180deg, #F7F2E9 0%, #EDE3D2 100%);
+  color: #7D6A55;
+  border: 0.5px solid #D7CBB9;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  color: #9C8066;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 14px rgba(0, 0, 0, 0.06);
+  transform: scale(1.01);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--ink-sienna);
+  border: 0.75px solid var(--rule-nickel);
+}
+
+.btn.secondary:hover {
+  color: #8B715A;
+  border-color: #9C8066;
+}
+
+/* "Etched" title underline - refined */
+.etched {
+  position: relative;
+}
+
+.etched::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -14px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(187, 174, 155, 0.7), rgba(187, 174, 155, 0));
+  transform: translateY(8px);
+}
+
+/* ---------- Loro utilities & refinements ---------- */
+
+/* Soft ivory gradient usable on hero/feature banners */
+.bg-loro-gradient {
+  background:
+    radial-gradient(1600px 800px at 40% 20%, #EAE1D2 0%, transparent 70%),
+    linear-gradient(#F3EEE6, #EFE7DA);
+}
+
+/* Maison palette utility classes */
+.text-clay { color: var(--clay); }
+.bg-sienna { background-color: var(--sienna); }
+.text-ivory { color: var(--ivory); }
+
+/* Smoother UX + consistent scroll anchoring */
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+section {
+  scroll-margin-top: 120px;
+}
+
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Fade-in utilities for staggered reveals - catalog-style entrance */
+@keyframes fade-in-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -239,46 +158,53 @@
   }
 }
 
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+.animate-fade-in-up {
+  animation: fade-in-up 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-150 {
+  animation-delay: 150ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
+}
+
+/* Ultra-slow background drift - Maison Motion */
+@keyframes pan-bg {
+  0% {
+    transform: translateY(0px) scale(1.02);
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+  100% {
+    transform: translateY(40px) scale(1.02);
   }
 }
 
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.animate-pan-bg {
+  animation: pan-bg 45s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Print Styles */
+/* Print fallback for proposals */
 @media print {
   body {
-    @apply bg-white text-black;
+    background: #fff;
+    color: #000;
   }
+}
 
-  .no-print {
-    display: none !important;
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }

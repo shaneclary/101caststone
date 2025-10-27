@@ -1,0 +1,8 @@
+# Vercel build ignores
+node_modules
+.next
+.git
+.env.local
+.env*.local
+TODO.txt
+README.md
