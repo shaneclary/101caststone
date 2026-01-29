@@ -2,6 +2,7 @@ import "./globals.css";
 import { fontSans, fontDisplay } from "./fonts";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { DesktopMenu, MobileBottomNav } from "@/components/Navigation";
 
 export const metadata: Metadata = {
   title: "101 Cast Stone — Maison California",
@@ -34,7 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-ivory text-basalt antialiased">
         <div className="min-h-dvh flex flex-col">
           <header className="sticky top-0 z-50 backdrop-blur-lg bg-[#f3eee6cc] border-b border-[#e8dfcf80] supports-[backdrop-filter]:bg-[#f3eee6bf] transition-colors">
-            <nav className="mx-auto max-w-6xl h-20 px-8 flex items-center justify-between">
+            <div className="mx-auto max-w-6xl h-20 px-8 md:pl-8 flex items-center justify-between">
               <a href="/" className="flex flex-col hover:opacity-80 transition-opacity no-underline">
                 <div className="relative h-10 w-[180px]">
                   <Image
@@ -47,15 +48,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 <span className="text-xs md:text-sm text-clay italic mt-1 whitespace-nowrap">Maison California · Est. 2001</span>
               </a>
-              <div className="flex gap-8 text-[16px] text-clay">
-                <a className="hover:text-sienna transition-colors no-underline" href="/works">Works</a>
-                <a className="hover:text-sienna transition-colors no-underline" href="/process">Process</a>
-                <a className="hover:text-sienna transition-colors no-underline" href="/commissions">Commissions</a>
-                <a href="/contact" className="btn ml-4 no-underline">Begin a Conversation</a>
-              </div>
-            </nav>
+              <DesktopMenu />
+            </div>
           </header>
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pb-16 md:pb-0">{children}</main>
           <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
             <div className="mx-auto max-w-6xl px-6 py-12">
               {/* Top row with logo and date */}
@@ -90,6 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </footer>
         </div>
+        <MobileBottomNav />
       </body>
     </html>
   );

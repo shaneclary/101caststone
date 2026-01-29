@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-screen flex flex-col justify-center md:justify-end pb-[36vh] md:pb-[40vh] overflow-hidden bg-loro-gradient">
+      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-loro-gradient">
         {/* Background Image with parallax drift */}
         <div className="absolute inset-0 -z-10 will-change-transform animate-pan-bg">
           <Image
@@ -23,15 +23,15 @@ export default function Home() {
         </div>
 
         {/* Text Block */}
-        <div className="z-10 text-center md:text-left px-6 animate-fade-in-up">
-          <h1 className="text-5xl md:text-6xl font-display mb-6 text-clay/90 tracking-tight">
+        <div className="z-10 text-center px-6 animate-fade-in-up max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-2 text-clay/90 tracking-tight">
             Where Craft Becomes Legacy
           </h1>
-          <p className="max-w-2xl mx-auto md:mx-0 text-lg md:text-xl text-clay/80 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-base md:text-lg text-clay/80 leading-relaxed">
             Architectural cast stone, hand-finished with 21st-century precision. Designed for estates,
             cathedrals, and visionaries who prefer silence to spectacle.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="mt-4 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/commissions" className="px-6 py-3 bg-sienna text-ivory rounded-lg shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-500 no-underline">
               Explore Commissions
             </a>
@@ -39,6 +39,50 @@ export default function Home() {
               Our Process
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* SIGNATURE PRODUCTS CAROUSEL */}
+      <section id="signature-collections" className="py-24 bg-[#f5efe4]">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center font-display text-4xl md:text-5xl mb-16 text-clay">Signature Collections</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/products/mantel.jpg" },
+              { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/products/column.jpg" },
+              { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/products/fountain.jpg" }
+            ].map((product, i) => (
+              <div key={i} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700">
+                <div className="aspect-[3/4] bg-gradient-to-br from-clay/10 to-sienna/5 flex items-center justify-center">
+                  <div className="text-clay/30 font-display text-6xl">{i + 1}</div>
+                </div>
+                <div className="p-8">
+                  <h3 className="font-display text-2xl mb-3 text-clay">{product.name}</h3>
+                  <p className="text-clay/70 leading-relaxed">{product.desc}</p>
+                  <button className="mt-6 text-sienna hover:text-sienna/70 transition-colors font-medium">
+                    Explore Collection →
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CRAFTSMANSHIP SHOWCASE */}
+      <section id="workshop" className="relative h-screen bg-gradient-to-b from-ivory to-[#f5efe4] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-sienna rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-clay rounded-full blur-3xl animate-pulse delay-700" />
+        </div>
+        <div className="relative z-10 text-center px-6 max-w-4xl">
+          <h2 className="font-display text-5xl md:text-6xl mb-8 text-clay">The Workshop</h2>
+          <p className="text-xl text-clay/80 leading-relaxed mb-12">
+            Where ancient techniques meet 21st-century precision. Every piece begins with dialogue, refined through moulding, cast with mineral permanence, and finished by hand.
+          </p>
+          <button className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 text-lg font-medium">
+            Step Inside Our Atelier
+          </button>
         </div>
       </section>
 
@@ -69,6 +113,103 @@ export default function Home() {
             <li><span className="font-medium text-sienna">Cast</span> — mineral body, living surface.</li>
             <li><span className="font-medium text-sienna">Finish</span> — hand-tooled to whisper.</li>
           </ol>
+        </div>
+      </section>
+
+      {/* FEATURED PROJECTS MASONRY */}
+      <section className="py-24 bg-ivory">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-center font-display text-4xl md:text-5xl mb-4 text-clay">Featured Installations</h2>
+          <p className="text-center text-clay/70 mb-16 max-w-2xl mx-auto">From private estates to public monuments</p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+            {[
+              { title: "Napa Valley Estate", category: "Residential", span: "md:col-span-2 md:row-span-2" },
+              { title: "Cathedral Restoration", category: "Ecclesiastical", span: "" },
+              { title: "Boutique Hotel Lobby", category: "Commercial", span: "" },
+              { title: "Private Garden", category: "Landscape", span: "md:col-span-2" },
+              { title: "Museum Entrance", category: "Institutional", span: "" },
+              { title: "Historic Manor", category: "Restoration", span: "md:row-span-2" }
+            ].map((project, i) => (
+              <div
+                key={i}
+                className={`group relative overflow-hidden rounded-lg bg-gradient-to-br from-clay/5 to-sienna/5 hover:shadow-xl transition-all duration-700 cursor-pointer ${project.span}`}
+              >
+                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="text-xs text-ivory/70 mb-1">{project.category}</span>
+                  <h3 className="font-display text-xl text-ivory">{project.title}</h3>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-clay/20 font-display text-8xl">{i + 1}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-24 bg-[#f5efe4]">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center space-y-12">
+            {[
+              { quote: "101 Cast Stone transformed our estate. Each mantel tells a story of craftsmanship that will outlast generations.", author: "Helena M.", project: "Sonoma Valley Estate" },
+              { quote: "The precision is remarkable. Classical forms rendered with tolerances tighter than modern steel.", author: "David K.", project: "Pacific Heights Residence" }
+            ].map((testimonial, i) => (
+              <div key={i} className="opacity-0 animate-fade-in-up" style={{ animationDelay: `${i * 200}ms` }}>
+                <blockquote className="font-display italic text-2xl md:text-3xl text-clay/90 leading-relaxed mb-6">
+                  &ldquo;{testimonial.quote}&rdquo;
+                </blockquote>
+                <div className="text-sienna font-medium">{testimonial.author}</div>
+                <div className="text-clay/60 text-sm">{testimonial.project}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA SECTION */}
+      <section className="relative h-[70vh] grid md:grid-cols-2 overflow-hidden">
+        {/* Visual Side */}
+        <div className="relative bg-gradient-to-br from-clay via-sienna to-clay overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
+          </div>
+          <div className="relative h-full flex items-center justify-center px-12">
+            <div className="relative w-full max-w-md h-64 opacity-40">
+              <Image
+                src="/images/logos/101timelesslogo.png"
+                alt="101 Cast Stone"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Content Side */}
+        <div className="flex flex-col justify-center items-center space-y-8 px-12 bg-ivory">
+          <h2 className="font-display text-4xl md:text-5xl text-clay text-center leading-tight">
+            Begin Your Design Journey
+          </h2>
+          <p className="text-clay/70 text-center max-w-md leading-relaxed">
+            From initial consultation to final installation, we guide you through every step of creating architectural elements that endure.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="/contact"
+              className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 text-center font-medium no-underline"
+            >
+              Schedule Consultation
+            </a>
+            <a
+              href="/process"
+              className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 text-center font-medium no-underline"
+            >
+              View Our Process
+            </a>
+          </div>
         </div>
       </section>
     </>
