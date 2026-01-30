@@ -48,22 +48,28 @@ export default function Home() {
           <h2 className="text-center font-display text-4xl md:text-5xl mb-16 text-clay">Signature Collections</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/products/mantel.jpg" },
-              { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/products/column.jpg" },
-              { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/products/fountain.jpg" }
+              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/heritage.jpg", href: "/collections#mantels" },
+              { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/collections/architectural/columns.jpg", href: "/collections#architectural" },
+              { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.png", href: "/collections#outdoor" }
             ].map((product, i) => (
-              <div key={i} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700">
-                <div className="aspect-[3/4] bg-gradient-to-br from-clay/10 to-sienna/5 flex items-center justify-center">
-                  <div className="text-clay/30 font-display text-6xl">{i + 1}</div>
+              <a key={i} href={product.href} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700 no-underline">
+                <div className="aspect-[3/4] relative overflow-hidden bg-gradient-to-br from-clay/10 to-sienna/5">
+                  <Image
+                    src={product.img}
+                    alt={product.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 </div>
                 <div className="p-8">
                   <h3 className="font-display text-2xl mb-3 text-clay">{product.name}</h3>
                   <p className="text-clay/70 leading-relaxed">{product.desc}</p>
-                  <button className="mt-6 text-sienna hover:text-sienna/70 transition-colors font-medium">
+                  <span className="mt-6 inline-block text-sienna hover:text-sienna/70 transition-colors font-medium">
                     Explore Collection →
-                  </button>
+                  </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -124,23 +130,27 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
             {[
-              { title: "Napa Valley Estate", category: "Residential", span: "md:col-span-2 md:row-span-2" },
-              { title: "Cathedral Restoration", category: "Ecclesiastical", span: "" },
-              { title: "Boutique Hotel Lobby", category: "Commercial", span: "" },
-              { title: "Private Garden", category: "Landscape", span: "md:col-span-2" },
-              { title: "Museum Entrance", category: "Institutional", span: "" },
-              { title: "Historic Manor", category: "Restoration", span: "md:row-span-2" }
+              { title: "Napa Valley Estate", category: "Residential", span: "md:col-span-2 md:row-span-2", img: "/images/gallery/project-1.jpg" },
+              { title: "Cathedral Restoration", category: "Ecclesiastical", span: "", img: "/images/gallery/project-2.jpg" },
+              { title: "Boutique Hotel Lobby", category: "Commercial", span: "", img: "/images/gallery/project-3.jpg" },
+              { title: "Private Garden", category: "Landscape", span: "md:col-span-2", img: "/images/gallery/project-4.jpg" },
+              { title: "Museum Entrance", category: "Institutional", span: "", img: "/images/gallery/project-5.jpg" },
+              { title: "Historic Manor", category: "Restoration", span: "md:row-span-2", img: "/images/gallery/project-6.jpg" }
             ].map((project, i) => (
               <div
                 key={i}
-                className={`group relative overflow-hidden rounded-lg bg-gradient-to-br from-clay/5 to-sienna/5 hover:shadow-xl transition-all duration-700 cursor-pointer ${project.span}`}
+                className={`group relative overflow-hidden rounded-lg hover:shadow-xl transition-all duration-700 cursor-pointer ${project.span}`}
               >
+                <Image
+                  src={project.img}
+                  alt={project.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <span className="text-xs text-ivory/70 mb-1">{project.category}</span>
                   <h3 className="font-display text-xl text-ivory">{project.title}</h3>
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-clay/20 font-display text-8xl">{i + 1}</span>
                 </div>
               </div>
             ))}
