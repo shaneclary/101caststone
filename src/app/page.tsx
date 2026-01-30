@@ -50,7 +50,7 @@ export default function Home() {
             {[
               { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/heritage.jpg", href: "/collections#mantels" },
               { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/collections/architectural/columns.jpg", href: "/collections#architectural" },
-              { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.png", href: "/collections#outdoor" }
+              { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.jpg", href: "/collections#outdoor" }
             ].map((product, i) => (
               <a key={i} href={product.href} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700 no-underline">
                 <div className="aspect-[3/4] relative overflow-hidden bg-gradient-to-br from-clay/10 to-sienna/5">
