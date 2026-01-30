@@ -47,7 +47,8 @@
     "@types/three": "^0.168.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.18",
-    "puppeteer": "^24.36.1"
+    "puppeteer": "^24.36.1",
+    "sharp": "^0.34.5"
   },
   "engines": {
     "node": ">=18.0.0"
