@@ -54,22 +54,53 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-1 pb-16 md:pb-0">{children}</main>
           <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
             <div className="mx-auto max-w-6xl px-6 py-12">
-              {/* Top row with logo and date */}
-              <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[15px] text-clay mb-6">
-                <div className="relative h-8 w-[140px]">
-                  <Image
-                    src="/images/logos/oneline.png"
-                    alt="101 Cast Stone"
-                    fill
-                    className="object-contain object-left"
-                  />
+              {/* Main footer content */}
+              <div className="grid gap-10 md:grid-cols-3 mb-10">
+                {/* Logo & Tagline */}
+                <div className="text-center md:text-left">
+                  <div className="relative h-8 w-[140px] mx-auto md:mx-0 mb-3">
+                    <Image
+                      src="/images/logos/oneline.png"
+                      alt="101 Cast Stone"
+                      fill
+                      className="object-contain object-center md:object-left"
+                    />
+                  </div>
+                  <p className="text-[14px] text-clay italic">Maison California · Est. 2001</p>
+                  <p className="text-[13px] text-clay/70 mt-2">Proportion. Patina. Permanence.</p>
                 </div>
-                <div>Maison California · Est. 2001</div>
+
+                {/* Contact Info */}
+                <div className="text-center md:text-left">
+                  <h4 className="font-medium text-basalt text-[14px] mb-3">Contact</h4>
+                  <div className="space-y-1 text-[14px] text-clay">
+                    <p>
+                      <a href="tel:+18056109278" className="hover:text-sienna transition-colors">
+                        (805) 610-9278
+                      </a>
+                    </p>
+                    <p>
+                      <a href="mailto:info@101caststone.com" className="hover:text-sienna transition-colors">
+                        info@101caststone.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="text-center md:text-left">
+                  <h4 className="font-medium text-basalt text-[14px] mb-3">Studio</h4>
+                  <div className="text-[14px] text-clay">
+                    <p>1720 El Camino Real</p>
+                    <p>Atascadero, CA 93422</p>
+                    <p className="text-clay/70 mt-2 text-[13px]">Mon–Fri: 8am–5pm</p>
+                  </div>
+                </div>
               </div>
 
               {/* Centered Shield Logo */}
-              <div className="flex justify-center mb-6">
-                <div className="relative h-16 w-16 opacity-60 hover:opacity-90 transition-opacity">
+              <div className="flex justify-center mb-4 pt-6 border-t border-[#e8dfcf50]">
+                <div className="relative h-12 w-12 opacity-50 hover:opacity-80 transition-opacity">
                   <Image
                     src="/images/logos/shield-nobg.png"
                     alt="101 Cast Stone Shield"
@@ -79,9 +110,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </div>
 
-              {/* Tagline centered below shield */}
-              <div className="text-center text-[#7d6a55b3] italic text-[15px] pb-4">
-                Proportion. Patina. Permanence.
+              {/* Copyright */}
+              <div className="text-center text-clay/60 text-[13px]">
+                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved.
               </div>
             </div>
           </footer>
