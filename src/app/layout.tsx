@@ -157,12 +157,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Centered Shield Logo */}
               <div className="flex justify-center mb-4 pt-6 border-t border-[#e8dfcf50]">
-                <div className="relative h-12 w-12 opacity-50 hover:opacity-80 transition-opacity">
+                <div className="relative h-14 w-14 rounded-full bg-[#2E2B28] p-2 hover:bg-[#3a3632] transition-colors">
                   <Image
                     src="/images/logos/shield-nobg.png"
                     alt="101 Cast Stone Shield"
                     fill
-                    className="object-contain"
+                    className="object-contain p-2"
                   />
                 </div>
               </div>

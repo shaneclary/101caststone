@@ -45,7 +45,15 @@
       "Bash(git fetch:*)",
       "Bash(git checkout:*)",
       "Bash(git merge:*)",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "Bash(gh repo view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr create --base main --title \"Replace images with edited versions and update assets\" --body \"$\\(cat <<''EOF''\n## Summary\n- Replaced 32 collection and gallery images with higher-quality edited versions across architectural, functional, mantels, outdoor, and gallery folders\n- Updated hero image and logos\n- Added `nul` to `.gitignore` to exclude Windows artifact\n\n## Test plan\n- [ ] Verify all images render correctly on the site\n- [ ] Confirm no broken image links across pages\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\nEOF\n\\)\")",
+      "Bash(gh pr merge:*)",
+      "Bash(git pull:*)",
+      "Bash(npx next dev:*)",
+      "Bash(npx next build:*)",
+      "Bash(npx next lint:*)"
     ],
     "deny": [],
     "ask": []
