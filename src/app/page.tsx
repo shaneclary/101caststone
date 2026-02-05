@@ -48,7 +48,7 @@ export default function Home() {
           <h2 className="text-center font-display text-4xl md:text-5xl mb-16 text-clay">Signature Collections</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/heritage.jpg", href: "/collections#mantels" },
+              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/cambridge.jpg", href: "/collections#mantels" },
               { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/collections/architectural/columns.jpg", href: "/collections#architectural" },
               { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.jpg", href: "/collections#outdoor" }
             ].map((product, i) => (
