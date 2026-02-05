@@ -59,6 +59,16 @@ export function DesktopMenu() {
               >
                 Commissions
               </Link>
+              <Link
+                href="/web-ar"
+                className="block px-6 py-3 text-clay hover:bg-clay/5 hover:text-sienna transition-colors no-underline"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="flex items-center gap-2">
+                  Web AR
+                  <span className="text-[10px] bg-sienna/10 text-sienna px-1.5 py-0.5 rounded">NEW</span>
+                </span>
+              </Link>
               <div className="my-2 border-t border-[#e8dfcf]" />
               <Link
                 href="/contact"
@@ -110,8 +120,18 @@ export function MobileBottomNav() {
         </Link>
 
         <Link
-          href="/contact"
+          href="/web-ar"
           className="flex flex-col items-center gap-1 text-sienna hover:text-sienna/80 transition-colors no-underline"
+        >
+          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 3h18v18H3V3zm16 16V5H5v14h14zM7 7h2v2H7V7zm8 0h2v2h-2V7zm-8 8h2v2H7v-2zm8 0h2v2h-2v-2z"/>
+          </svg>
+          <span className="text-xs">Web AR</span>
+        </Link>
+
+        <Link
+          href="/contact"
+          className="flex flex-col items-center gap-1 text-clay hover:text-sienna transition-colors no-underline"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
