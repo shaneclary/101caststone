@@ -4,9 +4,9 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-loro-gradient">
+      <section className="relative h-screen flex flex-col justify-center overflow-hidden">
         {/* Background Image with parallax drift */}
-        <div className="absolute inset-0 -z-10 will-change-transform animate-pan-bg">
+        <div className="absolute inset-0 z-0 will-change-transform animate-pan-bg">
           <Image
             src="/images/hero/winecountry.jpg"
             alt="Wine country estate with architectural cast stone elements"
