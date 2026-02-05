@@ -18,7 +18,7 @@ export default function Home() {
       </section>
 
       {/* BRAND STATEMENT */}
-      <section className="bg-ivory py-20 md:py-28">
+      <section className="bg-ivory py-16 md:py-20">
         <div className="text-center px-6 animate-fade-in-up max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-6 text-clay/90 tracking-tight">
             Where Craft Becomes Legacy
@@ -39,9 +39,9 @@ export default function Home() {
       </section>
 
       {/* SIGNATURE PRODUCTS CAROUSEL */}
-      <section id="signature-collections" className="py-24 bg-[#f5efe4]">
+      <section id="signature-collections" className="py-16 bg-[#f5efe4]">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center font-display text-4xl md:text-5xl mb-16 text-clay">Signature Collections</h2>
+          <h2 className="text-center font-display text-4xl md:text-5xl mb-10 text-clay">Signature Collections</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/cambridge.jpg", href: "/collections#mantels" },
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       {/* CRAFTSMANSHIP SHOWCASE */}
-      <section id="workshop" className="relative h-screen bg-gradient-to-b from-ivory to-[#f5efe4] flex items-center justify-center overflow-hidden">
+      <section id="workshop" className="relative h-[70vh] bg-gradient-to-b from-ivory to-[#f5efe4] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-sienna rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-clay rounded-full blur-3xl animate-pulse delay-700" />
@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* THREE PILLARS */}
-      <section className="mx-auto max-w-6xl px-6 py-24 grid gap-8 md:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-6 py-14 grid gap-6 md:grid-cols-3">
         {[
           { t: "Mantels & Fireplaces", d: "Proportioned to room, light, and life.", delay: "animate-delay-100" },
           { t: "Columns & Lintels", d: "Classical geometry, contemporary tolerances.", delay: "animate-delay-200" },
@@ -106,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* PROCESS STRIP */}
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-14">
         <div className="rounded-lg2 bg-[#f5efe4] border border-[#e3d9c8] p-10 md:p-12 shadow-lintel opacity-0 animate-fade-in-up">
           <h2 className="font-display text-4xl tracking-[-0.01em]">The Lintel Method</h2>
           <ol className="mt-8 grid gap-8 md:grid-cols-4 text-[16px] text-clay">
@@ -119,10 +119,10 @@ export default function Home() {
       </section>
 
       {/* FEATURED PROJECTS MASONRY */}
-      <section className="py-24 bg-ivory">
+      <section className="py-16 bg-ivory">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="text-center font-display text-4xl md:text-5xl mb-4 text-clay">Featured Installations</h2>
-          <p className="text-center text-clay/70 mb-16 max-w-2xl mx-auto">From private estates to public monuments</p>
+          <p className="text-center text-clay/70 mb-10 max-w-2xl mx-auto">From private estates to public monuments</p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
             {[
@@ -155,7 +155,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS */}
-      <section className="py-24 bg-[#f5efe4]">
+      <section className="py-16 bg-[#f5efe4]">
         <div className="mx-auto max-w-4xl px-6">
           <div className="text-center space-y-12">
             {[
@@ -175,7 +175,7 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="relative h-[70vh] grid md:grid-cols-2 overflow-hidden">
+      <section className="relative h-[60vh] grid md:grid-cols-2 overflow-hidden">
         {/* Visual Side */}
         <div className="relative bg-gradient-to-br from-clay via-sienna to-clay overflow-hidden">
           <div className="absolute inset-0 opacity-10">
