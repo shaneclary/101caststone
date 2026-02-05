@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <>
       {/* HERO — Full-bleed image sets the brand impression */}
-      <section className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 will-change-transform animate-pan-bg">
+      <section className="relative h-screen p-4 md:p-6 lg:p-8 bg-ivory">
+        <div className="relative h-full w-full overflow-hidden rounded-lg will-change-transform animate-pan-bg">
           <Image
             src="/images/hero/winecountry.jpg"
             alt="Wine country estate with architectural cast stone elements"
