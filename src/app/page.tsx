@@ -187,7 +187,7 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
           </div>
           <div className="relative h-full flex items-center justify-center px-12">
-            <div className="relative w-full max-w-md h-64 opacity-40">
+            <div className="relative w-full max-w-md h-64 opacity-80">
               <Image
                 src="/images/logos/101timelesslogo.png"
                 alt="101 Cast Stone"
