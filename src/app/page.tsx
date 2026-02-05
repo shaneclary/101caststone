@@ -3,10 +3,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative h-screen flex flex-col justify-center overflow-hidden">
-        {/* Background Image with parallax drift */}
-        <div className="absolute inset-0 z-0 will-change-transform animate-pan-bg">
+      {/* HERO — Full-bleed image sets the brand impression */}
+      <section className="relative h-screen overflow-hidden">
+        <div className="absolute inset-0 will-change-transform animate-pan-bg">
           <Image
             src="/images/hero/winecountry.jpg"
             alt="Wine country estate with architectural cast stone elements"
@@ -15,23 +14,20 @@ export default function Home() {
             priority
             quality={90}
           />
-          {/* Gradient overlay for warmth & readability */}
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-[#EFE7DA]/90 via-[#EFE7DA]/35 to-transparent"
-            aria-hidden
-          />
         </div>
+      </section>
 
-        {/* Text Block */}
-        <div className="z-10 text-center px-6 animate-fade-in-up max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-2 text-clay/90 tracking-tight">
+      {/* BRAND STATEMENT */}
+      <section className="bg-ivory py-20 md:py-28">
+        <div className="text-center px-6 animate-fade-in-up max-w-4xl mx-auto">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-6 text-clay/90 tracking-tight">
             Where Craft Becomes Legacy
           </h1>
           <p className="max-w-2xl mx-auto text-base md:text-lg text-clay/80 leading-relaxed">
             Architectural cast stone, hand-finished with 21st-century precision. Designed for estates,
             cathedrals, and visionaries who prefer silence to spectacle.
           </p>
-          <div className="mt-4 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/commissions" className="px-6 py-3 bg-sienna text-ivory rounded-lg shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-500 no-underline">
               Explore Commissions
             </a>
@@ -187,7 +183,7 @@ export default function Home() {
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
           </div>
           <div className="relative h-full flex items-center justify-center px-12">
-            <div className="relative w-full max-w-md h-64 opacity-40">
+            <div className="relative w-full max-w-md h-64 opacity-80">
               <Image
                 src="/images/logos/101timelesslogo.png"
                 alt="101 Cast Stone"
