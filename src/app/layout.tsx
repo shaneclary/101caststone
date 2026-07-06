@@ -1,6 +1,6 @@
 import "./globals.css";
 import { fontSans, fontDisplay } from "./fonts";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import { DesktopMenu, MobileBottomNav } from "@/components/Navigation";
 import StructuredData from "@/components/StructuredData";
@@ -74,15 +74,12 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
-  verification: {
-    // Add these when you have them
-    // google: 'your-google-verification-code',
-  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
