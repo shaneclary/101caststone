@@ -1,59 +1,60 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 
+export const metadata: Metadata = {
+  title: "Recent Cast Stone Installations",
+  description: "Selected commissions in mantels, columns, and landscape pieces—each proportioned to its light, room, and purpose.",
+  alternates: { canonical: "/works" },
+};
+
+// Titles and descriptions describe only what each photo shows (the same
+// photos carry the same titles on the home page).
 const projects = [
   {
-    title: "Mediterranean Estate",
-    location: "Santa Barbara, CA",
-    desc: "Custom limestone columns and grand fireplace mantel with hand-carved acanthus detailing",
+    title: "Contemporary Surround",
+    desc: "Clean-lined fireplace surround framing a linear firebox",
     img: "/images/gallery/works-1.jpg",
   },
   {
-    title: "Historic Restoration",
-    location: "San Luis Obispo, CA",
-    desc: "Cathedral entrance stonework including corbels, pilasters, and ornamental trim",
+    title: "Pavers",
+    desc: "Large-format pavers set in lawn beside an arched loggia",
     img: "/images/gallery/works-2.jpg",
   },
   {
-    title: "Garden Pavilion",
-    location: "Paso Robles, CA",
-    desc: "Weathered stone columns and Corinthian capitals for outdoor living space",
+    title: "Tangled Mantel",
+    desc: "Mantel with scrolled corbel legs",
     img: "/images/gallery/works-3.jpg",
   },
   {
-    title: "Wine Country Residence",
-    location: "Napa Valley, CA",
-    desc: "French Chateau-style mantel with matching hearth and custom surround",
+    title: "Mantel & Overmantel",
+    desc: "Fireplace mantel with overmantel shelf and raised hearth",
     img: "/images/gallery/project-1.jpg",
   },
   {
-    title: "Coastal Villa",
-    location: "Carmel-by-the-Sea, CA",
-    desc: "Balustrade system with custom newel posts and continuous handrail",
+    title: "Courtyard Fountain",
+    desc: "Scalloped-basin fountain in a brick courtyard",
     img: "/images/gallery/project-2.jpg",
   },
   {
-    title: "Private Courtyard",
-    location: "Montecito, CA",
-    desc: "Three-tier fountain centerpiece with antiqued patina finish",
+    title: "Corbel Mantel",
+    desc: "Mantel with gently arched frieze and scrolled corbel legs",
     img: "/images/gallery/project-3.jpg",
   },
   {
-    title: "Hillside Estate",
-    location: "Los Altos Hills, CA",
-    desc: "Outdoor fireplace with integrated seating and custom fire pit",
+    title: "Pergola Columns",
+    desc: "Columns supporting a garden pergola over a stone terrace",
     img: "/images/gallery/project-4.jpg",
   },
   {
-    title: "Ranch Renovation",
-    location: "Atascadero, CA",
-    desc: "Heritage-style mantel with fluted columns and keystone accent",
+    title: "Garden Steps",
+    desc: "Flagstone steps through a planted slope",
     img: "/images/gallery/project-5.jpg",
   },
   {
-    title: "Tuscan Inspired Home",
-    location: "Pebble Beach, CA",
-    desc: "Full exterior package: door surrounds, window trims, and corbel brackets",
+    title: "Stone Veneer Entry",
+    desc: "Stone veneer wall around an arched entry door",
     img: "/images/gallery/project-6.jpg",
   },
 ];
@@ -68,7 +69,7 @@ export default function Works() {
 
       {/* Featured Project */}
       <div className="mt-16 opacity-0 animate-fade-in-up">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-lg overflow-hidden border border-[#e8dfcf90] shadow-[0_10px_30px_rgba(60,58,54,0.08)]">
+        <div className="relative aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] rounded-lg overflow-hidden border border-[#e8dfcf90] shadow-[0_10px_30px_rgba(60,58,54,0.08)]">
           <Image
             src={projects[0].img}
             alt={projects[0].title}
@@ -77,12 +78,11 @@ export default function Works() {
             sizes="100vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
-            <div className="text-sienna/90 text-sm tracking-wide uppercase mb-2">Featured Project</div>
-            <div className="font-display text-3xl md:text-4xl text-ivory">{projects[0].title}</div>
+            <div className="text-ivory/80 text-sm tracking-wide uppercase mb-2">Featured Project</div>
+            <h2 className="font-display text-3xl md:text-4xl tracking-normal text-ivory">{projects[0].title}</h2>
             <p className="mt-2 text-[16px] text-ivory/80 max-w-xl">{projects[0].desc}</p>
-            <p className="mt-3 text-[14px] text-ivory/60">{projects[0].location}</p>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function Works() {
       <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.slice(1).map((project, index) => (
           <div
-            key={project.title}
+            key={project.img}
             className={`group relative aspect-[4/5] rounded-lg overflow-hidden border border-[#e8dfcf90] shadow-[0_10px_30px_rgba(60,58,54,0.06)] opacity-0 animate-fade-in-up`}
             style={{ animationDelay: `${(index + 1) * 100}ms` }}
           >
@@ -104,9 +104,8 @@ export default function Works() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="font-display text-xl text-ivory">{project.title}</div>
+              <h2 className="font-display text-xl tracking-normal text-ivory">{project.title}</h2>
               <p className="mt-2 text-[15px] text-ivory/80 line-clamp-2">{project.desc}</p>
-              <p className="mt-2 text-[13px] text-ivory/60">{project.location}</p>
             </div>
           </div>
         ))}
@@ -117,12 +116,12 @@ export default function Works() {
         <p className="text-clay text-[17px] leading-relaxed max-w-2xl mx-auto">
           Every project begins with a conversation about your space, your vision, and the legacy you wish to create.
         </p>
-        <a
+        <Link
           href="/contact"
-          className="btn no-underline inline-block mt-6"
+          className="inline-block mt-6 px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
         >
           Start Your Project
-        </a>
+        </Link>
       </div>
     </div>
   );

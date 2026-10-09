@@ -1,40 +1,55 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 
+export const metadata: Metadata = {
+  title: "Custom Cast Stone Commissions",
+  description: "Custom mantels and fireplaces, columns and capitals, architectural details, outdoor and garden pieces, kitchen hoods and functional elements. Each commission begins as dialogue.",
+  alternates: { canonical: "/commissions" },
+};
+
+// anchor: the matching category section on /collections
 const commissionCategories = [
   {
     title: "Mantels & Fireplaces",
     description: "Hand-carved limestone mantels with classical proportions. Heritage, Provence, Pacifica, Cambridge, French Chateau, Royal Acanthus, Milagro, and Tangled collections—or fully custom designs proportioned to your room, light, and ceiling height.",
     features: ["Custom sizing to architectural requirements", "Seven stone colors available", "Three texture finishes", "2-4 week design phase"],
+    anchor: "mantels",
     delay: "animate-delay-100"
   },
   {
     title: "Columns & Capitals",
     description: "Load-bearing elegance in Doric, Ionic, and Corinthian orders. Entasis curves calculated to classical ratios, capitals carved with precision. Full and half-round, fluted or smooth.",
     features: ["All classical orders", "Structural or decorative", "Custom heights and diameters", "Matching pilaster caps"],
+    anchor: "architectural",
     delay: "animate-delay-200"
   },
   {
     title: "Architectural Details",
     description: "Corbels, balustrades, crown molding, door and window trims. The details that transform construction into architecture—each element speaking the building's language.",
     features: ["Corbels for structural support", "Complete balustrade systems", "Multiple crown profiles", "Pedimented entries"],
+    anchor: "architectural",
     delay: "animate-delay-300"
   },
   {
     title: "Outdoor & Garden",
     description: "Outdoor fireplaces, fire pits, fountains, and benches. Engineered for weather exposure, finished to age beautifully through seasons. Weathered grace for courtyards and water features.",
     features: ["Weather-resistant formulation", "Aged finishes available", "Custom fountain designs", "Matching seating walls"],
+    anchor: "outdoor",
     delay: "animate-delay-400"
   },
   {
     title: "Kitchen Hoods",
     description: "The range deserves a crown. Cast stone hoods bringing French country and Tuscan farmhouse character to the heart of the home. Carved corbel supports, proportions that anchor the cooking space.",
     features: ["Multiple hood profiles", "Carved corbel options", "Works with pro vent systems", "Custom dimensions standard"],
+    anchor: "functional",
     delay: "animate-delay-500"
   },
   {
     title: "Functional Elements",
     description: "Treads, sills, wall caps, and pavers. Every detail considered—surfaces that perform their duty while speaking the building's architectural language.",
     features: ["Stair treads and risers", "Sloped sills for drainage", "Wall cap profiles", "Tumbled-edge pavers"],
+    anchor: "functional",
     delay: "animate-delay-600"
   }
 ];
@@ -62,18 +77,26 @@ export default function Commissions() {
             {commissionCategories.map((category) => (
               <div
                 key={category.title}
-                className={`rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl transition-shadow duration-500 opacity-0 animate-fade-in-up ${category.delay}`}
+                className={`flex flex-col rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl transition-shadow duration-500 opacity-0 animate-fade-in-up ${category.delay}`}
               >
-                <h3 className="font-display text-2xl mb-4 text-clay">{category.title}</h3>
-                <p className="text-clay/80 text-sm leading-relaxed mb-6">{category.description}</p>
+                <h2 className="font-display text-2xl tracking-normal mb-4 text-clay">{category.title}</h2>
+                <p className="text-clay text-sm leading-relaxed mb-6">{category.description}</p>
                 <ul className="space-y-2">
                   {category.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-clay/70 flex items-start">
-                      <span className="text-sienna mr-2">•</span>
+                    <li key={i} className="text-sm text-clay flex items-start">
+                      <span className="text-sienna-700 mr-2">•</span>
                       {feature}
                     </li>
                   ))}
                 </ul>
+                <div className="mt-auto pt-6 flex gap-6 text-sm font-medium">
+                  <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-sienna transition-colors no-underline">
+                    View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link href={`/contact?product=${encodeURIComponent(category.title)}`} className="text-sienna-700 hover:text-sienna transition-colors no-underline">
+                    Inquire<span className="sr-only"> about {category.title}</span> <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -89,12 +112,12 @@ export default function Commissions() {
               { step: "01", title: "Dialogue", desc: "We listen first. Understanding the architecture, the setting, the vision that drives the project." },
               { step: "02", title: "Mould", desc: "Custom moulds engineered for precision. Whether matching existing profiles or creating new vocabularies." },
               { step: "03", title: "Cast", desc: "Mineral aggregates, careful formulation. The pour fills the mould; the cure develops strength." },
-              { step: "04", title: "Finish", desc: "Hand-tooled edges. Applied patinas where appropriate. The surface refined until it whispers." }
+              { step: "04", title: "Finish", desc: "Hand-tooled edges. Applied patinas where appropriate. The surface refined until it whispers. Quality control before every piece leaves the workshop." }
             ].map((phase) => (
               <div key={phase.step} className="text-center">
-                <div className="text-4xl font-display text-sienna/30 mb-2">{phase.step}</div>
+                <div className="text-4xl font-display text-sienna mb-2">{phase.step}</div>
                 <div className="font-display text-xl text-clay mb-3">{phase.title}</div>
-                <p className="text-sm text-clay/70 leading-relaxed">{phase.desc}</p>
+                <p className="text-sm text-clay leading-relaxed">{phase.desc}</p>
               </div>
             ))}
           </div>
@@ -105,22 +128,22 @@ export default function Commissions() {
       <section className="py-20">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="font-display text-4xl text-clay mb-6">Ready to Begin?</h2>
-          <p className="text-lg text-clay/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-clay mb-8 max-w-2xl mx-auto leading-relaxed">
             Begin a quiet dialogue about your project. We&apos;re here to listen, advise, and translate your vision into stone that endures.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+            <Link
               href="/contact"
-              className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 font-medium no-underline"
+              className="px-8 py-4 bg-sienna-700 text-ivory-50 rounded-lg hover:shadow-lg transition-all duration-500 font-medium no-underline"
             >
               Begin a Conversation
-            </a>
-            <a
+            </Link>
+            <Link
               href="/collections"
               className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 font-medium no-underline"
             >
               View Collections
-            </a>
+            </Link>
           </div>
         </div>
       </section>

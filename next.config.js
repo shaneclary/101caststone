@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60 * 60 * 4, // 4 h (the Next 16 default): avoids per-minute revalidation and re-encodes
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     remotePatterns: [
@@ -11,6 +12,49 @@ const nextConfig = {
         hostname: 'cdn.sanity.io',
       },
     ],
+  },
+  // Legacy URLs from the previous 101caststone.com site (scraped-content/scraped-data.json).
+  // Product pages land on the matching card (/collections#<slug> opens it); models without
+  // a card on the new site go to their category. Legacy slugs don't always match titles:
+  // /tangled is Genoa, /tangled-arched is Tangled, /royal is Santa Barbara, /daou is
+  // Contemporary Surround, /benches is titled Customs.
+  async redirects() {
+    const to = (destination, sources, permanent = true) =>
+      sources.map((source) => ({ source, destination, permanent }));
+    return [
+      ...to('/collections', ['/products', '/cast-stone']),
+      ...to('/collections#mantels', ['/fireplace-mantels-1', '/surrounds', '/royal', '/tangled', '/daou']),
+      ...to('/collections#heritage', ['/heritage']),
+      ...to('/collections#provence', ['/provence']),
+      ...to('/collections#pacifica', ['/pacifica']),
+      ...to('/collections#cambridge', ['/cambridge']),
+      ...to('/collections#french-chateau', ['/french-chateau']),
+      ...to('/collections#royal-acanthus', ['/royal-acanthus']),
+      ...to('/collections#milagro', ['/milagro']),
+      ...to('/collections#tangled', ['/tangled-arched']),
+      ...to('/collections#columns', ['/columns']),
+      ...to('/collections#corbels', ['/corbels']),
+      ...to('/collections#balustrades', ['/balustrades']),
+      ...to('/collections#pilaster-caps', ['/pilaster-caps']),
+      ...to('/collections#crown-molding', ['/crown-molding']),
+      ...to('/collections#door-window-trims', ['/door-trims']),
+      ...to('/collections#outdoor', ['/benches']),
+      ...to('/collections#outdoor-fireplaces', ['/outdoor-fireplaces']),
+      ...to('/collections#fire-pits', ['/outdoor-firepits']),
+      ...to('/collections#fountains', ['/custom-fountains']),
+      ...to('/collections#pavers', ['/pavers']),
+      ...to('/collections#stair-treads', ['/treads']),
+      ...to('/collections#window-sills', ['/sills']),
+      ...to('/collections#wall-caps', ['/wall-caps']),
+      ...to('/collections#kitchen-hoods', ['/kitchen-hoods']),
+      ...to('/collections#finishes', ['/stone-colors-finishes']),
+      ...to('/works', ['/gallery']),
+      ...to('/process', ['/design-manufacturing-process']),
+      ...to('/', ['/about-us']),
+      // Not permanent, so they can be repointed if dedicated pages are added later
+      ...to('/faq', ['/technical-info'], false),
+      ...to('/works', ['/testimonials'], false),
+    ];
   },
   // webpack: (config) => {
   //   // Shader files support (for future 3D implementation)
