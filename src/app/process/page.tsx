@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 
@@ -50,6 +51,22 @@ export default function Process() {
             <li>After curing, every piece is inspected by Quality Control and staged until your full order is complete.</li>
             <li>We schedule delivery and installation with you. Fireplace products are quoted with installation by our team of professionals.</li>
           </ol>
+        </div>
+
+        {/* Workshop photos from the original site's Design & Manufacturing Process page */}
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            { src: "/images/process/mould-shop.jpg", alt: "Mould material being cut on a table saw", caption: "The in-house mould shop" },
+            { src: "/images/process/workshop-floor.jpg", alt: "Rows of moulds on the floor being filled by hand, with shelves of moulds behind", caption: "Moulds being filled on the manufacturing floor" },
+            { src: "/images/process/mould-detail.jpg", alt: "Close view of a molded profile beside its mould", caption: "A profile and its mould" },
+          ].map((photo) => (
+            <figure key={photo.src}>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-[#e8dfcf90] bg-ivory-200">
+                <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 768px) 100vw, 352px" className="object-cover" />
+              </div>
+              <figcaption className="mt-3 text-[14px] text-clay">{photo.caption}</figcaption>
+            </figure>
+          ))}
         </div>
 
         <div className="mt-20 rounded-lg2 bg-[#f5efe4] border border-[#e3d9c8] p-10 md:p-12 shadow-lintel opacity-0 animate-fade-in-up animate-delay-300">

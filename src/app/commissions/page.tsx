@@ -51,6 +51,13 @@ const commissionCategories = [
     features: ["Stair treads and risers", "Sloped sills for drainage", "Wall cap profiles", "Tumbled-edge pavers"],
     anchor: "functional",
     delay: "animate-delay-600"
+  },
+  {
+    // From the original site: "We also specialize in Stone Masonry ... natural stone or stone veneer"
+    title: "Stone Masonry",
+    description: "Natural stone and stone veneer to bring the look and feel of stone to the interior or exterior of your home.",
+    features: ["Natural stone", "Stone veneer", "Interior and exterior"],
+    delay: "animate-delay-600"
   }
 ];
 
@@ -90,9 +97,11 @@ export default function Commissions() {
                   ))}
                 </ul>
                 <div className="mt-auto pt-6 flex gap-6 text-sm font-medium">
-                  <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
-                    View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
-                  </Link>
+                  {category.anchor && (
+                    <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
+                      View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
+                    </Link>
+                  )}
                   <Link href={`/contact?product=${encodeURIComponent(category.title)}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
                     Inquire<span className="sr-only"> about {category.title}</span> <span aria-hidden="true">→</span>
                   </Link>

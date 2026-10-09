@@ -50,7 +50,7 @@ const nextConfig = {
       ...to('/collections#finishes', ['/stone-colors-finishes']),
       ...to('/works', ['/gallery']),
       ...to('/process', ['/design-manufacturing-process']),
-      ...to('/', ['/about-us']),
+      ...to('/about', ['/about-us']),
       // Not permanent, so they can be repointed if dedicated pages are added later
       ...to('/faq', ['/technical-info'], false),
       ...to('/works', ['/testimonials'], false),

@@ -26,7 +26,7 @@ const faqs: Faq[] = [
   },
   {
     q: "How do I measure my fireplace?",
-    a: "If you are local to our area of California, our sales staff will schedule an appointment to visit your residence or jobsite to verify the measurements. If you are out of the area, our sales staff will review your measurements with you to confirm accuracy.",
+    a: "If you are local to our area of California, our sales staff will schedule an appointment to visit your residence or jobsite to verify the measurements. If you are out of the area, ask us for our Fireplace Surround Worksheet; once you have taken the measurements, our sales staff will review the worksheet with you to confirm accuracy.",
   },
   {
     q: "Who installs the fireplace products?",

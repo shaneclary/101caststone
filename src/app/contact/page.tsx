@@ -72,8 +72,7 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
               <div className="font-medium text-basalt mb-1">Hours</div>
               <p className="text-[16px] leading-relaxed">
                 Monday – Friday: 8am – 5pm<br />
-                Saturday: By appointment<br />
-                Sunday: Closed
+                Weekend appointments available
               </p>
             </div>
 

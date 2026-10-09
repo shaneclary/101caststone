@@ -108,6 +108,14 @@ export function DesktopMenu() {
               Commissions
             </Link>
             <Link
+              href="/about"
+              aria-current={isActive("/about") ? "page" : undefined}
+              className={itemClass}
+              onClick={close}
+            >
+              About
+            </Link>
+            <Link
               href="/faq"
               aria-current={isActive("/faq") ? "page" : undefined}
               className={itemClass}

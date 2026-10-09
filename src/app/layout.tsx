@@ -157,7 +157,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       1720 El Camino Real<br />
                       Atascadero, CA 93422
                     </a>
-                    <p className="text-clay mt-2 text-[13px]">Mon–Fri: 8am–5pm</p>
+                    <p className="text-clay mt-2 text-[13px]">Mon–Fri: 8am–5pm · Weekend appointments available</p>
                   </div>
                 </div>
               </div>
@@ -175,9 +175,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
               </div>
 
-              {/* Copyright */}
+              {/* Page links */}
+              <nav aria-label="Footer" className="mb-6">
+                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[14px]">
+                  {[
+                    ["/collections", "Collections"],
+                    ["/works", "Works"],
+                    ["/process", "Process"],
+                    ["/commissions", "Commissions"],
+                    ["/about", "About"],
+                    ["/faq", "FAQ"],
+                    ["/contact", "Contact"],
+                  ].map(([href, label]) => (
+                    <li key={href}>
+                      <Link href={href} className="text-clay hover:text-basalt transition-colors">
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Copyright and licence (the licence number appears on every page of the original site) */}
               <div className="text-center text-clay text-[13px]">
-                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved.
+                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved. · California contractor license #892542
               </div>
             </div>
           </footer>
