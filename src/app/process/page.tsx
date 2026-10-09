@@ -78,7 +78,7 @@ export default function Process() {
           </div>
           <p className="mt-8 text-[16px] text-clay">
             Questions about measuring, installation or care?{" "}
-            <Link href="/faq" className="text-sienna-700 hover:text-sienna transition-colors">Read our FAQ</Link>.
+            <Link href="/faq" className="text-sienna-700 hover:text-basalt transition-colors">Read our FAQ</Link>.
           </p>
         </div>
       </div>

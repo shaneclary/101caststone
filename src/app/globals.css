@@ -138,6 +138,13 @@ html {
   overscroll-behavior-y: none;
 }
 
+/* Keep keyboard-focused elements clear of the fixed mobile tab bar (h-16), shown below md on screens taller than 500px */
+@media (max-width: 767px) and (min-height: 501px) {
+  html {
+    scroll-padding-bottom: 5rem;
+  }
+}
+
 section {
   scroll-margin-top: 120px;
 }
@@ -180,13 +187,13 @@ a, button {
 
 /* Ultra-slow background drift - Maison Motion.
    Applied to the hero image inside its overflow-hidden frame; the 1.05 scale
-   overhangs the frame so the ±16px pan never exposes an edge. */
+   overhangs the frame by 2.5% per side, so the ±2% pan never exposes an edge at any frame height. */
 @keyframes pan-bg {
   0% {
-    transform: translateY(-16px) scale(1.05);
+    transform: translateY(-2%) scale(1.05);
   }
   100% {
-    transform: translateY(16px) scale(1.05);
+    transform: translateY(2%) scale(1.05);
   }
 }
 

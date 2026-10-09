@@ -39,7 +39,7 @@ export default function ProductModal({ item, category, children, open, onOpenCha
                 src={item.image}
                 alt={`${item.name} – ${category}, cast stone`}
                 fill
-                className="object-contain md:rounded-l-xl"
+                className="object-contain md:rounded-l-xl [@media(max-height:500px)]:object-top"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

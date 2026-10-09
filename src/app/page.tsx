@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       {/* HERO — Full-bleed image sets the brand impression */}
-      <section className="relative h-[60svh] md:h-screen p-4 md:p-6 lg:p-8 bg-ivory">
+      <section className="relative h-[60svh] [@media(max-height:500px)]:h-svh md:h-screen p-4 md:p-6 lg:p-8 bg-ivory">
         <div className="relative h-full w-full overflow-hidden rounded-lg bg-ecru">
           <Image
             src={heroImg}
@@ -70,7 +70,7 @@ export default function Home() {
                 <div className="p-8">
                   <h3 className="font-display text-2xl mb-3 text-clay">{product.name}</h3>
                   <p className="text-clay leading-relaxed">{product.desc}</p>
-                  <span className="mt-6 inline-block text-sienna-700 hover:text-sienna transition-colors font-medium">
+                  <span className="mt-6 inline-block text-sienna-700 hover:text-basalt transition-colors font-medium">
                     Explore Collection <span aria-hidden="true">→</span>
                   </span>
                 </div>
@@ -155,8 +155,8 @@ export default function Home() {
                   sizes={project.sizes ?? "(max-width: 768px) 50vw, 25vw"}
                 />
                 {/* Captions always show on touch screens; from md up they reveal on hover or keyboard focus */}
-                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-500">
-                  <span className="text-xs text-ivory/70 mb-1">{project.category}</span>
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 bg-gradient-to-t from-black/70 via-black/30 to-transparent md:[@media(hover:hover)]:opacity-0 md:group-hover:opacity-100 md:group-focus-visible:opacity-100 transition-opacity duration-500">
+                  <span className="text-xs text-ivory mb-1">{project.category}</span>
                   <h3 className="font-display text-xl text-ivory">{project.title}</h3>
                 </div>
               </Link>
@@ -164,7 +164,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10 text-center">
-            <Link href="/works" className="text-sienna-700 hover:text-sienna transition-colors font-medium no-underline">
+            <Link href="/works" className="text-sienna-700 hover:text-basalt transition-colors font-medium no-underline">
               View all works <span aria-hidden="true">→</span>
             </Link>
           </div>

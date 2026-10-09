@@ -23,7 +23,7 @@ const nextConfig = {
       sources.map((source) => ({ source, destination, permanent }));
     return [
       ...to('/collections', ['/products', '/cast-stone']),
-      ...to('/collections#mantels', ['/fireplace-mantels-1', '/surrounds', '/royal', '/tangled', '/daou']),
+      ...to('/collections#mantels', ['/fireplace-mantels-1', '/royal', '/tangled', '/daou']),
       ...to('/collections#heritage', ['/heritage']),
       ...to('/collections#provence', ['/provence']),
       ...to('/collections#pacifica', ['/pacifica']),
@@ -37,7 +37,7 @@ const nextConfig = {
       ...to('/collections#balustrades', ['/balustrades']),
       ...to('/collections#pilaster-caps', ['/pilaster-caps']),
       ...to('/collections#crown-molding', ['/crown-molding']),
-      ...to('/collections#door-window-trims', ['/door-trims']),
+      ...to('/collections#door-window-trims', ['/door-trims', '/surrounds']),
       ...to('/collections#outdoor', ['/benches']),
       ...to('/collections#outdoor-fireplaces', ['/outdoor-fireplaces']),
       ...to('/collections#fire-pits', ['/outdoor-firepits']),

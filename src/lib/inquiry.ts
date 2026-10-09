@@ -114,8 +114,18 @@ export const MAILTO_MAX_LENGTH = 2000;
 
 const SHORTENED_NOTE = "\n\n[Message shortened to fit your email app. Please paste the rest from the form.]";
 
+// Drops unpaired UTF-16 surrogates (an emoji cut in half by slice) so encodeURIComponent cannot throw.
+const wellFormed = (value: string) =>
+  value.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF])|[\uD800-\uDFFF]/g, (_match, pair: string | undefined) => pair ?? "");
+
 function mailtoHref(subject: string, text: string): string {
-  return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+  return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(wellFormed(subject))}&body=${encodeURIComponent(wellFormed(text))}`;
+}
+
+/** False when buildMailtoHref has to shorten the message to fit MAILTO_MAX_LENGTH. */
+export function mailtoFitsWhole(inquiry: Inquiry): boolean {
+  const { subject, text } = composeInquiryEmail(inquiry);
+  return mailtoHref(subject, text).length <= MAILTO_MAX_LENGTH;
 }
 
 /** Fallback for when the inquiry service is unavailable: hands the same message to the visitor's mail app. */

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   INQUIRY_EMAIL,
   MAILTO_MAX_LENGTH,
+  mailtoFitsWhole,
   buildMailtoHref,
   composeInquiryEmail,
   validateInquiry,
@@ -135,4 +136,28 @@ test("does not shorten a mailto link that already fits", () => {
   assert.equal(outcome.ok, true);
   if (!outcome.ok) return;
   assert.doesNotMatch(decodeURIComponent(buildMailtoHref(outcome.inquiry)), /Message shortened/);
+});
+
+test("never throws when shortening cuts through an emoji or other surrogate pair", () => {
+  for (let offset = 0; offset < 30; offset++) {
+    const message = "x".repeat(offset) + "Fireplace notes 🔥 with emoji 🏛️ throughout. ".repeat(60);
+    const outcome = validateInquiry({ ...complete, message });
+    assert.equal(outcome.ok, true);
+    if (!outcome.ok) return;
+    assert.doesNotThrow(() => buildMailtoHref(outcome.inquiry));
+    assert.ok(buildMailtoHref(outcome.inquiry).length <= MAILTO_MAX_LENGTH);
+  }
+  const brokenProduct = validateInquiry({ ...complete, product: "a".repeat(10) + "\uD83D" });
+  assert.equal(brokenProduct.ok, true);
+  if (!brokenProduct.ok) return;
+  assert.doesNotThrow(() => buildMailtoHref(brokenProduct.inquiry));
+});
+
+test("reports whether the whole message fits in the mailto link", () => {
+  const short = validateInquiry(complete);
+  const long = validateInquiry({ ...complete, message: "Detailed notes about the room. ".repeat(160) });
+  assert.equal(short.ok && long.ok, true);
+  if (!short.ok || !long.ok) return;
+  assert.equal(mailtoFitsWhole(short.inquiry), true);
+  assert.equal(mailtoFitsWhole(long.inquiry), false);
 });

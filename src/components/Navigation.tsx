@@ -26,8 +26,10 @@ export function DesktopMenu() {
     };
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        // Pull focus back only from inside the menu; elsewhere Escape just closes it.
+        const focusWasInside = menuRef.current?.contains(document.activeElement) ?? false;
         setIsMenuOpen(false);
-        buttonRef.current?.focus();
+        if (focusWasInside) buttonRef.current?.focus();
       }
     };
     document.addEventListener("pointerdown", onPointerDown);
@@ -39,18 +41,25 @@ export function DesktopMenu() {
   }, [isMenuOpen]);
 
   const itemClass =
-    "block px-6 py-3 text-clay hover:bg-clay/5 hover:text-sienna aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
+    "block px-6 py-3 text-clay hover:bg-clay/5 hover:text-basalt aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
   const close = () => setIsMenuOpen(false);
 
   return (
-    <div ref={menuRef} className="relative">
+    <div
+      ref={menuRef}
+      className="relative"
+      onBlur={(e) => {
+        // Close when keyboard focus moves past the menu (null relatedTarget is a pointer press, handled above).
+        const next = e.relatedTarget as Node | null;
+        if (next && !menuRef.current?.contains(next)) setIsMenuOpen(false);
+      }}
+    >
       <button
         ref={buttonRef}
         type="button"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-expanded={isMenuOpen}
         aria-controls={MENU_PANEL_ID}
-        aria-haspopup="true"
         className="px-6 py-2.5 text-[16px] text-clay border border-clay/30 rounded-lg hover:bg-clay/5 hover:border-clay/50 transition-all duration-500"
       >
         Menu
@@ -59,7 +68,7 @@ export function DesktopMenu() {
       {isMenuOpen && (
         <div
           id={MENU_PANEL_ID}
-          className="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden"
+          className="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-4rem)] bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden"
         >
           <nav aria-label="Site menu" className="py-2">
             <Link
@@ -125,7 +134,7 @@ export function DesktopMenu() {
 export function MobileBottomNav() {
   const isActive = useIsActive();
   const tabClass =
-    "flex flex-col items-center gap-1 min-w-[44px] text-clay hover:text-sienna aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
+    "flex flex-col items-center gap-1 min-w-[44px] text-clay hover:text-basalt aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
 
   return (
     <nav

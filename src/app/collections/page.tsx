@@ -238,9 +238,9 @@ export default function Collections() {
       <nav aria-label="Collection categories" className="border-y border-[#e8dfcf] bg-ivory/95 md:sticky md:top-20 md:z-40 md:backdrop-blur [@media(max-height:500px)]:static">
         <div className="mx-auto max-w-7xl flex gap-2 overflow-x-auto whitespace-nowrap px-6 py-3 lg:justify-center">
           {Object.entries(collections).map(([key, c]) => (
-            <a key={key} href={`#${key}`} className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-sienna">{c.title}</a>
+            <a key={key} href={`#${key}`} className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">{c.title}</a>
           ))}
-          <a href="#finishes" className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-sienna">Colors &amp; Finishes</a>
+          <a href="#finishes" className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">Colors &amp; Finishes</a>
         </div>
       </nav>
 
@@ -288,7 +288,7 @@ export default function Collections() {
                         open={openSlug === slug}
                         onOpenChange={(open) => (open ? openItem(slug) : closeItem())}
                       >
-                        <button className="mt-4 inline-flex min-h-[44px] items-center text-sienna-700 text-sm hover:text-sienna transition-colors after:absolute after:inset-0">
+                        <button className="mt-4 inline-flex min-h-[44px] items-center text-sienna-700 text-sm hover:text-basalt transition-colors after:absolute after:inset-0">
                           View Details<span className="sr-only"> – {item.name}</span>&nbsp;<span aria-hidden="true">→</span>
                         </button>
                       </ProductModal>

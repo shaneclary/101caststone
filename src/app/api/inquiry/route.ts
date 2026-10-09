@@ -10,6 +10,10 @@ const MAX_BODY_LENGTH = 20000;
  * message to the visitor's email app instead. Inquiry content is never logged.
  */
 export async function POST(request: Request) {
+  // JSON only: a cross-site form can't send it without a CORS preflight this route never approves.
+  if (!request.headers.get("content-type")?.toLowerCase().startsWith("application/json")) {
+    return NextResponse.json({ error: "unsupported_media_type" }, { status: 415 });
+  }
   if (Number(request.headers.get("content-length")) > MAX_BODY_LENGTH) {
     return NextResponse.json({ error: "too_large" }, { status: 413 });
   }

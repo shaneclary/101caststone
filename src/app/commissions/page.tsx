@@ -90,10 +90,10 @@ export default function Commissions() {
                   ))}
                 </ul>
                 <div className="mt-auto pt-6 flex gap-6 text-sm font-medium">
-                  <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-sienna transition-colors no-underline">
+                  <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
                     View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
                   </Link>
-                  <Link href={`/contact?product=${encodeURIComponent(category.title)}`} className="text-sienna-700 hover:text-sienna transition-colors no-underline">
+                  <Link href={`/contact?product=${encodeURIComponent(category.title)}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
                     Inquire<span className="sr-only"> about {category.title}</span> <span aria-hidden="true">→</span>
                   </Link>
                 </div>

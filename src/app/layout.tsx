@@ -132,12 +132,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Contact</h2>
                   <div className="space-y-1 text-[14px] text-clay">
                     <p>
-                      <a href="tel:+18056109278" className="hover:text-sienna transition-colors">
+                      <a href="tel:+18056109278" className="hover:text-basalt transition-colors">
                         (805) 610-9278
                       </a>
                     </p>
                     <p>
-                      <a href="mailto:info@101caststone.com" className="hover:text-sienna transition-colors">
+                      <a href="mailto:info@101caststone.com" className="hover:text-basalt transition-colors">
                         info@101caststone.com
                       </a>
                     </p>
@@ -152,7 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                       href="https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block hover:text-sienna transition-colors"
+                      className="block hover:text-basalt transition-colors"
                     >
                       1720 El Camino Real<br />
                       Atascadero, CA 93422

@@ -16,7 +16,8 @@ const DIRECTIONS_URL =
 export default function Contact({ searchParams }: { searchParams: { product?: string | string[] } }) {
   // "Inquire About This Piece" links here with ?product=<name>; it only prefills the form.
   const requested = Array.isArray(searchParams.product) ? searchParams.product[0] : searchParams.product;
-  const product = requested?.trim().slice(0, 120) || undefined;
+  // Slice by code points so a long value never ends in half an emoji.
+  const product = requested ? Array.from(requested.trim()).slice(0, 120).join("") || undefined : undefined;
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-24">
@@ -37,7 +38,7 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
                 href={DIRECTIONS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-[16px] leading-relaxed hover:text-sienna transition-colors"
+                className="block text-[16px] leading-relaxed hover:text-basalt transition-colors"
               >
                 1720 El Camino Real<br />
                 Atascadero, CA 93422
