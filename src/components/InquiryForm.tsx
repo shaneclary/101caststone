@@ -29,6 +29,8 @@ const LABEL = "block text-basalt text-[15px] font-medium";
 const CONTROL = "mt-2 block w-full rounded-lg bg-white px-4 py-3 text-[16px] text-basalt focus:ring-2";
 const CONTROL_OK = "border-sienna focus:border-sienna-700 focus:ring-sienna-700/30";
 const CONTROL_INVALID = "border-[#9b2c2c] focus:border-[#9b2c2c] focus:ring-[#9b2c2c]/20";
+// Selects: px-4 would otherwise cancel the forms plugin's right padding and let long options run under the chevron.
+const SELECT = "pr-10";
 const HELP = "mt-1 text-[14px] leading-relaxed text-clay";
 const ERROR = "mt-2 text-[14px] text-[#9b2c2c]";
 const PANEL = "rounded-lg border border-[#e3d9c8] bg-white p-6 sm:p-8";
@@ -176,7 +178,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
   }
 
   // Shared props for every visible control: id, value, error state and descriptions.
-  function control(field: InquiryField, helpId?: string) {
+  function control(field: InquiryField, helpId?: string, extraClass = "") {
     const error = errors[field];
     return {
       id: fieldId(field),
@@ -185,7 +187,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
       onChange: update,
       "aria-invalid": error ? true : undefined,
       "aria-describedby": [helpId, error ? errorId(field) : undefined].filter(Boolean).join(" ") || undefined,
-      className: `${CONTROL} ${error ? CONTROL_INVALID : CONTROL_OK}`,
+      className: `${CONTROL} ${error ? CONTROL_INVALID : CONTROL_OK} ${extraClass}`.trim(),
     };
   }
 
@@ -235,7 +237,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
 
       <div>
         {renderLabel("role", "I am a")}
-        <select {...control("role")}>
+        <select {...control("role", undefined, SELECT)}>
           <option value="">Select…</option>
           {ROLE_OPTIONS.map((option) => (
             <option key={option}>{option}</option>
@@ -246,7 +248,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
 
       <div>
         {renderLabel("projectType", "Project type")}
-        <select {...control("projectType")}>
+        <select {...control("projectType", undefined, SELECT)}>
           <option value="">Select…</option>
           {PROJECT_TYPE_OPTIONS.map((option) => (
             <option key={option}>{option}</option>
@@ -269,7 +271,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
 
       <div>
         {renderLabel("timeline", "Timeline")}
-        <select {...control("timeline")}>
+        <select {...control("timeline", undefined, SELECT)}>
           <option value="">Select…</option>
           {TIMELINE_OPTIONS.map((option) => (
             <option key={option}>{option}</option>

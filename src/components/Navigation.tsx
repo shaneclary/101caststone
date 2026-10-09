@@ -59,7 +59,7 @@ export function DesktopMenu() {
       {isMenuOpen && (
         <div
           id={MENU_PANEL_ID}
-          className="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-4rem)] bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden"
+          className="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-2rem)] bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden"
         >
           <nav aria-label="Site menu" className="py-2">
             <Link
