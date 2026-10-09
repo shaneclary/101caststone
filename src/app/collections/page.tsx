@@ -55,7 +55,7 @@ const collections = {
       },
       {
         name: "Tangled",
-        description: "Fluted scroll corbels carry a molded shelf—Old World presence with quiet, rhythmic carving.",
+        description: "Fluted scroll corbels carry a molded shelf—Old World presence with a quiet, rhythmic profile.",
         style: "Old World",
         image: "/images/collections/mantels/tangled.jpg"
       }
