@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   INQUIRY_EMAIL,
+  MAILTO_MAX_LENGTH,
   buildMailtoHref,
   composeInquiryEmail,
   validateInquiry,
@@ -115,4 +116,23 @@ test("builds a mailto link to the studio that round-trips subject and body", () 
   assert.equal(params.get("subject"), email.subject);
   assert.equal(params.get("body"), email.text);
   assert.doesNotMatch(href, /\+/, "spaces must be %20, not +, for mail clients");
+});
+
+test("keeps the mailto link short enough for desktop mail apps, shortening only the message", () => {
+  const outcome = validateInquiry({ ...complete, message: "Detailed notes about the room. ".repeat(160) });
+  assert.equal(outcome.ok, true);
+  if (!outcome.ok) return;
+  const href = buildMailtoHref(outcome.inquiry);
+  assert.ok(href.length <= MAILTO_MAX_LENGTH, `href is ${href.length} characters`);
+  const body = new URLSearchParams(href.slice(href.indexOf("?") + 1)).get("body") ?? "";
+  assert.match(body, /^Name: Helena Marsh$/m, "contact details survive");
+  assert.match(body, /^Product: Provence$/m);
+  assert.match(body, /\[Message shortened/);
+});
+
+test("does not shorten a mailto link that already fits", () => {
+  const outcome = validateInquiry(complete);
+  assert.equal(outcome.ok, true);
+  if (!outcome.ok) return;
+  assert.doesNotMatch(decodeURIComponent(buildMailtoHref(outcome.inquiry)), /Message shortened/);
 });

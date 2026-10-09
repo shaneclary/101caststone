@@ -109,8 +109,28 @@ export function composeInquiryEmail(inquiry: Inquiry): { subject: string; text: 
   return { subject, text: `${details.join("\n")}\n\n${inquiry.message}` };
 }
 
+/** Some desktop mail handlers (Outlook, the Windows shell) truncate or refuse longer mailto links. */
+export const MAILTO_MAX_LENGTH = 2000;
+
+const SHORTENED_NOTE = "\n\n[Message shortened to fit your email app. Please paste the rest from the form.]";
+
+function mailtoHref(subject: string, text: string): string {
+  return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+}
+
 /** Fallback for when the inquiry service is unavailable: hands the same message to the visitor's mail app. */
 export function buildMailtoHref(inquiry: Inquiry): string {
   const { subject, text } = composeInquiryEmail(inquiry);
-  return `mailto:${INQUIRY_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+  const href = mailtoHref(subject, text);
+  if (href.length <= MAILTO_MAX_LENGTH) return href;
+
+  // Trim only the free-text message; the contact details above it always survive.
+  let message = inquiry.message;
+  let shortened = href;
+  while (shortened.length > MAILTO_MAX_LENGTH && message.length > 0) {
+    const overflow = shortened.length - MAILTO_MAX_LENGTH;
+    message = message.slice(0, Math.max(0, message.length - Math.max(20, Math.ceil(overflow / 3)))).trimEnd();
+    shortened = mailtoHref(subject, composeInquiryEmail({ ...inquiry, message }).text + SHORTENED_NOTE);
+  }
+  return shortened;
 }

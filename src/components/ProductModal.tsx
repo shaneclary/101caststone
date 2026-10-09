@@ -46,7 +46,8 @@ export default function ProductModal({ item, category, children, open, onOpenCha
 
             {/* Content */}
             <div className="md:w-1/2 p-8 md:p-10">
-              <div className="text-sm text-sienna-700 bg-sienna/10 px-3 py-1 rounded inline-block mb-4">
+              {/* /[0.08] not /10: on the ivory dialog a 10% tint leaves sienna-700 text at 4.499:1 */}
+              <div className="text-sm text-sienna-700 bg-sienna/[0.08] px-3 py-1 rounded inline-block mb-4">
                 {item.style}
               </div>
 
