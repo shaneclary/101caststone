@@ -3,14 +3,11 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Link from "next/link";
+import PhotoGallery from "@/components/PhotoGallery";
+import { collections, type Product } from "@/data/products";
 
 interface ProductModalProps {
-  item: {
-    name: string;
-    description: string;
-    style: string;
-    image: string;
-  };
+  item: Product;
   category: string;
   children: React.ReactNode;
   // Optional controlled mode (e.g. to sync with the URL hash); uncontrolled when omitted
@@ -33,16 +30,29 @@ export default function ProductModal({ item, category, children, open, onOpenCha
           </Dialog.Close>
 
           <div className="md:flex">
-            {/* Image: contained (never cropped) on a toned panel that also shows while it loads */}
-            <div className="relative aspect-[4/3] md:aspect-auto md:w-1/2 bg-ivory-200">
-              <Image
-                src={item.image}
-                alt={`${item.name} – ${category}, cast stone`}
-                fill
-                className="object-contain md:rounded-l-xl [@media(max-height:500px)]:object-top"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
+            {/* Photos: contained (never cropped) on a toned panel that also shows while they load */}
+            {item.gallery && item.gallery.length > 0 ? (
+              <div className="md:w-1/2 md:p-6 md:pr-0">
+                <PhotoGallery
+                  photos={item.gallery}
+                  label={`${item.name} photos`}
+                  frameClassName="aspect-[4/3] md:aspect-square md:rounded-lg"
+                  thumbsClassName="px-4 md:px-0"
+                  sizes="(max-width: 768px) 100vw, 430px"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="relative aspect-[4/3] md:aspect-auto md:w-1/2 bg-ivory-200">
+                <Image
+                  src={item.image}
+                  alt={`${item.name} – ${category}, cast stone`}
+                  fill
+                  className="object-contain md:rounded-l-xl [@media(max-height:500px)]:object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            )}
 
             {/* Content */}
             <div className="md:w-1/2 p-8 md:p-10">
@@ -65,22 +75,24 @@ export default function ProductModal({ item, category, children, open, onOpenCha
               <div className="border-t border-ecru pt-6 mb-8">
                 <h3 className="font-sans text-[18px] leading-[1.85] font-medium text-basalt mb-4">Available Options</h3>
                 <ul className="space-y-2 text-[15px] text-clay">
-                  <li className="flex items-start gap-2">
-                    <span className="text-sienna-700 mt-1">•</span>
-                    <span>Custom dimensions to fit your space</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sienna-700 mt-1">•</span>
-                    <span>6 stone colors: Cream, Buff, Gray, Charcoal, Terra, White</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sienna-700 mt-1">•</span>
-                    <span>3 texture finishes: Classic, Old World, Rustic</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-sienna-700 mt-1">•</span>
-                    <span>Hand-finished in Atascadero, California</span>
-                  </li>
+                  {/* Wording from the live site's products, colors and FAQ pages */}
+                  {[
+                    "Standard and custom styles and dimensions",
+                    "Seven standard colors and three texture finishes: Classic, Old World, Rustic",
+                    "Custom colors and finishes on request",
+                    ...(category === collections.mantels.title
+                      ? [
+                          "Non-combustible: can be used directly next to the firebox opening",
+                          "Quoted with installation by our team",
+                        ]
+                      : []),
+                    "Packed by hand and cast in Atascadero, California",
+                  ].map((option) => (
+                    <li key={option} className="flex items-start gap-2">
+                      <span aria-hidden="true" className="text-sienna-700 mt-1">•</span>
+                      <span>{option}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -95,7 +107,7 @@ export default function ProductModal({ item, category, children, open, onOpenCha
               </div>
 
               <p className="text-[13px] text-clay text-center mt-4">
-                We typically respond within 1-2 business days
+                We typically respond within 1–2 business days.
               </p>
             </div>
           </div>

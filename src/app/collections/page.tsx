@@ -123,35 +123,45 @@ export default function Collections() {
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="font-display text-4xl md:text-5xl text-clay mb-4 text-center">Stone Colors & Finishes</h2>
           <p className="text-lg text-clay max-w-2xl mx-auto text-center mb-16 leading-relaxed">
-            Seven colors and three textures, each developed for mineral permanence and graceful aging.
+            Seven standard colors and three texture finishes. Custom colors and finishes on request.
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
             {/* Colors */}
             <div>
-              <h3 className="font-display text-2xl text-clay mb-6">Colors</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="font-display text-2xl text-basalt mb-6">Colors</h3>
+              <ul className="grid grid-cols-3 gap-4">
                 {stoneColors.map((color) => (
-                  <div key={color.name} className="bg-white rounded-lg p-4 border border-[#e8dfcf]">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-clay/20 to-sienna/20 mb-3" />
-                    <div className="font-medium text-clay">{color.name}</div>
-                    <div className="text-xs text-clay mt-1">{color.desc}</div>
-                  </div>
+                  <li key={color.name}>
+                    <div className="relative aspect-square overflow-hidden rounded-lg border border-[#e8dfcf] bg-white">
+                      <Image src={color.image} alt={`${color.name} color sample`} fill sizes="(max-width: 768px) 30vw, 170px" className="object-cover" />
+                    </div>
+                    <div className="mt-2 text-[15px] font-medium text-basalt">{color.name}</div>
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <p className="mt-6 text-[15px] text-clay leading-relaxed">
+                Three of the seven standard colors are shown. Screen color is approximate.
+              </p>
             </div>
 
             {/* Textures */}
             <div>
-              <h3 className="font-display text-2xl text-clay mb-6">Textures</h3>
-              <div className="space-y-4">
+              <h3 className="font-display text-2xl text-basalt mb-6">Textures</h3>
+              <ul className="space-y-4">
                 {textureFinishes.map((texture) => (
-                  <div key={texture.name} className="bg-white rounded-lg p-6 border border-[#e8dfcf]">
-                    <div className="font-medium text-clay text-lg">{texture.name}</div>
-                    <div className="text-sm text-clay mt-2">{texture.desc}</div>
-                  </div>
+                  <li key={texture.name} className="flex gap-4 items-center bg-white rounded-lg p-3 border border-[#e8dfcf]">
+                    <div className="relative h-20 w-32 shrink-0 overflow-hidden rounded-md">
+                      <Image src={texture.image} alt={`${texture.name} texture sample`} fill sizes="128px" className="object-cover" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-basalt text-lg">{texture.name}</div>
+                      <div className="text-[15px] text-clay mt-1 leading-relaxed">{texture.desc}</div>
+                    </div>
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <p className="mt-6 text-[15px] text-clay leading-relaxed">Texture samples are shown in a single color.</p>
             </div>
           </div>
         </div>
