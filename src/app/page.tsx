@@ -193,7 +193,7 @@ export default function Home() {
         </div>
 
         {/* Content Side */}
-        <div className="flex flex-col justify-center items-center space-y-8 px-12 bg-ivory">
+        <div className="flex flex-col justify-center items-center space-y-8 px-12 py-16 md:py-0 bg-ivory">
           <h2 className="font-display text-4xl md:text-5xl text-clay text-center leading-tight">
             Begin Your Design Journey
           </h2>
