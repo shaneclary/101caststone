@@ -52,8 +52,8 @@ export default function Home() {
           <h2 className="text-center font-display text-4xl md:text-5xl mb-10 text-clay">Signature Collections</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Monumental Mantels", desc: "Hand-carved limestone fireplaces with classical proportions", img: "/images/collections/mantels/cambridge.jpg", href: "/collections#mantels" },
-              { name: "Architectural Columns", desc: "Load-bearing elegance in Doric, Ionic, and Corinthian orders", img: "/images/collections/architectural/columns.jpg", href: "/collections#architectural" },
+              { name: "Monumental Mantels", desc: "Cast stone fireplace surrounds and mantels, from Contemporary to Old World", img: "/images/collections/mantels/cambridge.jpg", href: "/collections#mantels" },
+              { name: "Architectural Columns", desc: "Round, square and twisted columns with plain or leaf-carved capitals", img: "/images/products/columns/card.jpg", href: "/collections#architectural" },
               { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.jpg", href: "/collections#outdoor" }
             ].map((product, i) => (
               <Link key={i} href={product.href} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700 no-underline">

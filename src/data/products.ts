@@ -24,13 +24,39 @@ export interface Collection {
 export type CollectionKey = "mantels" | "architectural" | "outdoor" | "functional";
 
 export const collections: Record<CollectionKey, Collection> = {
+  // Mantels follow the original site's grouping: Contemporary, Traditional, Old World.
   mantels: {
     title: "Fireplace Mantels",
-    description: "Hand-carved limestone mantels with classical proportions. Each surround designed not merely to frame a fire, but to anchor a room—proportioned to architecture, light, and the human scale of gathering.",
+    description: "A full line of cast stone fireplace surrounds and mantels in a wide variety of styles, from Contemporary to Old World. Every design comes in seven colors and three texture finishes, in standard or custom dimensions.",
     items: [
       {
+        name: "Contemporary Surround",
+        description: "A flat, beveled surround, mitered at the corners like a picture frame. No shelf, no carving; shown around linear and standard fireboxes.",
+        style: "Contemporary",
+        image: "/images/products/contemporary-surround/card.jpg",
+        gallery: [
+          { src: "/images/products/contemporary-surround/01.jpg", alt: "Wide rectangular fireplace surround with a beveled picture-frame profile around a linear firebox, above a low raised hearth, on a grey wall beside a window" },
+          { src: "/images/products/contemporary-surround/02.jpg", alt: "Beveled rectangular fireplace surround around a long linear fireplace, between dark bookcases, with a television mounted above" },
+          { src: "/images/products/contemporary-surround/03.jpg", alt: "Living room with armchairs and a coffee table facing a white beveled fireplace surround set into a wall of stacked stone with built-in shelves and a television" },
+          { src: "/images/products/contemporary-surround/04.jpg", alt: "Beveled rectangular fireplace surround around a standard firebox with a log set, on a wood-look floor, with a television mounted above" },
+          { src: "/images/products/contemporary-surround/05.jpg", alt: "Close-up angled view of a beveled fireplace surround around a black firebox beside a dark bookcase" }
+        ]
+      },
+      {
+        name: "Genoa",
+        description: "A flat, square-edged surround with a stepped inner border and no shelf. Shown with a raised hearth of matching slabs, straight or angled for a corner.",
+        style: "Contemporary",
+        image: "/images/products/genoa/card.jpg",
+        gallery: [
+          { src: "/images/products/genoa/01.jpg", alt: "Smooth, square-edged fireplace surround with a stepped frame profile set across a corner, over an angled raised hearth, with a dark wood floor" },
+          { src: "/images/products/genoa/02.jpg", alt: "Straight-on view of a rectangular fireplace surround with a stepped inner frame and a raised hearth in an empty carpeted room" },
+          { src: "/images/products/genoa/03.jpg", alt: "Angled view of a rectangular fireplace surround with a stepped frame and raised hearth beside dark cabinetry" },
+          { src: "/images/products/genoa/04.jpg", alt: "Rectangular fireplace surround with a stepped frame between two wall niches, with the firebox covered" }
+        ]
+      },
+      {
         name: "Heritage",
-        description: "English Georgian tradition—restrained elegance, balanced proportions, and details that reveal themselves slowly.",
+        description: "Flat pilasters with recessed panels carry a plain frieze and a stepped, molded shelf. The opening is square-headed or softened by a shallow arch.",
         style: "Traditional",
         image: "/images/products/heritage/card.jpg",
         gallery: [
@@ -43,77 +69,8 @@ export const collections: Record<CollectionKey, Collection> = {
         ]
       },
       {
-        name: "Provence",
-        description: "Inspired by the limestone farmhouses of southern France. Gentle curves replace sharp geometry, carrying the weathered grace of centuries.",
-        style: "Traditional",
-        image: "/images/products/provence/card.jpg",
-        gallery: [
-          { src: "/images/products/provence/01.jpg", alt: "Close three-quarter view of a cream stone mantel with a deep molded shelf, a gently arched frieze and curved console legs that flare outward at the base, around a black glass firebox on a low stone hearth" },
-          { src: "/images/products/provence/02.jpg", alt: "Front view of a tan stone mantel with a thick molded shelf and curved legs that widen at the floor, around a black gas insert, on a wood floor against a white wall" },
-          { src: "/images/products/provence/03.jpg", alt: "Angled close view of a stone mantel with a molded shelf and curved legs flaring at the base, a fire burning in a herringbone-lined firebox, on a light wood floor" },
-          { src: "/images/products/provence/04.jpg", alt: "White stone mantel with a thin molded shelf and curved legs set between dark built-in cabinets, with a glass-fronted gas firebox" },
-          { src: "/images/products/provence/05.jpg", alt: "Outdoor covered patio with a stucco chimney, a cream stone mantel with curved legs and a raised stone hearth, terracotta tile floor and folding glass doors" },
-          { src: "/images/products/provence/06.jpg", alt: "Tall white tiled chimney breast with a white stone mantel whose jambs curve in under the shelf, in a double-height room with black-framed windows" }
-        ]
-      },
-      {
-        name: "Pacifica",
-        description: "Clean lines meet California light. The Pacifica strips ornament to its essence, allowing the stone itself to speak.",
-        style: "Traditional",
-        image: "/images/products/pacifica/card.jpg",
-        gallery: [
-          { src: "/images/products/pacifica/01.jpg", alt: "Front view of a cream stone mantel with a molded shelf, a stepped rectangular frame and a raised arched band around an arched black firebox door, standing on a raised stone hearth block with carpet and wood floor in front" },
-          { src: "/images/products/pacifica/02.jpg", alt: "Three-quarter view of a white stone mantel with a molded cornice shelf and an arched inner frame around a black firebox, on a flat stone hearth pad over a hardwood floor" },
-          { src: "/images/products/pacifica/03.jpg", alt: "Close front view of a stone mantel showing the stepped outer frame, the raised segmental arch over the opening and the plain plinth blocks at the base of each jamb" },
-          { src: "/images/products/pacifica/04.jpg", alt: "Sitting room with a cream stone mantel with an arched inner frame between two dark cabinets with lamps, a framed painting above and two black leather armchairs in front" },
-          { src: "/images/products/pacifica/05.jpg", alt: "Close view of a white stone mantel with an arched inner band framing a black scrolled wrought-iron firebox door" },
-          { src: "/images/products/pacifica/06.jpg", alt: "Living room with a cream stone mantel with an arched opening between two windows with sheer curtains, a framed print and candles above and two dark leather armchairs" }
-        ]
-      },
-      {
-        name: "Cambridge",
-        description: "Academic elegance translated into stone. Gothic and Tudor traditions for libraries, studies, and rooms where serious thinking happens.",
-        style: "Old World",
-        image: "/images/products/cambridge/card.jpg",
-        gallery: [
-          { src: "/images/products/cambridge/01.jpg", alt: "Fireplace mantel with a molded shelf and two tall scrolled corbels carved with leaves, framing a black fireplace insert on a raised stone hearth, beside a window" },
-          { src: "/images/products/cambridge/02.jpg", alt: "Straight-on view of a fireplace mantel with leaf-carved scrolled corbels and a molded shelf, with an arched-door insert, on a raised hearth" },
-          { src: "/images/products/cambridge/03.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels and a molded shelf in a furnished living room with grey walls, a coffee table and tall vases" },
-          { src: "/images/products/cambridge/04.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels between built-in shelves, with a television mounted above" },
-          { src: "/images/products/cambridge/05.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels on a tall chimney breast in a living room with built-in shelves and a chandelier" }
-        ]
-      },
-      {
-        name: "French Chateau",
-        description: "The grandeur of the Loire Valley. Ornate carved details—acanthus scrolls, shell motifs, classical moldings—unapologetic beauty.",
-        style: "Old World",
-        image: "/images/products/french-chateau/card.jpg",
-        gallery: [
-          { src: "/images/products/french-chateau/01.jpg", alt: "Fireplace mantel with a wide molded shelf, smooth frieze and plain legs that curve outward at the base, around a black-framed fireplace insert with a log set, on a stone hearth with a wood floor and wood cabinetry beside it" },
-          { src: "/images/products/french-chateau/02.jpg", alt: "Fireplace mantel with a molded shelf and curved legs in a furnished room with arched mirrors, lamps and a television above" },
-          { src: "/images/products/french-chateau/03.jpg", alt: "Straight-on view of a fireplace mantel with a molded shelf, smooth frieze and curved legs on a raised hearth slab" },
-          { src: "/images/products/french-chateau/04.jpg", alt: "Angled view of a fireplace mantel with a heavily pitted, mottled surface, a molded shelf and curved legs, around an arched-door insert" },
-          { src: "/images/products/french-chateau/05.jpg", alt: "Dining room with a long table set in blue, and a fireplace mantel on a tall chimney breast beneath a framed painting, with arched glass doors to one side" },
-          { src: "/images/products/french-chateau/06.jpg", alt: "Fireplace mantel with a molded shelf and curved legs around a black insert with a log set, on a tile floor, with a television mounted above" }
-        ]
-      },
-      {
-        name: "Royal Acanthus",
-        description: "Deeply carved foliage spiraling from corbel brackets, creating interplay of light and shadow. Architecture as living sculpture.",
-        style: "Old World",
-        image: "/images/products/royal-acanthus/card.jpg",
-        gallery: [
-          { src: "/images/products/royal-acanthus/01.jpg", alt: "Fireplace mantel with a carved band of repeating fan-shaped leaf motifs under the shelf and two large scrolled corbels carved with leaves, around a brass-framed fireplace insert on a raised hearth, with plantation shutters on either side" },
-          { src: "/images/products/royal-acanthus/02.jpg", alt: "Close-up of a fireplace mantel's carved frieze of repeating fan-shaped leaves and a deeply carved leaf scroll corbel beside a black insert" },
-          { src: "/images/products/royal-acanthus/03.jpg", alt: "Fireplace mantel in a dark ochre-brown finish with a carved leaf frieze and leaf-carved scrolled corbels, around a black insert with a log set, on a tile hearth over a patterned rug" },
-          { src: "/images/products/royal-acanthus/04.jpg", alt: "Angled view of a fireplace mantel with a carved leaf frieze and leaf-carved scrolled corbels in a room with patterned wallpaper and a television above" },
-          { src: "/images/products/royal-acanthus/05.jpg", alt: "Angled view of a fireplace mantel in a tan finish with a carved leaf frieze and scrolled corbels, with a glass-fronted insert" },
-          { src: "/images/products/royal-acanthus/06.jpg", alt: "Straight-on view of a fireplace mantel with a carved frieze band and scrolled corbels on a shallow hearth in an empty room" }
-        ]
-      },
-      {
         name: "Milagro",
-        description: "Spanish Colonial warmth meets California craft. Sun-baked simplicity of mission architecture with gentle arches.",
+        description: "A wide, rounded molding frames a rectangular opening. It is topped with a simple molded shelf, or left as a frame alone.",
         style: "Traditional",
         image: "/images/products/milagro/card.jpg",
         gallery: [
@@ -126,29 +83,107 @@ export const collections: Record<CollectionKey, Collection> = {
         ]
       },
       {
+        name: "Pacifica",
+        description: "A raised arched band frames the opening within a stepped rectangular surround. A molded cornice shelf above, plain plinth blocks below.",
+        style: "Traditional",
+        image: "/images/products/pacifica/card.jpg",
+        gallery: [
+          { src: "/images/products/pacifica/01.jpg", alt: "Front view of a cream stone mantel with a molded shelf, a stepped rectangular frame and a raised arched band around an arched black firebox door, standing on a raised stone hearth block with carpet and wood floor in front" },
+          { src: "/images/products/pacifica/02.jpg", alt: "Three-quarter view of a white stone mantel with a molded cornice shelf and an arched inner frame around a black firebox, on a flat stone hearth pad over a hardwood floor" },
+          { src: "/images/products/pacifica/03.jpg", alt: "Close front view of a stone mantel showing the stepped outer frame, the raised segmental arch over the opening and the plain plinth blocks at the base of each jamb" },
+          { src: "/images/products/pacifica/04.jpg", alt: "Sitting room with a cream stone mantel with an arched inner frame between two dark cabinets with lamps, a framed painting above and two black leather armchairs in front" },
+          { src: "/images/products/pacifica/05.jpg", alt: "Close view of a white stone mantel with an arched inner band framing a black scrolled wrought-iron firebox door" },
+          { src: "/images/products/pacifica/06.jpg", alt: "Living room with a cream stone mantel with an arched opening between two windows with sheer curtains, a framed print and candles above and two dark leather armchairs" }
+        ]
+      },
+      {
+        name: "Provence",
+        description: "Gentle curves replace sharp geometry. The jambs sweep up into a deep molded shelf; on some pieces the frieze lifts in a shallow arch.",
+        style: "Traditional",
+        image: "/images/products/provence/card.jpg",
+        gallery: [
+          { src: "/images/products/provence/01.jpg", alt: "Close three-quarter view of a cream stone mantel with a deep molded shelf and a gently arched frieze; the jambs curve outward at the top beneath the shelf, around a black glass firebox on a low stone hearth" },
+          { src: "/images/products/provence/02.jpg", alt: "Front view of a tan stone mantel with a thick molded shelf over straight jambs that curve outward at the top, around a black gas insert, on a wood floor against a white wall" },
+          { src: "/images/products/provence/03.jpg", alt: "Angled close view of a stone mantel with a molded shelf over jambs that curve outward at the top, a fire burning in a herringbone-lined firebox, on a light wood floor" },
+          { src: "/images/products/provence/04.jpg", alt: "White stone mantel with a thin molded shelf and curved legs set between dark built-in cabinets, with a glass-fronted gas firebox" },
+          { src: "/images/products/provence/05.jpg", alt: "Outdoor covered patio with a stucco chimney, a cream stone mantel with curved legs and a raised stone hearth, terracotta tile floor and folding glass doors" },
+          { src: "/images/products/provence/06.jpg", alt: "Tall white tiled chimney breast with a white stone mantel whose jambs curve in under the shelf, in a double-height room with black-framed windows" }
+        ]
+      },
+      {
+        name: "Santa Barbara",
+        description: "Smooth jambs curve outward to carry a molded shelf over a plain frieze. Shown in white on a raised hearth.",
+        style: "Traditional",
+        image: "/images/products/santa-barbara/card.jpg",
+        gallery: [
+          { src: "/images/products/santa-barbara/01.jpg", alt: "White fireplace mantel with a molded shelf over a plain frieze; straight jambs curve outward at the top, around a herringbone-tiled firebox with a log set, on a raised hearth" }
+        ]
+      },
+      {
+        name: "Royal Acanthus",
+        description: "Deeply carved foliage spirals from the corbel brackets, creating an interplay of light and shadow. A frieze of repeating leaves runs beneath the shelf.",
+        style: "Old World",
+        image: "/images/products/royal-acanthus/card.jpg",
+        gallery: [
+          { src: "/images/products/royal-acanthus/01.jpg", alt: "Fireplace mantel with a carved band of repeating fan-shaped leaf motifs under the shelf and two large scrolled corbels carved with leaves, around a brass-framed fireplace insert on a raised hearth, with plantation shutters on either side" },
+          { src: "/images/products/royal-acanthus/02.jpg", alt: "Close-up of a fireplace mantel's carved frieze of repeating fan-shaped leaves and a deeply carved leaf scroll corbel beside a black insert" },
+          { src: "/images/products/royal-acanthus/03.jpg", alt: "Fireplace mantel in a dark ochre-brown finish with a carved leaf frieze and leaf-carved scrolled corbels, around a black insert with a log set, on a tile hearth over a patterned rug" },
+          { src: "/images/products/royal-acanthus/04.jpg", alt: "Angled view of a fireplace mantel with a carved leaf frieze and leaf-carved scrolled corbels in a room with patterned wallpaper and a television above" },
+          { src: "/images/products/royal-acanthus/05.jpg", alt: "Angled view of a fireplace mantel in a tan finish with a carved leaf frieze and scrolled corbels, with a glass-fronted insert" },
+          { src: "/images/products/royal-acanthus/06.jpg", alt: "Straight-on view of a fireplace mantel with a carved frieze band and scrolled corbels on a shallow hearth in an empty room" }
+        ]
+      },
+      {
+        name: "Cambridge",
+        description: "Tall scroll corbels, leaf-carved on the face, carry a deep molded shelf over a plain frieze. Each corbel ends in a rolled volute above a square plinth.",
+        style: "Old World",
+        image: "/images/products/cambridge/card.jpg",
+        gallery: [
+          { src: "/images/products/cambridge/01.jpg", alt: "Fireplace mantel with a molded shelf and two tall scrolled corbels carved with leaves, framing a black fireplace insert on a raised stone hearth, beside a window" },
+          { src: "/images/products/cambridge/02.jpg", alt: "Straight-on view of a fireplace mantel with leaf-carved scrolled corbels and a molded shelf, with an arched-door insert, on a raised hearth" },
+          { src: "/images/products/cambridge/03.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels and a molded shelf in a furnished living room with grey walls, a coffee table and tall vases" },
+          { src: "/images/products/cambridge/04.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels between built-in shelves, with a television mounted above" },
+          { src: "/images/products/cambridge/05.jpg", alt: "Fireplace mantel with leaf-carved scrolled corbels on a tall chimney breast in a living room with built-in shelves and a chandelier" }
+        ]
+      },
+      {
+        name: "Chateau",
+        description: "A deep molded shelf crowns a tall, plain frieze. The jambs curve outward beneath it and rest on stepped bases.",
+        style: "Old World",
+        image: "/images/products/french-chateau/card.jpg",
+        gallery: [
+          { src: "/images/products/french-chateau/01.jpg", alt: "Fireplace mantel with a wide molded shelf over a smooth frieze; plain jambs curve outward at the top and rest on small stepped bases, around a black-framed insert with a log set, on a stone hearth beside wood cabinetry" },
+          { src: "/images/products/french-chateau/02.jpg", alt: "Fireplace mantel with a molded shelf and curved legs in a furnished room with arched mirrors, lamps and a television above" },
+          { src: "/images/products/french-chateau/03.jpg", alt: "Straight-on view of a fireplace mantel with a molded shelf, smooth frieze and curved legs on a raised hearth slab" },
+          { src: "/images/products/french-chateau/04.jpg", alt: "Angled view of a fireplace mantel with a heavily pitted, mottled surface, a molded shelf and curved legs, around an arched-door insert" },
+          { src: "/images/products/french-chateau/05.jpg", alt: "Dining room with a long table set in blue, and a fireplace mantel on a tall chimney breast beneath a framed painting, with arched glass doors to one side" },
+          { src: "/images/products/french-chateau/06.jpg", alt: "Fireplace mantel with a molded shelf and curved legs around a black insert with a log set, on a tile floor, with a television mounted above" }
+        ]
+      },
+      {
         name: "Tangled",
-        description: "Fluted scroll corbels carry a molded shelf—Old World presence with a quiet, rhythmic profile.",
+        description: "Fluted scroll corbels carry a molded shelf—Old World presence with a quiet, rhythmic profile. The frieze runs straight or lifts in a shallow arch.",
         style: "Old World",
         image: "/images/products/tangled/card.jpg",
         gallery: [
           { src: "/images/products/tangled/01.jpg", alt: "Fireplace mantel with a molded shelf, a gently arched frieze over the opening and two fluted scrolled corbels, around a black fireplace screen on a flat stone hearth, with a round mirror above and shutters on either side" },
           { src: "/images/products/tangled/02.jpg", alt: "Angled view of a fireplace mantel with a mottled surface, an arched frieze and fluted scrolled corbels, on a large raised hearth of matching slabs, with daylight from a window" },
-          { src: "/images/products/tangled/03.jpg", alt: "Close-up of a fireplace mantel's arched frieze and fluted scrolled corbels around a black glass fireplace screen" },
-          { src: "/images/products/tangled/04.jpg", alt: "Fireplace mantel with an arched frieze and fluted scrolled corbels on a raised hearth, with a framed seascape painting above and figurines on the shelf" },
+          { src: "/images/products/tangled/03.jpg", alt: "Close-up of a fireplace mantel's straight frieze and fluted scrolled corbels around a black glass fireplace screen" },
+          { src: "/images/products/tangled/04.jpg", alt: "Fireplace mantel with a straight frieze and fluted scrolled corbels on a raised hearth, with a framed seascape painting above and figurines on the shelf" },
           { src: "/images/products/tangled/05.jpg", alt: "Fireplace mantel with an arched frieze and fluted scrolled corbels beside built-in cabinetry, with an arched-top painting above" },
-          { src: "/images/products/tangled/06.jpg", alt: "Fireplace mantel with an arched frieze and fluted scrolled corbels at the base of a tall tapered chimney breast between two windows" }
+          { src: "/images/products/tangled/06.jpg", alt: "Fireplace mantel with a straight frieze and fluted scrolled corbels at the base of a tall tapered chimney breast between two windows" }
         ]
       }
     ]
   },
   architectural: {
     title: "Architectural Elements",
-    description: "Load-bearing elegance in classical orders. Columns, corbels, and capitals engineered for structural integrity while maintaining proportions used since antiquity.",
+    description: "Feature, trim and ornament for facades, terraces and rooms. Cast stone in standard and custom styles and dimensions, offered in seven colors and three texture finishes.",
     items: [
       {
         name: "Columns",
-        description: "Doric, Ionic, and Corinthian orders. Entasis curves calculated to the same ratios used in antiquity, capitals carved with jeweler's precision.",
-        style: "Classical Orders",
+        description: "Round, square and spiral-twisted shafts with plain molded or leaf-carved capitals. Set at entries, between arched windows and indoors.",
+        style: "Round, Square, Twisted",
         image: "/images/products/columns/card.jpg",
         gallery: [
           { src: "/images/products/columns/01.jpg", alt: "Two columns with leaf-carved capitals flank an arched iron entry door; a balustrade with a pineapple-topped post and a curved stair rail run along the steps in front." },
@@ -161,22 +196,21 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Corbels",
-        description: "Where structure meets ornament. Brackets that support physical loads while carrying visual weight—from simple chamfered blocks to ornate acanthus scrolls.",
-        style: "Functional Art",
+        description: "Scrolled and leaf-carved brackets beneath molded top blocks, one banded in egg-and-dart. Set in pairs under kitchen hoods.",
+        style: "Scroll & Leaf",
         image: "/images/products/corbels/card.jpg",
         gallery: [
-          { src: "/images/products/corbels/01.jpg", alt: "Carved bracket with an egg-and-dart band along the top block, a leaf scroll on the face and a bead at the lower tip, photographed on a black background." },
-          { src: "/images/products/corbels/02.jpg", alt: "Scrolled bracket with a plain top block and a large spiral curl, on a black background." },
-          { src: "/images/products/corbels/03.jpg", alt: "Tall tapering bracket with layered leaves and a small scroll at the base, on a black background." },
-          { src: "/images/products/corbels/04.jpg", alt: "Small bracket with a molded top and leaf-carved face, viewed from the side on a black background." },
+          { src: "/images/products/corbels/01.jpg", alt: "Carved bracket with an egg-and-dart band along the top block, a leaf scroll on the face and a bead at the lower tip." },
+          { src: "/images/products/corbels/02.jpg", alt: "Scrolled bracket with a plain top block and a large spiral curl." },
+          { src: "/images/products/corbels/03.jpg", alt: "Tall tapering bracket with layered leaves and a small scroll at the base." },
           { src: "/images/products/corbels/05.jpg", alt: "Two leaf-carved brackets supporting a kitchen hood with a leaf-patterned band, between dark wood cabinets." },
           { src: "/images/products/corbels/06.jpg", alt: "Kitchen hood with a molded cornice and two small carved brackets above a patterned tile backsplash and range." }
         ]
       },
       {
         name: "Balustrades",
-        description: "Defining the edge where terrace meets sky. Turned balusters and carved rail systems bringing Italian villa proportions to California gardens.",
-        style: "Garden & Entry",
+        description: "Defining the edge where terrace meets sky. Turned balusters between molded rails and paneled piers, run straight, curved or down a stair.",
+        style: "Terrace & Entry",
         image: "/images/products/balustrades/card.jpg",
         gallery: [
           { src: "/images/products/balustrades/01.jpg", alt: "A balustrade of turned balusters with a molded rail and paneled end pier wrapping an entry porch, below two columns with leaf-carved capitals and an arched iron door." },
@@ -189,8 +223,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Pilaster Caps",
-        description: "Where the pilaster meets the entablature, proportion becomes critical. All classical orders available, sized to match pilaster widths.",
-        style: "Classical Details",
+        description: "Flat and peaked caps with molded edges, finishing square piers at gates and entries. Some carry a ball or pineapple finial on a stepped base.",
+        style: "Pier Caps & Finials",
         image: "/images/products/pilaster-caps/card.jpg",
         gallery: [
           { src: "/images/products/pilaster-caps/01.jpg", alt: "A peaked cap with molded edges on a tall square pier beside a road, with rolling hills and farmland behind." },
@@ -203,8 +237,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Crown Molding",
-        description: "The crown completes the composition. Profiles from simple cyma curves to elaborate egg-and-dart enrichments.",
-        style: "Interior & Exterior",
+        description: "The crown completes the composition. Profiles range from plain and stepped to scrolling leaf friezes and repeating leaf bands.",
+        style: "Leaf & Stepped",
         image: "/images/products/crown-molding/card.jpg",
         gallery: [
           { src: "/images/products/crown-molding/01.jpg", alt: "Close view of a molding with a scrolling leaf frieze and a twisted rope band above, under a plain cornice." },
@@ -215,12 +249,12 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Door & Window Trims",
-        description: "The frame announces what follows. From simple architraves to pedimented entries, establishing architectural language.",
+        description: "The frame announces what follows. Arched and flat-headed surrounds for doors and windows, some with a keystone, paneled pilasters or engaged columns.",
         style: "Entry & Fenestration",
         image: "/images/products/door-window-trims/card.jpg",
         gallery: [
           { src: "/images/products/door-window-trims/01.jpg", alt: "Two-storey stucco facade with a pilastered door surround, flat entablature and keystone around an arched wood door, with shuttered windows and arched openings either side." },
-          { src: "/images/products/door-window-trims/02.jpg", alt: "Arched double wood door framed by a surround with engaged half-columns, a molded entablature and two lanterns." },
+          { src: "/images/products/door-window-trims/02.jpg", alt: "Arched double wood door framed by a surround with engaged columns, a molded entablature and two lanterns." },
           { src: "/images/products/door-window-trims/03.jpg", alt: "A window surround with eared corners and a projecting sill on a stucco wall, with roof tiles below." },
           { src: "/images/products/door-window-trims/04.jpg", alt: "A tall arched surround around a dark paneled door with a long pull handle." },
           { src: "/images/products/door-window-trims/05.jpg", alt: "Red stucco house with an arched entry surround with keystone and molded surrounds around two arched windows." },
@@ -231,12 +265,12 @@ export const collections: Record<CollectionKey, Collection> = {
   },
   outdoor: {
     title: "Outdoor & Garden",
-    description: "Weathered grace for courtyards and water features. Elements engineered for exposure, finished to age beautifully through seasons of sun and fog.",
+    description: "Fire, water, seating and paving for patios, courtyards and gardens. Cast stone, alongside natural stone and veneer masonry.",
     items: [
       {
         name: "Outdoor Fireplaces",
-        description: "The hearth moves to the garden. Surrounds that bring gathering power to terraces, patios, and pool houses.",
-        style: "Terrace & Patio",
+        description: "The hearth moves to the garden. Arched surrounds, mantel shelves, raised hearths and chimney caps in cast stone, set in stacked stone or stucco on patios and under pergolas.",
+        style: "Patio & Pergola",
         image: "/images/products/outdoor-fireplaces/card.jpg",
         gallery: [
           { src: "/images/products/outdoor-fireplaces/01.jpg", alt: "Outdoor fireplace faced in stacked stone with a smooth arched surround, a herringbone brick firebox and a wide hearth ledge" },
@@ -249,8 +283,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Fire Pits",
-        description: "Fire at the center. Cast stone surrounds that anchor outdoor rooms and extend the evening.",
-        style: "Gathering Spaces",
+        description: "Fire at the center. Freestanding round bowls, smooth caps for stone-faced pits, and coping for the seat walls that curve around them.",
+        style: "Bowls & Rings",
         image: "/images/products/fire-pits/card.jpg",
         gallery: [
           { src: "/images/products/fire-pits/01.jpg", alt: "Round bowl-shaped fire pit with a wide flat rim and a metal burner ring inside, on a cobble-paver patio with cushioned chairs behind" },
@@ -262,8 +296,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Fountains",
-        description: "Water speaks in stone. From simple wall spouts to elaborate tiered centerpieces, bringing movement and sound to courtyards.",
-        style: "Water Features",
+        description: "Water speaks in stone. Quatrefoil, octagonal and round basins with pedestal bowls or a spouted pillar, and a wall fountain with a scalloped bowl.",
+        style: "Basins & Wall Fountains",
         image: "/images/products/fountains/card.jpg",
         gallery: [
           { src: "/images/products/fountains/01.jpg", alt: "Courtyard fountain with a quatrefoil-shaped molded basin, a shallow upper bowl on a short pedestal and a central water jet, in brick paving with blue-tiled walls behind" },
@@ -274,9 +308,9 @@ export const collections: Record<CollectionKey, Collection> = {
         ]
       },
       {
-        name: "Benches",
-        description: "Stone invites pause. Garden benches with visual weight and permanence, placed where the walk naturally stops.",
-        style: "Garden Seating",
+        name: "Benches & Seat Walls",
+        description: "Stone invites pause. A straight bench with a beveled slab seat on fluted pedestal legs, and curved seat walls finished with round-edged caps.",
+        style: "Custom Work",
         image: "/images/products/benches/card.jpg",
         gallery: [
           { src: "/images/products/benches/01.jpg", alt: "Straight garden bench with a plain rectangular slab seat on two fluted, scroll-profile pedestal legs, on a lawn beside a tree with potted flowers" },
@@ -287,8 +321,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Pavers",
-        description: "The ground underfoot deserves intention. Aged limestone character for paths, patios, and entries.",
-        style: "Hardscape",
+        description: "The ground underfoot deserves intention. Large smooth-faced square pavers with crisp edges, laid in a grass-jointed grid, and diagonal-set square tile for wall cladding.",
+        style: "Paving & Cladding",
         image: "/images/products/pavers/card.jpg",
         gallery: [
           { src: "/images/products/pavers/01.jpg", alt: "Large square pale pavers laid in a grid with strips of lawn between them, beside blue-and-white tiled columns and a covered patio" },
@@ -300,12 +334,12 @@ export const collections: Record<CollectionKey, Collection> = {
   },
   functional: {
     title: "Functional Elements",
-    description: "Every detail considered. Treads, sills, and caps that perform their duty while speaking the building's architectural language.",
+    description: "Kitchen hoods, stair treads, window sills and wall caps. Cast stone in standard and custom dimensions, offered in seven colors and three texture finishes.",
     items: [
       {
         name: "Kitchen Hoods",
-        description: "The range deserves a crown. French country and Tuscan farmhouse character for the heart of the home.",
-        style: "Culinary Spaces",
+        description: "The range deserves a crown. Tapered hoods with molded bands, left plain or carved with a leaf frieze, some resting on leaf-carved corbels, and a paneled hood on curved jambs.",
+        style: "Plain & Leaf-Carved",
         image: "/images/products/kitchen-hoods/card.jpg",
         gallery: [
           { src: "/images/products/kitchen-hoods/01.jpg", alt: "Tapered kitchen hood with a stepped crown at the top, a molded band and two carved leaf corbels, over a patterned tile backsplash and a gas range, between two windows" },
@@ -318,8 +352,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Stair Treads",
-        description: "Each step measured. Solidity of stone for the vertical journey, nosing profiles calculated for comfort.",
-        style: "Stairs & Landings",
+        description: "Each step measured. Bullnose treads for straight interior flights and curved entry steps, some set over patterned tile risers.",
+        style: "Straight & Curved",
         image: "/images/products/stair-treads/card.jpg",
         gallery: [
           { src: "/images/products/stair-treads/01.jpg", alt: "Two curved entry steps with rounded bullnose treads and patterned tile risers leading to a carved wood front door with a doormat" },
@@ -329,8 +363,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Window Sills",
-        description: "The sill receives the weather. Sloped for drainage, finished for permanence.",
-        style: "Fenestration",
+        description: "The sill receives the weather. Projecting molded sills, set under single windows, run continuously beneath a pair, or carried on stepped corbel blocks.",
+        style: "Single & Continuous",
         image: "/images/products/window-sills/card.jpg",
         gallery: [
           { src: "/images/products/window-sills/01.jpg", alt: "Three windows on a textured ochre wall, each with a projecting molded sill and matching head trim and dark louvered shutters, in low sunlight" },
@@ -341,8 +375,8 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Wall Caps",
-        description: "The wall deserves completion. Protection and visual termination where masonry meets sky.",
-        style: "Wall Termination",
+        description: "The wall deserves completion. Flat caps mitered at the corners, curved caps with a rounded edge, and pier caps with a molded overhang.",
+        style: "Flat & Rounded",
         image: "/images/products/wall-caps/card.jpg",
         gallery: [
           { src: "/images/products/wall-caps/01.jpg", alt: "Curved wall cap with a rounded edge running along steps and a terrace, with a second capped stone wall, a rail fence and oak pasture beyond" },

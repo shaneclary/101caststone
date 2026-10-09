@@ -12,43 +12,43 @@ export const metadata: Metadata = {
 const commissionCategories = [
   {
     title: "Mantels & Fireplaces",
-    description: "Hand-carved limestone mantels with classical proportions. Heritage, Provence, Pacifica, Cambridge, French Chateau, Royal Acanthus, Milagro, and Tangled collections—or fully custom designs proportioned to your room, light, and ceiling height.",
-    features: ["Custom sizing to architectural requirements", "Seven stone colors available", "Three texture finishes", "2-4 week design phase"],
+    description: "A full line of cast stone fireplace surrounds and mantels, from Contemporary to Old World: Contemporary Surround, Genoa, Heritage, Milagro, Pacifica, Provence, Santa Barbara, Royal Acanthus, Cambridge, Chateau and Tangled. Or a custom configuration of current designs, or something entirely new.",
+    features: ["Standard and custom dimensions", "Seven stone colors available", "Three texture finishes", "2-4 week design phase"],
     anchor: "mantels",
     delay: "animate-delay-100"
   },
   {
     title: "Columns & Capitals",
-    description: "Load-bearing elegance in Doric, Ionic, and Corinthian orders. Entasis curves calculated to classical ratios, capitals carved with precision. Full and half-round, fluted or smooth.",
-    features: ["All classical orders", "Structural or decorative", "Custom heights and diameters", "Matching pilaster caps"],
+    description: "Round, square and spiral-twisted shafts with plain molded or leaf-carved capitals, for entries, porches, pergolas and interiors.",
+    features: ["Round, square and twisted shafts", "Plain or leaf-carved capitals", "Standard and custom dimensions", "Pier caps and finials"],
     anchor: "architectural",
     delay: "animate-delay-200"
   },
   {
     title: "Architectural Details",
     description: "Corbels, balustrades, crown molding, door and window trims. The details that transform construction into architecture—each element speaking the building's language.",
-    features: ["Corbels for structural support", "Complete balustrade systems", "Multiple crown profiles", "Pedimented entries"],
+    features: ["Scrolled and leaf-carved corbels", "Balusters, rails and piers", "Plain to leaf-carved crown profiles", "Arched and flat-headed surrounds"],
     anchor: "architectural",
     delay: "animate-delay-300"
   },
   {
     title: "Outdoor & Garden",
-    description: "Outdoor fireplaces, fire pits, fountains, and benches. Engineered for weather exposure, finished to age beautifully through seasons. Weathered grace for courtyards and water features.",
-    features: ["Weather-resistant formulation", "Aged finishes available", "Custom fountain designs", "Matching seating walls"],
+    description: "Outdoor fireplaces, fire pits, fountains, benches and seat walls for patios, courtyards and gardens. Weathered grace for courtyards and water features.",
+    features: ["Arched surrounds and raised hearths", "Custom fountain designs", "Benches and seat walls", "Old World and Rustic textures"],
     anchor: "outdoor",
     delay: "animate-delay-400"
   },
   {
     title: "Kitchen Hoods",
-    description: "The range deserves a crown. Cast stone hoods bringing French country and Tuscan farmhouse character to the heart of the home. Carved corbel supports, proportions that anchor the cooking space.",
-    features: ["Multiple hood profiles", "Carved corbel options", "Works with pro vent systems", "Custom dimensions standard"],
+    description: "The range deserves a crown. Tapered cast stone hoods with molded bands, left plain or carved with a leaf frieze, some resting on leaf-carved corbels.",
+    features: ["Tapered and paneled profiles", "Leaf-carved corbel options", "Plain or leaf-carved friezes", "Standard and custom dimensions"],
     anchor: "functional",
     delay: "animate-delay-500"
   },
   {
     title: "Functional Elements",
     description: "Treads, sills, wall caps, and pavers. Every detail considered—surfaces that perform their duty while speaking the building's architectural language.",
-    features: ["Stair treads and risers", "Sloped sills for drainage", "Wall cap profiles", "Tumbled-edge pavers"],
+    features: ["Bullnose stair treads", "Molded window sills", "Flat and rounded wall caps", "Large-format pavers"],
     anchor: "functional",
     delay: "animate-delay-600"
   },

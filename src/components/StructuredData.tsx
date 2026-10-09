@@ -47,7 +47,7 @@ export default function StructuredData() {
         {
           "@type": "OfferCatalog",
           "name": "Fireplace Mantels",
-          "description": "Hand-carved limestone mantels with classical proportions"
+          "description": "Cast stone fireplace surrounds and mantels in a wide variety of styles"
         },
         {
           "@type": "OfferCatalog",
