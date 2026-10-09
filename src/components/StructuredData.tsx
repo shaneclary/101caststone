@@ -1,3 +1,5 @@
+import { shareImage } from "@/app/share-image";
+
 export default function StructuredData() {
   const businessData = {
     "@context": "https://schema.org",
@@ -32,7 +34,7 @@ export default function StructuredData() {
       }
     ],
     "priceRange": "$$$",
-    "image": "https://101caststone.com/images/hero/winecountry.jpg",
+    "image": `https://101caststone.com${shareImage.url}`,
     "sameAs": [],
     "areaServed": {
       "@type": "State",

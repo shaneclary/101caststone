@@ -7,14 +7,14 @@
   --bg-ivory: #F3EEE6;
   --ink-sienna: #9C8066;
   --ink-basalt: #2E2B28;
-  --ink-clay: #7D6A55;
+  --ink-clay: #76634E;
   --edge-ecru: #EAE1D2;
   --rule-nickel: #BBAE9B;
   --loro-opacity-soft: 0.55;
 
   /* Maison Palette Tokens */
   --sienna: #9C8066;
-  --clay: #7D6A55;
+  --clay: #76634E;
   --ivory: #F3EEE6;
 }
 
@@ -178,13 +178,15 @@ a, button {
   animation-delay: 300ms;
 }
 
-/* Ultra-slow background drift - Maison Motion */
+/* Ultra-slow background drift - Maison Motion.
+   Applied to the hero image inside its overflow-hidden frame; the 1.05 scale
+   overhangs the frame so the ±16px pan never exposes an edge. */
 @keyframes pan-bg {
   0% {
-    transform: translateY(0px) scale(1.02);
+    transform: translateY(-16px) scale(1.05);
   }
   100% {
-    transform: translateY(40px) scale(1.02);
+    transform: translateY(16px) scale(1.05);
   }
 }
 
@@ -201,10 +203,21 @@ a, button {
   }
 }
 
-/* Respect reduced motion */
+/* Respect reduced motion: animations jump straight to their end state, so
+   entrance reveals (opacity-0 + animate-fade-in-up, fill-mode forwards) still
+   finish visible instead of staying hidden. */
 @media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

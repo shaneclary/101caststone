@@ -19,9 +19,9 @@ const config: Config = {
         sienna: {
           DEFAULT: "#9C8066",
           600: "#8B715A",
-          700: "#7D6A55"
+          700: "#76634E"
         },
-        clay: { DEFAULT: "#7D6A55" },
+        clay: { DEFAULT: "#76634E" },
         ecru: { DEFAULT: "#EAE1D2" },
         basalt: { DEFAULT: "#2E2B28" },
         nickel: { DEFAULT: "#BBAE9B" },

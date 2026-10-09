@@ -1,9 +1,11 @@
 import "./globals.css";
 import { fontSans, fontDisplay } from "./fonts";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { DesktopMenu, MobileBottomNav } from "@/components/Navigation";
 import StructuredData from "@/components/StructuredData";
+import { shareImage } from "./share-image";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://101caststone.com'),
@@ -37,27 +39,17 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  // og:/twitter: title and description are filled from each route's own
+  // title and description; og:url is left out so shares keep the shared URL.
   openGraph: {
-    title: "101 Cast Stone — Maison California",
-    description: "Architectural cast stone from California. Hand-crafted fireplace mantels, columns, and custom stonework since 2001.",
-    url: 'https://101caststone.com',
     siteName: '101 Cast Stone',
     locale: 'en_US',
     type: "website",
-    images: [
-      {
-        url: '/images/hero/winecountry.jpg',
-        width: 1200,
-        height: 630,
-        alt: '101 Cast Stone - Architectural Cast Stone from California',
-      },
-    ],
+    images: [shareImage],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '101 Cast Stone — Maison California',
-    description: 'Architectural cast stone from California. Proportion. Patina. Permanence.',
-    images: ['/images/hero/winecountry.jpg'],
+    images: [shareImage.url],
   },
   robots: {
     index: true,
@@ -70,19 +62,16 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
   verification: {
     // Add these when you have them
     // google: 'your-google-verification-code',
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -90,25 +79,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`}>
       <body className="bg-ivory text-basalt antialiased">
         <StructuredData />
-        <div className="min-h-dvh flex flex-col">
-          <header className="sticky top-0 z-50 backdrop-blur-lg bg-[#f3eee6cc] border-b border-[#e8dfcf80] supports-[backdrop-filter]:bg-[#f3eee6bf] transition-colors">
+        {/* pb-16 clears the fixed mobile tab bar below the footer; short viewports hide the bar */}
+        <div className="min-h-dvh flex flex-col pb-16 md:pb-0 [@media(max-height:500px)]:pb-0">
+          <header className="sticky top-0 z-50 [@media(max-height:500px)]:static backdrop-blur-lg bg-[#f3eee6cc] border-b border-[#e8dfcf80] supports-[backdrop-filter]:bg-[#f3eee6bf] transition-colors">
             <div className="mx-auto max-w-6xl h-20 px-8 md:pl-8 flex items-center justify-between">
-              <a href="/" className="flex flex-col hover:opacity-80 transition-opacity no-underline">
+              <Link href="/" className="flex flex-col hover:opacity-80 transition-opacity no-underline">
                 <div className="relative h-10 w-[180px]">
                   <Image
                     src="/images/logos/oneline.png"
                     alt="101 Cast Stone"
                     fill
+                    sizes="180px"
                     className="object-contain object-left"
                     priority
                   />
                 </div>
                 <span className="text-xs md:text-sm text-clay italic mt-1 whitespace-nowrap">Maison California · Est. 2001</span>
-              </a>
-              <DesktopMenu />
+              </Link>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="hidden md:inline-flex px-5 py-2.5 text-[16px] rounded-lg border border-sienna-700 bg-sienna-700 text-ivory-50 hover:shadow-lg transition-all duration-500 no-underline whitespace-nowrap"
+                >
+                  Begin a Conversation
+                </Link>
+                <DesktopMenu />
+              </div>
             </div>
           </header>
-          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <main className="flex-1">{children}</main>
           <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
             <div className="mx-auto max-w-6xl px-6 py-12">
               {/* Main footer content */}
@@ -118,18 +117,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <div className="relative h-8 w-[140px] mx-auto md:mx-0 mb-3">
                     <Image
                       src="/images/logos/oneline.png"
-                      alt="101 Cast Stone"
+                      alt=""
                       fill
+                      sizes="140px"
                       className="object-contain object-center md:object-left"
                     />
                   </div>
                   <p className="text-[14px] text-clay italic">Maison California · Est. 2001</p>
-                  <p className="text-[13px] text-clay/70 mt-2">Proportion. Patina. Permanence.</p>
+                  <p className="text-[13px] text-clay mt-2">Proportion. Patina. Permanence.</p>
                 </div>
 
                 {/* Contact Info */}
                 <div className="text-center md:text-left">
-                  <h4 className="font-medium text-basalt text-[14px] mb-3">Contact</h4>
+                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Contact</h2>
                   <div className="space-y-1 text-[14px] text-clay">
                     <p>
                       <a href="tel:+18056109278" className="hover:text-sienna transition-colors">
@@ -146,11 +146,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 {/* Location */}
                 <div className="text-center md:text-left">
-                  <h4 className="font-medium text-basalt text-[14px] mb-3">Studio</h4>
+                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Studio</h2>
                   <div className="text-[14px] text-clay">
-                    <p>1720 El Camino Real</p>
-                    <p>Atascadero, CA 93422</p>
-                    <p className="text-clay/70 mt-2 text-[13px]">Mon–Fri: 8am–5pm</p>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block hover:text-sienna transition-colors"
+                    >
+                      1720 El Camino Real<br />
+                      Atascadero, CA 93422
+                    </a>
+                    <p className="text-clay mt-2 text-[13px]">Mon–Fri: 8am–5pm</p>
                   </div>
                 </div>
               </div>
@@ -160,15 +167,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <div className="relative h-14 w-14 rounded-full bg-[#2E2B28] p-2 hover:bg-[#3a3632] transition-colors">
                   <Image
                     src="/images/logos/shield-nobg.png"
-                    alt="101 Cast Stone Shield"
+                    alt=""
                     fill
+                    sizes="56px"
                     className="object-contain p-2"
                   />
                 </div>
               </div>
 
               {/* Copyright */}
-              <div className="text-center text-clay/60 text-[13px]">
+              <div className="text-center text-clay text-[13px]">
                 © {new Date().getFullYear()} 101 Cast Stone. All rights reserved.
               </div>
             </div>
