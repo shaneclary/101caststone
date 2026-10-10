@@ -59,6 +59,9 @@ Leave them exactly as they are and list them in your final report.
    legible on the scraped chart), dimensions and opening sizes per mantel, the three
    technical PDFs, Casa Blanca and Barcelona mantels, "Custom Ordered Limestone
    Installations", whether "Pilaster Caps" should be called "Pier Caps".
+   Whether Fire Pits get the fireplace notes ("non-combustible… next to the firebox
+   opening", "quoted with installation"): Outdoor Fireplaces and the mantels have them;
+   fire pits do not until the owner confirms (`isFireplaceProduct` in products.ts).
 8. The hero photo's provenance, warranty, test data, reviews, pricing.
 
 ## Your tasks, in order
@@ -120,6 +123,12 @@ Open items from the last implementation round that need your judgment:
 - The footer hours line is typed by hand rather than read from `showroom` in company.ts,
   and has no "Factory Showroom Hours" label.
 - Commissions cards use `animate-delay-400/500/600`, which globals.css does not define.
+- Commissions: seven cards in a three-column grid leave Stone Masonry alone on the last row.
+- Home "Featured Installations": captions appear only on hover or keyboard focus on desktops
+  with a mouse (the audit counts them as 12 invisible text blocks). Decide when recomposing.
+- Both dialogs (product, lightbox) now start keyboard focus on the gallery's Next button so
+  the arrow keys work at once (`dialogFocus.ts`, which looks for `data-gallery-next`). Keep
+  that attribute if you restyle the gallery arrows.
 
 ### 3. Brand voice (every string)
 
@@ -167,7 +176,7 @@ npm ci                                  # if node_modules is missing
 npm test                                # node --test, src/lib
 npx tsc --noEmit && npx next lint
 npx next build && npx next start -p 3000 &
-node scripts/qa/flows.mjs http://localhost:3000 ./qa-out     # 27 customer flows
+node scripts/qa/flows.mjs http://localhost:3000 ./qa-out     # 33 customer flows
 npm install --no-save axe-core@4.10.2
 node scripts/qa/audit.mjs http://localhost:3000 ./qa-out     # screenshots + axe, every route
 ```
