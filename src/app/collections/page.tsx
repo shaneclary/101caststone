@@ -17,10 +17,13 @@ export default function Collections() {
       const hash = window.location.hash.slice(1);
       setOpenSlug(productSlugs.has(hash) ? hash : null);
     };
-    sync();
+    // Deferred one task: on Back into /collections#<slug> the browser finishes restoring the
+    // fragment first, so it no longer blurs the dialog's initial focus.
+    const initialSync = window.setTimeout(sync, 0);
     window.addEventListener("hashchange", sync);
     window.addEventListener("popstate", sync);
     return () => {
+      window.clearTimeout(initialSync);
       window.removeEventListener("hashchange", sync);
       window.removeEventListener("popstate", sync);
     };
@@ -89,18 +92,19 @@ export default function Collections() {
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h1 className="font-display text-5xl md:text-6xl text-clay mb-6">Collections</h1>
           <p className="text-xl text-clay max-w-2xl mx-auto leading-relaxed">
-            Architectural cast stone, hand-finished with California precision. Each element designed for proportion, patina, and permanence.
+            Architectural cast stone, made by hand in Atascadero. Each element designed for proportion, patina, and permanence.
           </p>
         </div>
       </section>
 
-      {/* Category jump links (sticky from md up; on phones the bottom-nav tab returns here) */}
+      {/* Category jump links (sticky from md up; on phones the bottom-nav tab returns here).
+          Link, not <a>: Next pushes the hash entry with its own router state, so Back to it restores this page. */}
       <nav aria-label="Collection categories" className="border-y border-[#e8dfcf] bg-ivory/95 md:sticky md:top-20 md:z-40 md:backdrop-blur [@media(max-height:500px)]:static">
         <div className="mx-auto max-w-7xl flex gap-2 overflow-x-auto whitespace-nowrap px-6 py-3 lg:justify-center">
           {Object.entries(collections).map(([key, c]) => (
-            <a key={key} href={`#${key}`} className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">{c.title}</a>
+            <Link key={key} href={`#${key}`} className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">{c.title}</Link>
           ))}
-          <a href="#finishes" className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">Colors &amp; Finishes</a>
+          <Link href="#finishes" className="rounded-full border border-clay/30 px-4 py-1.5 text-sm text-clay no-underline hover:border-sienna hover:text-basalt">Colors &amp; Finishes</Link>
         </div>
       </nav>
 

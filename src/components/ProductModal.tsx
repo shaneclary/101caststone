@@ -4,8 +4,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Link from "next/link";
 import PhotoGallery from "@/components/PhotoGallery";
+import { focusGalleryOnOpen, revealFocusedControl } from "@/components/dialogFocus";
 import ProductSpec, { ProductOptions } from "@/components/ProductSpec";
-import { collections, slugify, type Product } from "@/data/products";
+import { collections, isFireplaceProduct, slugify, type Product } from "@/data/products";
 
 interface ProductModalProps {
   item: Product;
@@ -18,12 +19,16 @@ interface ProductModalProps {
 
 export default function ProductModal({ item, category, children, open, onOpenChange }: ProductModalProps) {
   const isMantel = category === collections.mantels.title;
+  const isFireplace = isFireplaceProduct(slugify(item.name));
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 data-[state=open]:animate-fade-in" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[95vw] max-w-4xl max-h-[90vh] supports-[height:100dvh]:max-h-[90dvh] overflow-y-auto bg-ivory rounded-xl shadow-2xl data-[state=open]:animate-fade-in-up">
+        <Dialog.Content
+          onOpenAutoFocus={focusGalleryOnOpen}
+          onFocus={revealFocusedControl}
+          className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[95vw] max-w-4xl max-h-[90vh] supports-[height:100dvh]:max-h-[90dvh] overflow-y-auto bg-ivory rounded-xl shadow-2xl data-[state=open]:animate-fade-in-up">
           {/* Close Button: sticky so it stays reachable while the dialog scrolls; -mb-14 = mt-4 + h-10 */}
           <Dialog.Close aria-label="Close" className="sticky top-4 float-right mr-4 mt-4 -mb-14 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-clay hover:text-basalt transition-colors shadow-md">
             <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -73,9 +78,9 @@ export default function ProductModal({ item, category, children, open, onOpenCha
                 {item.description}
               </Dialog.Description>
 
-              <ProductOptions isMantel={isMantel} headingLevel={3} className="mb-8" />
+              <ProductOptions isFireplace={isFireplace} headingLevel={3} className="mb-8" />
 
-              <ProductSpec isMantel={isMantel} headingLevel={3} layout="stacked" className="border-t border-ecru pt-6 mb-8" />
+              <ProductSpec isMantel={isMantel} isFireplace={isFireplace} headingLevel={3} layout="stacked" className="border-t border-ecru pt-6 mb-8" />
 
               {/* CTA: pinned to the bottom of the scrolling dialog (the specification makes the column taller than the dialog at every width) */}
               <div className="sticky bottom-0 -mx-8 px-8 md:-mx-10 md:px-10 py-4 bg-ivory border-t border-ecru">

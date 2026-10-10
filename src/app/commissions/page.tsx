@@ -34,8 +34,8 @@ const commissionCategories = [
   },
   {
     title: "Outdoor & Garden",
-    description: "Outdoor fireplaces, fire pits, fountains, benches and seat walls for patios, courtyards and gardens. Weathered grace for courtyards and water features.",
-    features: ["Arched surrounds and raised hearths", "Custom fountain designs", "Benches and seat walls", "Old World and Rustic textures"],
+    description: "Outdoor fireplaces, fire pits, fountains, benches, seat walls and pavers for patios, courtyards and gardens. Weathered grace for courtyards and water features.",
+    features: ["Arched surrounds and raised hearths", "Custom fountain designs", "Benches and seat walls", "Large-format pavers", "Old World and Rustic textures"],
     anchor: "outdoor",
     delay: "animate-delay-400"
   },
@@ -48,8 +48,8 @@ const commissionCategories = [
   },
   {
     title: "Functional Elements",
-    description: "Treads, sills, wall caps, and pavers. Every detail considered—surfaces that perform their duty while speaking the building's architectural language.",
-    features: ["Bullnose stair treads", "Molded window sills", "Flat and rounded wall caps", "Large-format pavers"],
+    description: "Treads, sills and wall caps. Every detail considered—surfaces that perform their duty while speaking the building's architectural language.",
+    features: ["Bullnose stair treads", "Molded window sills", "Flat and rounded wall caps"],
     anchor: "functional",
     delay: "animate-delay-600"
   },

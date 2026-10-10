@@ -19,7 +19,7 @@ interface PhotoGalleryProps {
 }
 
 const ARROW_BUTTON =
-  "absolute top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-clay hover:text-basalt shadow-md flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna-700 focus-visible:ring-offset-2";
+  "absolute top-1/2 -translate-y-1/2 z-10 scroll-mt-24 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-clay hover:text-basalt shadow-md flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna-700 focus-visible:ring-offset-2";
 
 /** True when slide `i` is the current photo or a neighbour (with wrap), so only three images load at a time. */
 function isNear(i: number, index: number, count: number) {
@@ -47,10 +47,16 @@ export default function PhotoGallery({
     const strip = thumbsRef.current;
     const thumb = strip?.children[index] as HTMLElement | undefined;
     if (!strip || !thumb) return;
-    strip.scrollTo({ left: thumb.offsetLeft - strip.clientWidth / 2 + thumb.clientWidth / 2, behavior: "smooth" });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    strip.scrollTo({
+      left: thumb.offsetLeft - strip.clientWidth / 2 + thumb.clientWidth / 2,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
   }, [index]);
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    // Alt/Ctrl/Meta+Arrow belong to the browser (Back, Forward, word jumps).
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.key === "ArrowRight") {
       event.preventDefault();
       step(1);
@@ -61,7 +67,8 @@ export default function PhotoGallery({
   }
 
   function onPointerUp(event: PointerEvent<HTMLDivElement>) {
-    if (!pointerStart) return;
+    // A second finger is a pinch, not a swipe.
+    if (!event.isPrimary || !pointerStart) return;
     const direction = swipeDirection(event.clientX - pointerStart.x, event.clientY - pointerStart.y);
     setPointerStart(null);
     if (direction === "next") step(1);
@@ -75,8 +82,8 @@ export default function PhotoGallery({
     <div role="group" aria-roledescription="carousel" aria-label={label} onKeyDown={onKeyDown}>
       {/* Neighbouring photos stay mounted and cross-fade, so stepping is instant without loading the whole set */}
       <div
-        className={`relative overflow-hidden bg-ivory-200 touch-pan-y select-none ${frameClassName}`}
-        onPointerDown={(event) => setPointerStart({ x: event.clientX, y: event.clientY })}
+        className={`relative overflow-hidden bg-ivory-200 touch-pan-y touch-pinch-zoom select-none ${frameClassName}`}
+        onPointerDown={(event) => setPointerStart(event.isPrimary ? { x: event.clientX, y: event.clientY } : null)}
         onPointerUp={onPointerUp}
         onPointerCancel={() => setPointerStart(null)}
       >
@@ -107,7 +114,7 @@ export default function PhotoGallery({
                 <path d="M15 6l-6 6 6 6" />
               </svg>
             </button>
-            <button type="button" onClick={() => step(1)} aria-label="Next photo" className={`${ARROW_BUTTON} right-3`}>
+            <button type="button" onClick={() => step(1)} aria-label="Next photo" data-gallery-next className={`${ARROW_BUTTON} right-3`}>
               <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 6l6 6-6 6" />
               </svg>

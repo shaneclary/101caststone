@@ -50,7 +50,9 @@ export const mantelLeadTime =
 export interface SpecRow {
   label: string;
   value: string;
-  /** Only shown for fireplace products. */
+  /** Only shown for fireplace products (mantels and outdoor fireplaces). */
+  fireplaceOnly?: boolean;
+  /** Only shown for mantels: the wording names a fireplace mantel. */
   mantelsOnly?: boolean;
 }
 
@@ -60,7 +62,7 @@ export const specification: SpecRow[] = [
     value:
       "Modern-day cast stone: Portland cement, crushed quartz, color pigment, fiberglass reinforcing materials and polymer, packed by hand into the mould.",
   },
-  { label: "Fire", value: "Non-combustible; can be used directly next to the firebox opening.", mantelsOnly: true },
+  { label: "Fire", value: "Non-combustible; can be used directly next to the firebox opening.", fireplaceOnly: true },
   {
     label: "Colors and textures",
     value: "Seven standard colors and three texture finishes (Classic, Old World, Rustic). Custom colors and finishes on request.",

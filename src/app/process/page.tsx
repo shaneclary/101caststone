@@ -72,7 +72,7 @@ export default function Process() {
         {/* Workshop photos from the original site's Design & Manufacturing Process page */}
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
-            { src: "/images/process/mould-shop.jpg", alt: "Mould material being cut on a table saw", caption: "The in-house mould shop" },
+            { src: "/images/process/mould-shop.jpg", alt: "Mould material being cut on a band saw", caption: "The in-house mould shop" },
             { src: "/images/process/workshop-floor.jpg", alt: "Rows of moulds on the floor being filled by hand, with shelves of moulds behind", caption: "Moulds being filled on the manufacturing floor" },
             { src: "/images/process/mould-detail.jpg", alt: "Close view of a molded profile beside its mould", caption: "A profile and its mould" },
           ].map((photo) => (

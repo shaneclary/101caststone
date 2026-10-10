@@ -6,12 +6,12 @@ type HeadingLevel = 2 | 3;
 const SUB_HEADING = "font-sans text-[18px] leading-[1.85] font-medium tracking-normal text-basalt mb-4";
 
 /** Wording from the live site's products, colors and FAQ pages. */
-function productOptions(isMantel: boolean): string[] {
+function productOptions(isFireplace: boolean): string[] {
   return [
     "Standard and custom styles and dimensions",
     "Seven standard colors and three texture finishes: Classic, Old World, Rustic",
     "Custom colors and finishes on request",
-    ...(isMantel
+    ...(isFireplace
       ? ["Non-combustible: can be used directly next to the firebox opening", "Quoted with installation by our team"]
       : []),
     "Packed by hand and cast in Atascadero, California",
@@ -19,20 +19,21 @@ function productOptions(isMantel: boolean): string[] {
 }
 
 interface ProductOptionsProps {
-  isMantel: boolean;
+  /** Mantels and outdoor fireplaces add the non-combustible and installation notes. */
+  isFireplace: boolean;
   /** h3 inside the product dialog, h2 on the product page. */
   headingLevel?: HeadingLevel;
   className?: string;
 }
 
 /** "Available Options" list shared by the product dialog and the product page. */
-export function ProductOptions({ isMantel, headingLevel = 3, className = "" }: ProductOptionsProps) {
+export function ProductOptions({ isFireplace, headingLevel = 3, className = "" }: ProductOptionsProps) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
   return (
     <div className={`border-t border-ecru pt-6 ${className}`}>
       <Heading className={SUB_HEADING}>Available Options</Heading>
       <ul className="space-y-2 text-[15px] text-clay">
-        {productOptions(isMantel).map((option) => (
+        {productOptions(isFireplace).map((option) => (
           <li key={option} className="flex items-start gap-2">
             <span aria-hidden="true" className="text-sienna-700 mt-1">•</span>
             <span>{option}</span>
@@ -44,8 +45,10 @@ export function ProductOptions({ isMantel, headingLevel = 3, className = "" }: P
 }
 
 interface ProductSpecProps {
-  /** Fireplace products also show the rows marked mantelsOnly (fire, delivery, lead time). */
+  /** Mantels also show the rows marked mantelsOnly (delivery, lead time). */
   isMantel: boolean;
+  /** Fireplace products also show the rows marked fireplaceOnly (fire). Defaults to isMantel. */
+  isFireplace?: boolean;
   /** h3 inside the product dialog, h2 on the product page. */
   headingLevel?: HeadingLevel;
   /**
@@ -60,13 +63,16 @@ interface ProductSpecProps {
 /** The specification rows from company.ts as a definition list. */
 export default function ProductSpec({
   isMantel,
+  isFireplace = isMantel,
   headingLevel = 3,
   layout = "columns",
   headingClassName = SUB_HEADING,
   className = "",
 }: ProductSpecProps) {
   const Heading = headingLevel === 2 ? "h2" : "h3";
-  const rows = specification.filter((row) => isMantel || !row.mantelsOnly);
+  const rows = specification.filter(
+    (row) => (isFireplace || !row.fireplaceOnly) && (isMantel || !row.mantelsOnly)
+  );
   const columns = layout === "columns";
 
   return (

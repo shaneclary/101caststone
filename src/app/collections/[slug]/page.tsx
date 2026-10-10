@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import PhotoGallery from "@/components/PhotoGallery";
 import ProductSpec, { ProductOptions } from "@/components/ProductSpec";
 import SectionTitle from "@/components/SectionTitle";
-import { getProductEntry, productEntries, relatedProducts } from "@/data/products";
+import { getProductEntry, isFireplaceProduct, productEntries, relatedProducts } from "@/data/products";
 
 const SITE_URL = "https://101caststone.com";
 
@@ -35,6 +35,7 @@ export default function ProductPage({ params }: { params: Params }) {
 
   const { product, collection, collectionKey, slug } = entry;
   const isMantel = collectionKey === "mantels";
+  const isFireplace = isFireplaceProduct(slug);
   const collectionHref = `/collections#${collectionKey}`;
   const related = relatedProducts(entry);
 
@@ -114,7 +115,7 @@ export default function ProductPage({ params }: { params: Params }) {
             <div className="mt-10 md:mt-0 md:w-5/12">
               <p className="text-[18px] text-clay leading-[1.85]">{product.description}</p>
 
-              <ProductOptions isMantel={isMantel} headingLevel={2} className="mt-8" />
+              <ProductOptions isFireplace={isFireplace} headingLevel={2} className="mt-8" />
 
               <div className="mt-10 flex flex-col items-start gap-5">
                 <Link
@@ -137,6 +138,7 @@ export default function ProductPage({ params }: { params: Params }) {
         <div className="mx-auto max-w-6xl px-6">
           <ProductSpec
             isMantel={isMantel}
+            isFireplace={isFireplace}
             headingLevel={2}
             layout="columns"
             headingClassName="font-display text-2xl tracking-normal text-basalt mb-6"

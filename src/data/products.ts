@@ -313,10 +313,9 @@ export const collections: Record<CollectionKey, Collection> = {
         style: "Custom Work",
         image: "/images/products/benches/card.jpg",
         gallery: [
-          { src: "/images/products/benches/01.jpg", alt: "Straight garden bench with a plain rectangular slab seat on two fluted, scroll-profile pedestal legs, on a lawn beside a tree with potted flowers" },
+          { src: "/images/products/benches/01.jpg", alt: "Straight garden bench with a rectangular slab seat with a beveled edge on two fluted, scroll-profile pedestal legs, on a lawn beside a tree with potted flowers" },
           { src: "/images/products/benches/02.jpg", alt: "Curved seat wall with a smooth rounded-edge cap on a stone-faced base, bordering a flagstone-and-pebble terrace around a tree trunk" },
-          { src: "/images/products/benches/03.jpg", alt: "Curved rendered seat wall with a flat seat and inset patterned tiles, below an arched window and a stacked-stone wall, on a paver patio" },
-          { src: "/images/products/benches/04.jpg", alt: "Pineapple finial on a square pier cap over a field-stone pier with two gold letters, against a blue sky" }
+          { src: "/images/products/benches/03.jpg", alt: "Curved rendered seat wall with a flat seat and inset patterned tiles, below an arched window and a stacked-stone wall, on a paver patio" }
         ]
       },
       {
@@ -345,7 +344,7 @@ export const collections: Record<CollectionKey, Collection> = {
           { src: "/images/products/kitchen-hoods/01.jpg", alt: "Tapered kitchen hood with a stepped crown at the top, a molded band and two carved leaf corbels, over a patterned tile backsplash and a gas range, between two windows" },
           { src: "/images/products/kitchen-hoods/02.jpg", alt: "Tapered hood with a molded band and a carved leaf frieze, mounted between two white-framed windows above a granite backsplash and range" },
           { src: "/images/products/kitchen-hoods/03.jpg", alt: "White tapered hood with a stepped top, a molded base and an iron scroll ornament, between dark wood cabinets over a diamond-set tile backsplash with a pot filler" },
-          { src: "/images/products/kitchen-hoods/04.jpg", alt: "Pale hood with curved shoulders and a plain face over a blue-and-white patterned tile backsplash and a blue range, with white cabinets" },
+          { src: "/images/products/kitchen-hoods/04.jpg", alt: "Pale hood with curved shoulders and a recessed panel on its face over a blue-and-white patterned tile backsplash and a blue range, with white cabinets" },
           { src: "/images/products/kitchen-hoods/05.jpg", alt: "Tapered hood with a molded band, a leaf-and-dart frieze and two large carved acanthus corbels, between dark cabinets" },
           { src: "/images/products/kitchen-hoods/06.jpg", alt: "Hood with a carved leaf-and-dart band, a molded shelf and small carved corbels over a painted vineyard tile mural, between dark cabinets" }
         ]
@@ -422,6 +421,13 @@ export const productEntries: ProductEntry[] = (Object.entries(collections) as [C
 export const productSlugs = new Set(productEntries.map((entry) => entry.slug));
 
 export const getProductEntry = (slug: string) => productEntries.find((entry) => entry.slug === slug);
+
+/**
+ * Fireplace products show the non-combustible and installation notes: the mantels and Outdoor
+ * Fireplaces. Fire pits wait on the owner ("next to the firebox opening" does not describe them).
+ */
+export const isFireplaceProduct = (slug: string) =>
+  getProductEntry(slug)?.collectionKey === "mantels" || slug === "outdoor-fireplaces";
 
 /** Groups items by their style field, in the order each style first appears (mantels: Contemporary, Traditional, Old World). */
 export function groupByStyle(items: Product[]): { style: string; items: Product[] }[] {

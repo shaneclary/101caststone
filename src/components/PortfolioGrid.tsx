@@ -2,8 +2,9 @@
 
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import PhotoGallery from "@/components/PhotoGallery";
+import { focusGalleryOnOpen, revealFocusedControl } from "@/components/dialogFocus";
 import type { GalleryPhoto } from "@/data/products";
 
 export interface PortfolioPhoto extends GalleryPhoto {
@@ -28,36 +29,39 @@ export default function PortfolioGrid({ featured, photos, label }: { featured?: 
   const all = featured ? [featured, ...photos] : photos;
   const offset = featured ? 1 : 0;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  // Plain buttons, not Dialog.Trigger: Radix keeps one trigger ref per dialog, so with 31 triggers
+  // closing would return focus to the last tile. The tile that opened the lightbox gets it instead.
+  const openerRef = useRef<HTMLButtonElement | null>(null);
 
   const trigger = (index: number) => ({
     type: "button" as const,
-    onClick: () => setOpenIndex(index),
+    "aria-haspopup": "dialog" as const,
+    onClick: (event: MouseEvent<HTMLButtonElement>) => {
+      openerRef.current = event.currentTarget;
+      setOpenIndex(index);
+    },
     "aria-label": `Open photo ${index + 1} of ${all.length}: ${all[index].alt}`,
   });
 
   return (
     <Dialog.Root open={openIndex !== null} onOpenChange={(open) => !open && setOpenIndex(null)}>
       {featured && (
-        <Dialog.Trigger asChild>
-          <button {...trigger(0)} className={`${TILE} block w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9]`}>
-            <Image src={featured.src} alt={featured.alt} fill priority sizes="(max-width: 1152px) 100vw, 1152px" className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
-          </button>
-        </Dialog.Trigger>
+        <button {...trigger(0)} className={`${TILE} block w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9]`}>
+          <Image src={featured.src} alt={featured.alt} fill priority sizes="(max-width: 1152px) 100vw, 1152px" className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
+        </button>
       )}
 
       <div className={`grid grid-cols-2 md:grid-cols-4 md:grid-flow-dense gap-4 auto-rows-[200px] md:auto-rows-[240px] ${featured ? "mt-4" : ""}`}>
         {photos.map((photo, i) => (
-          <Dialog.Trigger asChild key={photo.src}>
-            <button {...trigger(i + offset)} className={`${TILE} ${SPAN_CLASS[photo.span ?? "normal"]}`}>
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                sizes={photo.span === "wide" ? "(max-width: 768px) 50vw, 576px" : "(max-width: 768px) 50vw, 288px"}
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-              />
-            </button>
-          </Dialog.Trigger>
+          <button key={photo.src} {...trigger(i + offset)} className={`${TILE} ${SPAN_CLASS[photo.span ?? "normal"]}`}>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              fill
+              sizes={photo.span === "wide" ? "(max-width: 768px) 50vw, 576px" : "(max-width: 768px) 50vw, 288px"}
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          </button>
         ))}
       </div>
 
@@ -65,6 +69,12 @@ export default function PortfolioGrid({ featured, photos, label }: { featured?: 
         <Dialog.Overlay className="fixed inset-0 z-50 bg-basalt/90 backdrop-blur-sm data-[state=open]:animate-fade-in" />
         <Dialog.Content
           aria-describedby={undefined}
+          onOpenAutoFocus={focusGalleryOnOpen}
+          onCloseAutoFocus={(event) => {
+            event.preventDefault();
+            openerRef.current?.focus();
+          }}
+          onFocus={revealFocusedControl}
           className="fixed left-1/2 top-1/2 z-50 w-[96vw] max-w-6xl -translate-x-1/2 -translate-y-1/2 rounded-xl bg-ivory p-3 shadow-2xl data-[state=open]:animate-fade-in-up focus:outline-none"
         >
           <Dialog.Title className="sr-only">{label}</Dialog.Title>
