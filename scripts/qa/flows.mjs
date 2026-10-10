@@ -83,6 +83,8 @@ await check("collections deep link opens the product and Back closes it", async 
   await page.waitForTimeout(400);
   assert((await page.getByRole("dialog").count()) === 0, "Escape did not close");
   assert(page.url().includes("/collections"), `Escape navigated away: ${page.url()}`);
+  // Give the dialog a moment to release its scroll lock, as a person would before clicking on.
+  await page.waitForTimeout(600);
   await page.goto(baseUrl + "/collections#outdoor");
   await page.waitForTimeout(600);
   assert((await page.getByRole("dialog").count()) === 0, "category hash opened a dialog");
@@ -151,7 +153,8 @@ await check("desktop menu: aria-expanded, Escape closes and restores focus, outs
   assert((await toggle.getAttribute("aria-expanded")) === "false", "Escape did not close");
   assert(await toggle.evaluate((el) => el === document.activeElement), "focus not returned to toggle");
   await toggle.click();
-  await page.mouse.click(700, 600);
+  // Click empty page margin (the middle of /works is now a grid of photo buttons).
+  await page.mouse.click(30, 450);
   assert((await toggle.getAttribute("aria-expanded")) === "false", "outside click did not close");
   await page.close();
 });
@@ -236,6 +239,39 @@ await check("desktop menu closes when keyboard focus moves past it", async () =>
   for (let i = 0; i < 12; i++) await page.keyboard.press("Tab");
   assert((await toggle.getAttribute("aria-expanded")) === "false", "menu stayed open after tabbing out");
   await page.close();
+});
+
+await check("portfolio: a tile opens the lightbox, steps through photos and closes", async () => {
+  const page = await desktop.newPage();
+  await page.goto(baseUrl + "/works");
+  const tiles = page.getByRole("button", { name: /^Open photo \d+ of \d+/ });
+  const total = await tiles.count();
+  assert(total >= 20, `tiles ${total}`);
+  await tiles.nth(3).click();
+  const dialog = page.getByRole("dialog");
+  await dialog.waitFor();
+  const live = dialog.locator('[aria-live="polite"]');
+  assert(/^Photo 4 of/.test((await live.textContent()) ?? ""), `opened at ${await live.textContent()}`);
+  await dialog.getByRole("button", { name: "Next photo" }).click();
+  assert(/^Photo 5 of/.test((await live.textContent()) ?? ""), `after next ${await live.textContent()}`);
+  const mounted = await dialog.locator('[aria-roledescription="carousel"] > div:first-child img').count();
+  assert(mounted <= 3, `lightbox mounted ${mounted} full-size photos`);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(300);
+  assert((await page.getByRole("dialog").count()) === 0, "Escape did not close");
+  await page.close();
+  return `${total} tiles`;
+});
+
+await check("product dialog shows a photo gallery", async () => {
+  const page = await desktop.newPage();
+  await page.goto(baseUrl + "/collections#chateau");
+  const dialog = page.getByRole("dialog");
+  await dialog.waitFor({ timeout: 4000 });
+  const thumbs = await dialog.getByRole("button", { name: /^Show photo \d+ of/ }).count();
+  assert(thumbs >= 3, `thumbnails ${thumbs}`);
+  await page.close();
+  return `${thumbs} photos`;
 });
 
 await browser.close();

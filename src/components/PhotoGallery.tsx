@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { stepIndex, swipeDirection } from "@/lib/gallery";
 import type { GalleryPhoto } from "@/data/products";
 
@@ -40,6 +40,15 @@ export default function PhotoGallery({
   const [pointerStart, setPointerStart] = useState<{ x: number; y: number } | null>(null);
 
   const step = (delta: number) => setIndex((current) => stepIndex(current, delta, count));
+
+  // Keep the current thumbnail centred in its strip; scrolls only the strip, never the page.
+  const thumbsRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const strip = thumbsRef.current;
+    const thumb = strip?.children[index] as HTMLElement | undefined;
+    if (!strip || !thumb) return;
+    strip.scrollTo({ left: thumb.offsetLeft - strip.clientWidth / 2 + thumb.clientWidth / 2, behavior: "smooth" });
+  }, [index]);
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.key === "ArrowRight") {
@@ -115,7 +124,7 @@ export default function PhotoGallery({
           <p aria-live="polite" className="sr-only">
             Photo {index + 1} of {count}: {current.alt}
           </p>
-          <div className={`mt-3 flex gap-2 overflow-x-auto pb-1 ${thumbsClassName}`}>
+          <div ref={thumbsRef} className={`relative mt-3 flex gap-2 overflow-x-auto pb-1 ${thumbsClassName}`}>
             {photos.map((photo, i) => (
               <button
                 key={photo.src}

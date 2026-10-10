@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    formats: ['image/avif', 'image/webp'],
+    // WebP only: measured on this site's photos, sharp's AVIF output was 40-75% larger and
+    // 20-30x slower to encode (the hero: 312 KB in 11.9 s vs 176 KB in 0.4 s at quality 75).
+    formats: ['image/webp'],
     minimumCacheTTL: 60 * 60 * 4, // 4 h (the Next 16 default): avoids per-minute revalidation and re-encodes
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
