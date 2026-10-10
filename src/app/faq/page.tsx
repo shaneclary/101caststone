@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ClosingCta from "@/components/ClosingCta";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 import { mantelLeadTime } from "@/data/company";
@@ -57,7 +58,7 @@ const faqs: Faq[] = [
   },
   {
     q: "What is the fireplace mantel made of?",
-    a: "Everything we make is made of modern-day cast stone. The mix includes Portland cement, crushed quartz, color pigment, fiberglass reinforcing materials and polymer. The result is stronger than, and similar in appearance to, natural stone, and it is non-combustible, so it can be used directly next to the firebox opening.",
+    a: "Everything we make is made of modern-day cast stone. The mix includes Portland cement, crushed quartz, color pigment, fiberglass reinforcing materials and polymer. The result is stronger than, and similar in appearance to, natural stone.",
   },
   {
     q: "Can cast stone be used next to the firebox?",
@@ -98,7 +99,7 @@ function Answer({ faq }: { faq: Faq }) {
   return (
     <>
       {before}
-      <Link href={faq.link.href} className="text-sienna-700 hover:text-basalt transition-colors">
+      <Link href={faq.link.href} className="text-link underline decoration-nickel underline-offset-4">
         {faq.link.text}
       </Link>
       {after}
@@ -108,56 +109,54 @@ function Answer({ faq }: { faq: Faq }) {
 
 export default function FaqPage() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
+    <div className="bg-ivory">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c") }}
       />
-      <SectionTitle>Frequently Asked Questions</SectionTitle>
-      <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
-        Here are the answers to common questions that we receive about our cast stone products.
-      </p>
-      <p className="mt-4 max-w-prose text-[16px] text-clay">
-        Technical documents for consumers, architects and installers are on our{" "}
-        <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
-          technical information
-        </Link>{" "}
-        page.
-      </p>
-
-      <div className="mt-12 max-w-3xl border-t border-ecru">
-        {faqs.map((faq) => (
-          <details key={faq.q} className="group border-b border-ecru">
-            <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 font-display text-xl leading-snug text-basalt [&::-webkit-details-marker]:hidden">
-              <span>{faq.q}</span>
-              <span aria-hidden="true" className="shrink-0 text-sienna-700 transition-transform group-open:rotate-45">
-                +
-              </span>
-            </summary>
-            <p className="-mt-2 pb-6 max-w-prose text-[16px] text-clay leading-relaxed">
-              <Answer faq={faq} />
-            </p>
-          </details>
-        ))}
-      </div>
-
-      <section className="mt-16 max-w-3xl rounded-lg border border-[#e3d9c8] bg-[#f7f3ed] p-6 sm:p-8 md:p-10 shadow-lintel">
-        <h2 className="font-display text-2xl tracking-normal text-basalt">Still have a question?</h2>
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <Link
-            href="/contact"
-            className="inline-block px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
-          >
-            Contact us
-          </Link>
-          <p className="text-[16px] text-clay">
-            Or call{" "}
-            <a href="tel:+18056109278" className="text-sienna-700 hover:text-basalt transition-colors">
-              (805) 610-9278
-            </a>
+      <section className="pb-16 pt-12 md:pb-24 md:pt-20">
+        <div className="wrap">
+          <SectionTitle>Frequently Asked Questions</SectionTitle>
+          <p className="max-w-prose text-lead text-clay">
+            Answers to the questions we hear most about ordering, measuring, installation, materials and care.
           </p>
+          <p className="mt-4 max-w-prose text-body text-clay">
+            Technical documents for consumers, architects and installers are on the{" "}
+            <Link href="/technical-info" className="text-link underline decoration-nickel underline-offset-4">
+              technical information
+            </Link>{" "}
+            page.
+          </p>
+
+          <div className="mt-12 max-w-3xl border-t border-nickel/40">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="group border-b border-nickel/40">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-display text-xl leading-snug text-basalt hover:text-sienna-700 [&::-webkit-details-marker]:hidden">
+                  <span>{faq.q}</span>
+                  <svg
+                    aria-hidden="true"
+                    className="mt-1.5 h-4 w-4 shrink-0 text-sienna-700 transition-transform duration-300 group-open:rotate-45"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.25"
+                  >
+                    <path d="M8 2v12M2 8h12" />
+                  </svg>
+                </summary>
+                <p className="-mt-1 max-w-prose pb-6 text-body text-clay">
+                  <Answer faq={faq} />
+                </p>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
+
+      <ClosingCta
+        heading="Still have a question?"
+        body="Call us Monday to Friday, 8am to 5pm, or send a note and we will walk you through the process."
+      />
     </div>
   );
 }

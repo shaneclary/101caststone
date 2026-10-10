@@ -1,128 +1,169 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import ClosingCta from "@/components/ClosingCta";
 import SectionTitle from "@/components/SectionTitle";
 import { whyCastStone } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "Custom Cast Stone Commissions",
-  description: "Custom mantels and fireplaces, columns and capitals, architectural details, outdoor and garden pieces, kitchen hoods, functional elements and stone masonry. Each commission begins as dialogue.",
+  title: "Commissions: Custom Cast Stone",
+  description:
+    "Mantels and fireplaces, columns and capitals, architectural details, outdoor and garden pieces, kitchen hoods, functional elements and stone masonry. Each commission begins as dialogue.",
   alternates: { canonical: "/commissions" },
 };
 
-// anchor: the matching category section on /collections
+// anchor: the matching category section on /collections; image: a piece from that category
 const commissionCategories = [
   {
     title: "Mantels & Fireplaces",
-    description: "A full line of cast stone fireplace surrounds and mantels, from Contemporary to Old World: Contemporary Surround, Genoa, Heritage, Milagro, Pacifica, Provence, Santa Barbara, Royal Acanthus, Cambridge, Chateau and Tangled. Or a custom configuration of current designs, or something entirely new.",
-    features: ["Standard and custom dimensions", "Seven stone colors available", "Three texture finishes", "Quoted with installation by our team"],
+    description:
+      "A full line of cast stone fireplace surrounds and mantels, from Contemporary to Old World: Contemporary Surround, Genoa, Heritage, Milagro, Pacifica, Provence, Santa Barbara, Royal Acanthus, Cambridge, Chateau and Tangled. Or a custom configuration of current designs, or something entirely new.",
+    features: ["Standard and custom dimensions", "Seven standard colors", "Three texture finishes", "Quoted with installation by our team"],
     anchor: "mantels",
-    delay: "animate-delay-100"
+    image: "/images/products/royal-acanthus/card.jpg",
   },
   {
     title: "Columns & Capitals",
-    description: "Round, square and spiral-twisted shafts with plain molded or leaf-carved capitals, for entries, porches, pergolas and interiors.",
-    features: ["Round, square and twisted shafts", "Plain or leaf-carved capitals", "Standard and custom dimensions", "Pier caps and finials"],
+    description: "Round, square and spiral-twisted shafts with plain molded or leaf capitals, for entries, porches and interiors.",
+    features: ["Round, square and twisted shafts", "Plain or leaf capitals", "Standard and custom dimensions", "Pier caps and finials"],
     anchor: "architectural",
-    delay: "animate-delay-200"
+    image: "/images/products/columns/card.jpg",
   },
   {
     title: "Architectural Details",
-    description: "Corbels, balustrades, crown molding, door and window trims. The details that transform construction into architecture—each element speaking the building's language.",
-    features: ["Scrolled and leaf-carved corbels", "Balusters, rails and piers", "Plain to leaf-carved crown profiles", "Arched and flat-headed surrounds"],
+    description: "Corbels, balustrades, crown molding, door and window surrounds: the trim, ornament and facing that finish a building.",
+    features: ["Scrolled and leaf corbels", "Balusters, rails and piers", "Plain to leaf crown profiles", "Arched and flat-headed surrounds"],
     anchor: "architectural",
-    delay: "animate-delay-300"
+    image: "/images/products/door-window-trims/02.jpg",
   },
   {
     title: "Outdoor & Garden",
-    description: "Outdoor fireplaces, fire pits, fountains, benches, seat walls and pavers for patios, courtyards and gardens. Weathered grace for courtyards and water features.",
-    features: ["Arched surrounds and raised hearths", "Custom fountain designs", "Benches and seat walls", "Large-format pavers", "Old World and Rustic textures"],
+    description: "Outdoor fireplaces, fire pits, fountains, benches, seat walls and pavers for patios, courtyards and gardens.",
+    features: ["Arched surrounds and raised hearths", "Fountains and basins", "Benches and seat walls", "Large-format pavers"],
     anchor: "outdoor",
-    delay: "animate-delay-400"
+    image: "/images/products/outdoor-fireplaces/card.jpg",
   },
   {
     title: "Kitchen Hoods",
-    description: "The range deserves a crown. Tapered cast stone hoods with molded bands, left plain or carved with a leaf frieze, some resting on leaf-carved corbels.",
-    features: ["Tapered and paneled profiles", "Leaf-carved corbel options", "Plain or leaf-carved friezes", "Standard and custom dimensions"],
+    description: "Tapered cast stone hoods with molded bands, left plain or finished with a leaf frieze, some resting on leaf corbels.",
+    features: ["Tapered and paneled profiles", "Leaf corbel options", "Plain or leaf friezes", "Standard and custom dimensions"],
     anchor: "functional",
-    delay: "animate-delay-500"
+    image: "/images/products/kitchen-hoods/card.jpg",
   },
   {
     title: "Functional Elements",
-    description: "Treads, sills and wall caps. Every detail considered—surfaces that perform their duty while speaking the building's architectural language.",
+    description: "Stair treads, window sills and wall caps: the surfaces that take the weather and the footfall.",
     features: ["Bullnose stair treads", "Molded window sills", "Flat and rounded wall caps"],
     anchor: "functional",
-    delay: "animate-delay-600"
+    image: "/images/products/stair-treads/card.jpg",
   },
-  {
-    // From the original site: "We also specialize in Stone Masonry ... natural stone or stone veneer"
-    title: "Stone Masonry",
-    id: "stone-masonry",
-    description: "Natural stone and stone veneer to bring the look and feel of stone to the interior or exterior of your home.",
-    features: ["Natural stone", "Stone veneer", "Interior and exterior"],
-    delay: "animate-delay-600"
-  }
 ];
+
+// From the original site: "We also specialize in Stone Masonry ... natural stone or stone veneer"
+const stoneMasonry = {
+  title: "Stone Masonry",
+  description: "Natural stone and stone veneer, for the interior or exterior of your home.",
+  features: ["Natural stone", "Stone veneer", "Interior and exterior"],
+  image: "/images/works/13.jpg",
+  alt: "Stacked-stone entry tower with a pale arched door surround, a pale band beneath three small windows, a decorative iron transom and a deep bracketed roof overhang against a blue sky.",
+};
+
+// Descriptions restate the original site's Design & Manufacturing Process page.
+const PHASES = [
+  { title: "Dialogue", desc: "Our sales and design professionals work with you to determine the project requirements and the items you are looking for." },
+  { title: "Mould", desc: "Any moulds that need to be created or modified are made in our custom mould shop." },
+  { title: "Cast", desc: "The cast stone is mixed in the color you specify and packed by hand into the mould, followed by fiberglass reinforcement." },
+  { title: "Finish", desc: "After curing, each piece is checked by Quality Control before delivery and installation are scheduled with you." },
+];
+
+const FEATURE = "flex items-start gap-2 text-small text-clay";
 
 export default function Commissions() {
   return (
     <div className="bg-ivory">
-      {/* Hero */}
-      <section className="py-24 bg-gradient-to-b from-[#f5efe4] to-ivory">
-        <div className="mx-auto max-w-6xl px-6">
-          <SectionTitle>Begin a Commission</SectionTitle>
-          <p className="mt-6 max-w-3xl text-clay text-lg leading-relaxed">
-            Each commission begins as dialogue. We listen to your vision, your space, your story.
-            From concept to installation, we work alongside architects, designers, and homeowners
-            to create pieces that endure for generations.
+      <section className="pb-12 pt-12 md:pb-16 md:pt-20">
+        <div className="wrap">
+          <SectionTitle>Commissions</SectionTitle>
+          <p className="max-w-prose text-lead text-clay">
+            Each commission begins as dialogue. We listen to your plans, your space and what you have in mind, then
+            work alongside you, your architect and your builder from design to installation.
           </p>
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {/* Categories, each led by a photo of a piece in it */}
+      <section className="pb-16 md:pb-24">
+        <div className="wrap">
+          <ul className="grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
             {commissionCategories.map((category) => (
-              <div
-                key={category.title}
-                id={category.id}
-                className={`flex flex-col scroll-mt-28 md:scroll-mt-40 target:ring-2 target:ring-sienna/40 rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl transition-shadow duration-500 opacity-0 animate-fade-in-up ${category.delay}`}
-              >
-                <h2 className="font-display text-2xl tracking-normal mb-4 text-clay">{category.title}</h2>
-                <p className="text-clay text-sm leading-relaxed mb-6">{category.description}</p>
-                <ul className="space-y-2">
-                  {category.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-clay flex items-start">
-                      <span className="text-sienna-700 mr-2">•</span>
+              <li key={category.title} className="group flex flex-col">
+                <div className="relative aspect-[4/3] overflow-hidden rounded bg-ivory-200">
+                  {/* Decorative: the heading names the card */}
+                  <Image src={category.image} alt="" fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px" className="img-drift object-cover" />
+                </div>
+                <h2 className="mt-5 text-heading md:text-heading">{category.title}</h2>
+                <p className="mt-2 text-small text-clay">{category.description}</p>
+                <ul className="mt-4 space-y-1.5">
+                  {category.features.map((feature) => (
+                    <li key={feature} className={FEATURE}>
+                      <span aria-hidden="true" className="text-sienna-700">•</span>
                       {feature}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-auto pt-6 flex gap-6 text-sm font-medium">
-                  {category.anchor && (
-                    <Link href={`/collections#${category.anchor}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
-                      View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
-                    </Link>
-                  )}
-                  <Link href={`/contact?product=${encodeURIComponent(category.title)}#inquiry`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
+                <div className="mt-auto flex gap-6 pt-5 text-small font-medium">
+                  <Link href={`/collections#${category.anchor}`} className="text-link">
+                    View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
+                  </Link>
+                  <Link href={`/contact?product=${encodeURIComponent(category.title)}#inquiry`} className="text-link">
                     Inquire<span className="sr-only"> about {category.title}</span> <span aria-hidden="true">→</span>
                   </Link>
                 </div>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
+
+          {/* Stone masonry: the one non-cast-stone service, as a full-width band */}
+          <section
+            id="stone-masonry"
+            aria-labelledby="stone-masonry-heading"
+            className="mt-16 grid gap-8 border-t border-ecru pt-14 scroll-mt-28 md:scroll-mt-40 lg:grid-cols-12 lg:gap-12"
+          >
+            <div className="relative aspect-[4/3] overflow-hidden rounded bg-ivory-200 lg:col-span-5">
+              <Image src={stoneMasonry.image} alt={stoneMasonry.alt} fill sizes="(max-width: 1024px) 100vw, 500px" className="object-cover" />
+            </div>
+            <div className="lg:col-span-7">
+              <h2 id="stone-masonry-heading" className="text-heading md:text-heading">{stoneMasonry.title}</h2>
+              <p className="mt-3 max-w-prose text-body text-clay">{stoneMasonry.description}</p>
+              <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-1.5">
+                {stoneMasonry.features.map((feature) => (
+                  <li key={feature} className={FEATURE}>
+                    <span aria-hidden="true" className="text-sienna-700">•</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6 flex gap-6 text-small font-medium">
+                <Link href="/works" className="text-link">
+                  See the works <span aria-hidden="true">→</span>
+                </Link>
+                <Link href={`/contact?product=${encodeURIComponent(stoneMasonry.title)}#inquiry`} className="text-link">
+                  Inquire<span className="sr-only"> about {stoneMasonry.title}</span> <span aria-hidden="true">→</span>
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
       {/* Why cast stone: the original Home and Products pages, via src/data/company.ts */}
-      <section className="pb-16" aria-labelledby="why-cast-stone-heading">
-        <div className="mx-auto max-w-7xl px-6">
-          <h2 id="why-cast-stone-heading" className="font-display text-2xl tracking-normal text-basalt mb-8">
-            Why cast stone
-          </h2>
-          <ul className="grid gap-8 md:grid-cols-3">
+      <section className="bg-ecru/50 py-16 md:py-24" aria-labelledby="why-cast-stone-heading">
+        <div className="wrap">
+          <p className="eyebrow mb-3">The material</p>
+          <h2 id="why-cast-stone-heading" className="text-balance">Why cast stone.</h2>
+          <ul className="mt-10 grid gap-8 md:grid-cols-3">
             {whyCastStone.map((reason) => (
-              <li key={reason} className="border-t border-ecru pt-4 text-[16px] text-clay leading-relaxed">
+              <li key={reason} className="border-t border-nickel/40 pt-5 text-body text-clay">
                 {reason}
               </li>
             ))}
@@ -130,51 +171,33 @@ export default function Commissions() {
         </div>
       </section>
 
-      {/* Process Overview */}
-      <section className="py-16 bg-[#f5efe4]">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="font-display text-3xl text-clay mb-12 text-center">The Commission Process</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              // Descriptions restate the original site's Design & Manufacturing Process page.
-              { step: "01", title: "Dialogue", desc: "Our sales and design professionals work with you to determine the project requirements and the items you are looking for." },
-              { step: "02", title: "Mould", desc: "Any moulds that need to be created or modified are made in our custom mould shop." },
-              { step: "03", title: "Cast", desc: "The cast stone is mixed in the color you specify and packed by hand into the mould, followed by fiberglass reinforcement." },
-              { step: "04", title: "Finish", desc: "After curing, each piece is checked by Quality Control before delivery and installation are scheduled with you." }
-            ].map((phase) => (
-              <div key={phase.step} className="text-center">
-                <div className="text-4xl font-display text-sienna mb-2">{phase.step}</div>
-                <div className="font-display text-xl text-clay mb-3">{phase.title}</div>
-                <p className="text-sm text-clay leading-relaxed">{phase.desc}</p>
-              </div>
+      {/* Process overview */}
+      <section className="py-16 md:py-24" aria-labelledby="commission-process-heading">
+        <div className="wrap">
+          <p className="eyebrow mb-3">The Lintel Method</p>
+          <h2 id="commission-process-heading" className="text-balance">How a commission is made.</h2>
+          <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {PHASES.map((phase, i) => (
+              <li key={phase.title} className="border-t border-nickel/40 pt-5">
+                <span className="font-display text-3xl leading-none text-sienna">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 text-xl">{phase.title}</h3>
+                <p className="mt-2 text-small text-clay">{phase.desc}</p>
+              </li>
             ))}
-          </div>
+          </ol>
+          <p className="mt-10 text-small">
+            <Link href="/process" className="text-link font-medium">
+              The full process <span aria-hidden="true">→</span>
+            </Link>
+          </p>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="font-display text-4xl text-clay mb-6">Ready to Begin?</h2>
-          <p className="text-lg text-clay mb-8 max-w-2xl mx-auto leading-relaxed">
-            Begin a quiet dialogue about your project. We&apos;re here to listen, advise, and translate your vision into stone that endures.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="px-8 py-4 bg-sienna-700 text-ivory-50 rounded-lg hover:shadow-lg transition-all duration-500 font-medium no-underline"
-            >
-              Begin a Conversation
-            </Link>
-            <Link
-              href="/collections"
-              className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 font-medium no-underline"
-            >
-              View Collections
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ClosingCta
+        heading="Begin a Commission"
+        body="Tell us about the piece, the space and the timeline. Our design team will work through the project with you, from our standard designs or something entirely new."
+        secondary={{ label: "View the Collections", href: "/collections" }}
+      />
     </div>
   );
 }

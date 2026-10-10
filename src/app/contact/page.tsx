@@ -5,14 +5,16 @@ import InquiryForm from "@/components/InquiryForm";
 import { showroom } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "Contact & Visit Our Atascadero Showroom",
+  title: "Contact & Visit the Atascadero Showroom",
   description:
-    "Send a project inquiry or visit our showroom at 1720 El Camino Real, Atascadero, CA 93422. Email info@101caststone.com. Open Mon–Fri 8am–5pm.",
+    "Send a project inquiry or visit the showroom at 1720 El Camino Real, Atascadero, CA 93422. Email info@101caststone.com. Open Monday to Friday, 8am to 5pm; weekend appointments available.",
   alternates: { canonical: "/contact" },
 };
 
 const DIRECTIONS_URL =
   "https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422";
+
+const VALUE = "text-body text-basalt no-underline hover:underline underline-offset-4";
 
 export default function Contact({ searchParams }: { searchParams: { product?: string | string[] } }) {
   // "Inquire About This Piece" links here with ?product=<name>; it only prefills the form.
@@ -21,102 +23,96 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
   const product = requested ? Array.from(requested.trim()).slice(0, 120).join("") || undefined : undefined;
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
+    <div className="wrap pb-20 pt-12 md:pb-28 md:pt-20">
       <SectionTitle>Begin a Conversation</SectionTitle>
-      <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
-        Every commission starts with listening. Share your vision, and we&apos;ll craft something extraordinary together.
+      <p className="max-w-prose text-lead text-clay">
+        Every commission starts with listening. Tell us about the space and what you have in mind, and our design
+        team will work through the project with you.
       </p>
 
-      <div className="mt-16 grid gap-12 md:grid-cols-2">
-        {/* Contact Information */}
-        <div className="opacity-0 animate-fade-in-up">
-          <h2 className="font-display text-2xl tracking-normal mb-8 text-basalt">Contact Information</h2>
+      <div className="mt-12 grid gap-12 md:grid-cols-[5fr_7fr] lg:gap-16">
+        {/* Contact information */}
+        <div>
+          <h2 className="mb-8 text-heading md:text-heading">Contact Information</h2>
 
-          <div className="space-y-6 text-clay">
+          <dl className="space-y-7">
             <div>
-              <div className="font-medium text-basalt mb-1">{showroom.name}</div>
-              <a
-                href={DIRECTIONS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-[16px] leading-relaxed hover:text-basalt transition-colors"
-              >
-                {showroom.street}<br />
-                {showroom.locality}
-                <span className="block mt-1 text-[14px] text-sienna-700">
-                  Get directions →<span className="sr-only"> (opens Google Maps in a new tab)</span>
-                </span>
-              </a>
+              <dt className="eyebrow mb-2">{showroom.name}</dt>
+              <dd>
+                <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className={`block ${VALUE}`}>
+                  {showroom.street}
+                  <br />
+                  {showroom.locality}
+                  <span className="mt-1 block text-small text-sienna-700">
+                    Get directions <span aria-hidden="true">→</span>
+                    <span className="sr-only"> (opens Google Maps in a new tab)</span>
+                  </span>
+                </a>
+              </dd>
             </div>
 
             <div>
-              <div className="font-medium text-basalt mb-1">Phone</div>
-              <a
-                href="tel:+18056109278"
-                className="text-[16px] text-sienna-700 hover:text-basalt transition-colors"
-              >
-                (805) 610-9278
-              </a>
+              <dt className="eyebrow mb-2">Phone</dt>
+              <dd>
+                <a href="tel:+18056109278" className={VALUE}>
+                  (805) 610-9278
+                </a>
+              </dd>
             </div>
 
             <div>
-              <div className="font-medium text-basalt mb-1">Email</div>
-              <a
-                href="mailto:info@101caststone.com"
-                className="text-[16px] text-sienna-700 hover:text-basalt transition-colors"
-              >
-                info@101caststone.com
-              </a>
+              <dt className="eyebrow mb-2">Email</dt>
+              <dd>
+                <a href="mailto:info@101caststone.com" className={VALUE}>
+                  info@101caststone.com
+                </a>
+              </dd>
             </div>
 
-            <div className="pt-4 border-t border-ecru">
-              <div className="font-medium text-basalt mb-1">Factory Showroom Hours</div>
-              <p className="text-[16px] leading-relaxed">
-                {showroom.hours}<br />
+            <div className="border-t border-ecru pt-7">
+              <dt className="eyebrow mb-2">Factory Showroom Hours</dt>
+              <dd className="text-body text-basalt">
+                {showroom.hours}
+                <br />
                 {showroom.weekend}
-              </p>
+              </dd>
             </div>
+          </dl>
 
-            <div className="pt-4 border-t border-ecru">
-              <p className="text-[15px] text-clay italic leading-relaxed">
-                We welcome visits to our Atascadero showroom to discuss your project in person.
-              </p>
-            </div>
-          </div>
+          <p className="mt-7 border-t border-ecru pt-7 text-small text-clay">
+            Visitors are welcome at the showroom to see the pieces, colors and textures and talk through a project in
+            person. Local to our area of California? Our sales staff will visit your home or jobsite to verify
+            measurements.
+          </p>
         </div>
 
         {/* Project Inquiry: rendered visible from the start, since it is the page's main action.
             Arriving from a piece ("Inquire About This Piece"), phones see the form before the contact details. */}
         <div id="inquiry" className={product ? "scroll-mt-28 order-first md:order-none" : "scroll-mt-28"}>
-          <div className="rounded-lg border border-[#e3d9c8] bg-[#f7f3ed] p-6 sm:p-8 md:p-10 shadow-lintel">
-            <h2 className="font-display text-2xl tracking-normal mb-4 text-basalt">Project Inquiry</h2>
-            <p className="text-[16px] text-clay mb-6 leading-[1.7]">
-              Share details about your vision, including timeline and architectural context.
+          <div className="card p-6 hover:border-ecru sm:p-8 md:p-10">
+            <h2 className="mb-3 text-heading md:text-heading">Project Inquiry</h2>
+            <p className="mb-6 text-small text-clay">
+              Share what you have in mind, with the timeline and the architectural context.
             </p>
             <InquiryForm initialProduct={product} />
-            <p className="mt-6 pt-6 border-t border-[#e3d9c8] text-[15px] text-clay leading-relaxed">
+            <p className="mt-6 border-t border-ecru pt-6 text-small text-clay">
               Prefer email, or have inspiration images or drawings to share?{" "}
-              <a
-                href="mailto:info@101caststone.com"
-                className="text-sienna-700 hover:text-basalt transition-colors"
-              >
+              <a href="mailto:info@101caststone.com" className="text-link underline decoration-nickel underline-offset-4">
                 info@101caststone.com
               </a>
             </p>
           </div>
 
-          <p className="mt-6 text-[16px] text-clay leading-relaxed">
+          <p className="mt-6 text-small text-clay">
             Questions about measuring, installation or care?{" "}
-            <Link href="/faq" className="text-sienna-700 hover:text-basalt transition-colors">
-              Read our FAQ
+            <Link href="/faq" className="text-link underline decoration-nickel underline-offset-4">
+              Read the FAQ
             </Link>
-            .
-          </p>
-          <p className="mt-2 text-[16px] text-clay leading-relaxed">
-            Architects and builders:{" "}
-            <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
+            . Architects and builders:{" "}
+            <Link href="/technical-info" className="text-link underline decoration-nickel underline-offset-4">
               technical information
             </Link>
+            .
           </p>
         </div>
       </div>

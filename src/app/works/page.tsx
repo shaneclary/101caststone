@@ -1,40 +1,43 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import ClosingCta from "@/components/ClosingCta";
 import PortfolioGrid from "@/components/PortfolioGrid";
 import SectionTitle from "@/components/SectionTitle";
 import { featuredWork, works } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: "Recent Cast Stone Installations",
-  description: "Selected commissions in mantels, columns, and landscape pieces—each proportioned to its light, room, and purpose.",
+  title: "Works: Cast Stone Installations",
+  description: "Selected installations: fireplace mantels, columns and entries, kitchen hoods, outdoor fireplaces, fountains and garden pieces, each shown in place.",
   alternates: { canonical: "/works" },
 };
 
 export default function Works() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
-      <SectionTitle>Recent Works</SectionTitle>
-      <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
-        Selected commissions in mantels, columns, and landscape pieces—each proportioned to its light, room, and purpose.
-      </p>
+    <div className="bg-ivory">
+      <section className="pb-16 pt-12 md:pb-24 md:pt-20">
+        <div className="wrap">
+          {/* Editorial header: title and intro beside the featured photo, shown whole at its native ratio */}
+          <PortfolioGrid
+            featured={featuredWork}
+            featuredClassName="aspect-[4/3] md:col-span-7"
+            photos={works}
+            label="Works photos"
+            header={
+              <div className="md:col-span-5">
+                <SectionTitle>Works</SectionTitle>
+                <p className="max-w-prose text-lead text-clay">
+                  Selected installations: mantels, columns and entries, kitchen hoods, outdoor fireplaces, fountains
+                  and garden pieces, each shown in place. Any photo opens the full set.
+                </p>
+              </div>
+            }
+          />
+        </div>
+      </section>
 
-      {/* Portfolio: any photo opens a lightbox that steps through the whole set */}
-      <div className="mt-16">
-        <PortfolioGrid featured={featuredWork} photos={works} label="Recent works photos" />
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-20 text-center opacity-0 animate-fade-in-up animate-delay-500">
-        <p className="text-clay text-[17px] leading-relaxed max-w-2xl mx-auto">
-          Every project begins with a conversation about your space, your vision, and the legacy you wish to create.
-        </p>
-        <Link
-          href="/contact"
-          className="inline-block mt-6 px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
-        >
-          Start Your Project
-        </Link>
-      </div>
+      <ClosingCta
+        heading="Begin a Conversation"
+        body="Every project begins with a conversation about the space and what you have in mind. Our design team works through it with you, from our standard designs or something entirely new."
+      />
     </div>
   );
 }

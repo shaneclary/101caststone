@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ClosingCta from "@/components/ClosingCta";
 import SectionTitle from "@/components/SectionTitle";
 import { customers, services, showroom, technicalDocuments } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "About the Studio",
+  title: "About 101 Cast Stone",
   description:
     "101 Cast Stone in Atascadero, California: custom cast stone, fireplace surrounds and mantels, and stone masonry for developers, builders and homeowners.",
   alternates: { canonical: "/about" },
@@ -16,122 +17,122 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
-      <SectionTitle>About the Studio</SectionTitle>
-      <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
-        101 Cast Stone designs and makes cast stone in Atascadero, on California&apos;s Central Coast, for developers,
-        building contractors and residential customers.
-      </p>
-
-      <div className="mt-16 grid gap-12 md:grid-cols-2 md:items-center">
-        <div>
-          <h2 className="font-display text-2xl tracking-normal text-basalt mb-6">Our founder</h2>
-          <div className="space-y-4 text-clay text-[16px] leading-relaxed max-w-prose">
-            <p>
-              Clark Baird began his career at Sierra Concrete Design, a family-owned precast design and manufacturing
-              business in Southern California, and later became its Area Sales Director for multiple regions of
-              California.
-            </p>
-            <p>
-              After moving to Atascadero, he saw the need for a high-end cast stone facility on the Central Coast and
-              started 101 Cast Stone. Today the company has a staff of over 15 full- and part-time employees.
-            </p>
-          </div>
-        </div>
-        <figure>
-          <div className="relative aspect-[3/2] overflow-hidden rounded-lg border border-[#e8dfcf90] bg-ivory-200">
-            <Image
-              src="/images/process/workshop-floor.jpg"
-              alt="Workshop floor with rows of moulds being filled, shelves of moulds and bags of material behind"
-              fill
-              sizes="(max-width: 768px) 100vw, 528px"
-              className="object-cover"
-            />
-          </div>
-          <figcaption className="mt-3 text-[14px] text-clay">The manufacturing floor.</figcaption>
-        </figure>
-      </div>
-
-      <section className="mt-20" aria-labelledby="services-heading">
-        <h2 id="services-heading" className="font-display text-2xl tracking-normal text-basalt mb-8">
-          What we make
-        </h2>
-        <ul className="grid gap-6 md:grid-cols-3">
-          {services.map((service) => (
-            <li
-              key={service.title}
-              className="relative rounded-lg border border-[#e8dfcf] bg-white p-8 hover:shadow-lg transition-shadow duration-500 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sienna/40"
-            >
-              <h3 className="font-display text-xl text-basalt mb-3">
-                {/* The title link covers the whole card (after:inset-0) */}
-                <Link
-                  href={service.href}
-                  className="text-basalt no-underline hover:text-sienna-700 transition-colors after:absolute after:inset-0"
-                >
-                  {service.title} <span aria-hidden="true" className="text-sienna-700">→</span>
-                </Link>
-              </h3>
-              <p className="text-[15px] text-clay leading-relaxed">{service.text}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-20" aria-labelledby="customers-heading">
-        <h2 id="customers-heading" className="font-display text-2xl tracking-normal text-basalt mb-3">
-          Past and current customers
-        </h2>
-        <p className="text-[16px] text-clay mb-8">A few of the builders, businesses and public bodies we have worked with.</p>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 border-t border-ecru">
-          {customers.map((customer) => (
-            <li key={customer} className="border-b border-ecru py-3 text-[16px] text-basalt">
-              {customer}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="mt-20 grid gap-12 md:grid-cols-2" aria-label="Credentials and documents">
-        <div>
-          <h2 className="font-display text-2xl tracking-normal text-basalt mb-4">Licensed</h2>
-          <p className="text-[16px] text-clay leading-relaxed">License #892542.</p>
-        </div>
-        <div>
-          <h2 className="font-display text-2xl tracking-normal text-basalt mb-4">For architects and builders</h2>
-          <p className="text-[16px] text-clay leading-relaxed mb-4">Technical documents for consumers, architects and installers:</p>
-          <ul className="space-y-2 text-[16px] text-clay">
-            {technicalDocuments.map((doc) => (
-              <li key={doc} className="flex items-start gap-2">
-                <span aria-hidden="true" className="text-sienna-700">•</span>
-                <span>{doc}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[16px] text-clay">
-            <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
-              See technical information
-            </Link>
-            <Link href="/contact?product=Technical%20documents#inquiry" className="text-sienna-700 hover:text-basalt transition-colors">
-              Request the documents
-            </Link>
+    <div className="bg-ivory">
+      <section className="pb-16 pt-12 md:pb-24 md:pt-20">
+        <div className="wrap">
+          <SectionTitle>About 101 Cast Stone</SectionTitle>
+          <p className="max-w-prose text-lead text-clay">
+            101 Cast Stone designs and makes cast stone in Atascadero, on California&apos;s Central Coast, for developers,
+            building contractors and residential customers.
           </p>
+
+          <div className="mt-16 grid gap-10 md:grid-cols-12 md:items-center md:gap-16">
+            <figure className="md:col-span-7">
+              <div className="relative aspect-[3/2] overflow-hidden rounded bg-ivory-200">
+                <Image
+                  src="/images/process/workshop-floor.jpg"
+                  alt="Workshop floor with rows of moulds being filled, shelves of moulds and bags of material behind"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 700px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-caption text-clay">The manufacturing floor.</figcaption>
+            </figure>
+            <div className="md:col-span-5">
+              <p className="eyebrow mb-3">Our founder</p>
+              <h2 className="text-balance">Clark Baird</h2>
+              <div className="mt-5 max-w-prose space-y-4 text-body text-clay">
+                <p>
+                  Clark Baird began his career at Sierra Concrete Design, a family-owned precast design and manufacturing
+                  business in Southern California, and later became its Area Sales Director for multiple regions of
+                  California.
+                </p>
+                <p>
+                  After moving to Atascadero, he saw the need for a high-end cast stone facility on the Central Coast and
+                  started 101 Cast Stone. Today the company has a staff of over 15 full- and part-time employees.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <section className="mt-20" aria-labelledby="services-heading">
+            <h2 id="services-heading" className="mb-8 text-heading md:text-heading">
+              What we make
+            </h2>
+            <ul className="grid gap-x-8 gap-y-8 border-t border-nickel/40 md:grid-cols-3">
+              {services.map((service) => (
+                <li key={service.title} className="relative pt-6 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-4 has-[:focus-visible]:outline-sienna-700">
+                  <h3 className="text-xl">
+                    {/* The title link covers the whole item (after:inset-0) */}
+                    <Link href={service.href} className="text-basalt no-underline hover:text-sienna-700 after:absolute after:inset-0">
+                      {service.title} <span aria-hidden="true" className="text-sienna-700">→</span>
+                    </Link>
+                  </h3>
+                  <p className="mt-3 text-small text-clay">{service.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-20" aria-labelledby="customers-heading">
+            <h2 id="customers-heading" className="mb-3 text-heading md:text-heading">
+              Past and current customers
+            </h2>
+            <p className="mb-8 text-body text-clay">A few of the builders, businesses and public bodies we have worked with.</p>
+            <ul className="grid grid-cols-1 gap-x-8 border-t border-ecru sm:grid-cols-2 md:grid-cols-3">
+              {customers.map((customer) => (
+                <li key={customer} className="border-b border-ecru py-3 text-body text-basalt">
+                  {customer}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="mt-20 grid gap-12 md:grid-cols-2" aria-label="Credentials and documents">
+            <div>
+              <h2 className="mb-4 text-heading md:text-heading">Licensed</h2>
+              <p className="text-body text-clay">License #892542.</p>
+            </div>
+            <div>
+              <h2 className="mb-4 text-heading md:text-heading">For architects and builders</h2>
+              <p className="mb-4 text-body text-clay">Technical documents for consumers, architects and installers:</p>
+              <ul className="space-y-2 text-body text-clay">
+                {technicalDocuments.map((doc) => (
+                  <li key={doc} className="flex items-start gap-2">
+                    <span aria-hidden="true" className="text-sienna-700">•</span>
+                    <span>{doc}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-small font-medium">
+                <Link href="/technical-info" className="text-link">
+                  Technical information <span aria-hidden="true">→</span>
+                </Link>
+                <Link href="/contact?product=Technical%20documents#inquiry" className="text-link">
+                  Request the documents <span aria-hidden="true">→</span>
+                </Link>
+              </p>
+            </div>
+          </section>
+
+          <section className="mt-20 border-t border-nickel/40 pt-10" aria-labelledby="showroom-heading">
+            <h2 id="showroom-heading" className="text-heading md:text-heading">Visit the {showroom.name.replace(" Showroom", "")} showroom</h2>
+            <p className="mt-3 text-body text-clay">
+              {showroom.street}, {showroom.locality} · {showroom.hours} · {showroom.weekend}
+            </p>
+            <Link href="/contact?product=Showroom%20visit#inquiry" className="text-link mt-3 inline-block text-small font-medium">
+              Request a weekend appointment <span aria-hidden="true">→</span>
+            </Link>
+          </section>
         </div>
       </section>
 
-      <div className="mt-20 rounded-lg2 bg-[#f5efe4] border border-[#e3d9c8] p-10 md:p-12 shadow-lintel text-center">
-        <h2 className="font-display text-3xl tracking-normal text-basalt mb-4">Visit the Atascadero showroom</h2>
-        <p className="text-clay text-[17px] leading-relaxed">
-          {showroom.street}, {showroom.locality} · {showroom.hours} · {showroom.weekend}
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/contact" className="px-8 py-4 bg-sienna-700 text-ivory-50 rounded-lg hover:shadow-lg transition-all duration-500 font-medium no-underline">
-            Begin a Conversation
-          </Link>
-          <Link href="/works" className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 font-medium no-underline">
-            See Recent Works
-          </Link>
-        </div>
-      </div>
+      <ClosingCta
+        heading="Begin a Conversation"
+        body="Tell us about your project and we will walk you through the process, from design to installation."
+        secondary={{ label: "See the Works", href: "/works" }}
+      />
     </div>
   );
 }

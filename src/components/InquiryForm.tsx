@@ -34,22 +34,21 @@ const FIELD_ORDER: InquiryField[] = [
 const PHONE_HREF = "tel:+18056109278";
 const PHONE_DISPLAY = "(805) 610-9278";
 
-const PRIMARY_BUTTON =
-  "inline-block w-full sm:w-auto text-center px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500";
-const SECONDARY_BUTTON =
-  "inline-block w-full sm:w-auto text-center px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 font-medium";
-const LABEL = "block text-basalt text-[15px] font-medium";
+const PRIMARY_BUTTON = "btn btn-primary w-full sm:w-auto";
+const SECONDARY_BUTTON = "btn btn-secondary w-full sm:w-auto";
+const LABEL = "block text-small font-medium text-basalt";
 // scroll-mt keeps a focused field clear of the sticky header (h-20).
-const CONTROL = "mt-2 block w-full scroll-mt-28 rounded-lg bg-white px-4 py-3 text-[16px] text-basalt focus:ring-2";
+const CONTROL = "mt-2 block w-full scroll-mt-28 rounded bg-ivory-50 px-4 py-3 text-[16px] text-basalt focus:ring-2";
 // Solid ring with an offset in the card colour, so focus stays visible next to the field border.
-const CONTROL_OK = "border-sienna focus:border-sienna-700 focus:ring-sienna-700 focus:ring-offset-2 focus:ring-offset-[#f7f3ed]";
-const CONTROL_INVALID = "border-[#9b2c2c] focus:border-[#9b2c2c] focus:ring-[#9b2c2c] focus:ring-offset-2 focus:ring-offset-[#f7f3ed]";
+// border-sienna is the only palette border that clears 3:1 for a form-field outline on ivory.
+const CONTROL_OK = "border-sienna focus:border-sienna-700 focus:ring-sienna-700 focus:ring-offset-2 focus:ring-offset-ivory-50";
+const CONTROL_INVALID = "border-[#9b2c2c] focus:border-[#9b2c2c] focus:ring-[#9b2c2c] focus:ring-offset-2 focus:ring-offset-ivory-50";
 // Selects: px-4 would otherwise cancel the forms plugin's right padding and let long options run under the chevron.
 const SELECT = "pr-10";
-const HELP = "mt-1 text-[14px] leading-relaxed text-clay";
-const ERROR = "mt-2 text-[14px] text-[#9b2c2c]";
-const PANEL = "rounded-lg border border-[#e3d9c8] bg-white p-6 sm:p-8";
-const PANEL_HEADING = "scroll-mt-28 font-display text-2xl text-basalt focus:outline-none";
+const HELP = "mt-1 text-caption text-clay";
+const ERROR = "mt-2 text-caption text-[#9b2c2c]";
+const PANEL = "rounded border border-ecru bg-ivory-50 p-6 sm:p-8";
+const PANEL_HEADING = "scroll-mt-28 text-heading focus:outline-none";
 const RESULT_HEADING_ID = "inquiry-result";
 
 const fieldId = (field: InquiryField) => `inquiry-${field}`;
@@ -160,10 +159,10 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
         <h3 id={RESULT_HEADING_ID} tabIndex={-1} className={PANEL_HEADING}>
           Thank you, {submitted.name}.
         </h3>
-        <p className="mt-4 text-[16px] leading-[1.7] text-clay">We typically respond within 1–2 business days.</p>
-        <p className="mt-2 text-[16px] leading-[1.7] text-clay">
+        <p className="mt-4 text-body text-clay">We typically respond within 1–2 business days.</p>
+        <p className="mt-2 text-body text-clay">
           Prefer to talk? Call{" "}
-          <a href={PHONE_HREF} className="text-sienna-700 hover:text-basalt transition-colors">
+          <a href={PHONE_HREF} className="text-link underline decoration-nickel underline-offset-4">
             {PHONE_DISPLAY}
           </a>
           .
@@ -178,7 +177,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
         <h3 id={RESULT_HEADING_ID} tabIndex={-1} className={PANEL_HEADING}>
           Almost there
         </h3>
-        <p className="mt-4 text-[16px] leading-[1.7] text-clay">
+        <p className="mt-4 text-body text-clay">
           {mailtoFitsWhole(submitted)
             ? "Your inquiry hasn’t been sent yet. Send it from your email app — everything you entered is filled in."
             : "Your inquiry hasn’t been sent yet. Your message is longer than an email link can carry, so only the first part is filled in — use “Back to the form” to copy the rest."}
@@ -191,9 +190,9 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
             Back to the form
           </button>
         </div>
-        <p className="mt-4 text-[16px] leading-[1.7] text-clay">
+        <p className="mt-4 text-body text-clay">
           Or call{" "}
-          <a href={PHONE_HREF} className="text-sienna-700 hover:text-basalt transition-colors">
+          <a href={PHONE_HREF} className="text-link underline decoration-nickel underline-offset-4">
             {PHONE_DISPLAY}
           </a>
         </p>
@@ -238,11 +237,11 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
 
   // method="post" keeps entries out of the URL if someone submits before the script has loaded.
   return (
-    <form method="post" noValidate onSubmit={handleSubmit} className="space-y-6">
+    <form method="post" noValidate onSubmit={handleSubmit} className="grid gap-x-5 gap-y-6 sm:grid-cols-2">
       <p role="alert" className="sr-only">
         {announcement}
       </p>
-      <p className="text-[14px] text-clay">Fields marked * are required.</p>
+      <p className="text-caption text-clay sm:col-span-2">Fields marked * are required.</p>
 
       <div>
         {renderLabel("name", "Name", true)}
@@ -322,7 +321,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
         {renderError("installation")}
       </div>
 
-      <div>
+      <div className="sm:col-span-2">
         {renderLabel("message", "Message", true)}
         <p id="inquiry-message-help" className={HELP}>
           Tell us about the space and what you have in mind. For a mantel, the firebox opening size (W × H) helps.
@@ -332,7 +331,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
       </div>
 
       {/* Honeypot: hidden from people and assistive tech; bots that fill it are dropped by /api/inquiry. */}
-      <div className="hidden" aria-hidden="true">
+      <div className="hidden sm:col-span-2" aria-hidden="true">
         <label htmlFor="inquiry-website">Website</label>
         <input
           id="inquiry-website"
@@ -345,7 +344,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
         />
       </div>
 
-      <div>
+      <div className="sm:col-span-2">
         {/* aria-disabled rather than disabled keeps keyboard focus on the button while sending; handleSubmit ignores repeats. */}
         <button type="submit" aria-disabled={status === "sending" || undefined} className={`${PRIMARY_BUTTON} aria-disabled:cursor-wait`}>
           {status === "sending" ? "Sending…" : "Send Inquiry"}
@@ -353,7 +352,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
         <p role="status" className="sr-only">
           {status === "sending" ? "Sending your inquiry…" : ""}
         </p>
-        <p className="mt-4 text-[14px] text-clay">We typically respond within 1–2 business days.</p>
+        <p className="mt-4 text-caption text-clay">We typically respond within 1–2 business days.</p>
       </div>
     </form>
   );
