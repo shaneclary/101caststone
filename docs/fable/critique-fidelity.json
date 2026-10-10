@@ -1,0 +1,180 @@
+{
+ "findings": [
+  {
+   "title": "Founding year: 'since 2001' and foundingDate 2001 in metadata and JSON-LD contradict the source's 'summer of 2006'",
+   "why_it_matters": "Google indexes the meta description and LocalBusiness JSON-LD on every route. A wrong founding year is a checkable fact, and an architect who reads the About story will notice it.",
+   "evidence": "src/app/layout.tsx:16 description '...custom stonework. Serving California since 2001.'; src/components/StructuredData.tsx:10 '...custom stonework since 2001.' and :14 \"foundingDate\": \"2001\". Source, about-us: 'Clark Baird started 101 Cast Stone in the summer of 2006.' A search of scraped-data.json finds no '2001'. The year comes only from the repo's brand rewrite (scraped-content/BRAND-CONTENT.md:412 'Maison California \u00b7 Est. 2001') and TODO.txt:3.",
+   "proposal": "SAFE NOW. layout.tsx:16 \u2192 \"Architectural cast stone from Atascadero, California. Hand-crafted fireplace mantels, columns, balustrades and custom stonework.\" StructuredData.tsx:10 \u2192 the same sentence. StructuredData.tsx:14 \u2192 \"foundingDate\": \"2006\" (the only sourced year). If the team would rather wait for the owner, delete the property; never ship 2001.",
+   "source_for_any_new_copy": "about-us: 'Clark Baird started 101 Cast Stone in the summer of 2006.' / FAQ (lead time): 'Our cast stone items are a custom product made by hand.' (supports 'Hand-crafted') / home: '1720 El Camino Real, Atascadero, CA 93422'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Unsourced brand marks on every page: 'Maison California \u00b7 Est. 2001', 'The Lintel Method', 'atelier'",
+   "why_it_matters": "The header tagline sits top-left on every page and is part of the home link's accessible name. It pairs a contradicted year with a trading name that appears nowhere on the business's own site. 'Lintel Method' names a product the company doesn't list.",
+   "evidence": "layout.tsx:97 header and :126 footer 'Maison California \u00b7 Est. 2001'; :13 default title '101 Cast Stone \u2014 Maison California'; :32 keyword 'maison california'. page.tsx:120 and process/page.tsx:16 h1 'The Lintel Method'; page.tsx:95 'Step Inside Our Atelier'. Source: neither 'Maison', '2001' nor 'lintel' appears in scraped-data.json. Product list (cast-stone page): 'Balustrades, Customs, Columns, Corbels, Crown Molding, Trims, Kitchen Hoods, Pavers, Pilaster Caps, Sills, Surrounds, Treads, Wall Caps', with no lintels. about-us: 'summer of 2006'. All three marks come from BRAND-CONTENT.md, a brand rewrite.",
+   "proposal": "OWNER RULES ON THE MARKS. Interim text that is true and safe to ship now: layout.tsx:97 and :126 \u2192 \"Atascadero, California \u00b7 Est. 2006\"; :13 default title \u2192 \"101 Cast Stone | Architectural Cast Stone, Atascadero\"; drop the 'maison california' keyword (:32). If the owner keeps the coined name, use \"Maison California \u00b7 Est. 2006\", never 2001. Ask the owner whether to keep 'The Lintel Method'; if renamed, the sourced four steps read 'Dialogue \u2192 Mould \u2192 Cast \u2192 Finish' (see the process findings). Keep the footer line 'Proportion. Patina. Permanence.': it is voice, not a fact.",
+   "source_for_any_new_copy": "about-us: 'started 101 Cast Stone in the summer of 2006. After moving to Atascadero...' / home: 'Atascadero Showroom 1720 El Camino Real Atascadero, CA 93422'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": true
+  },
+  {
+   "title": "Contact page: 'Serving California and nationwide since 2001' and 'view samples' are unsupported",
+   "why_it_matters": "This is the conversion page. 'Nationwide' invites out-of-state inquiries on terms the business never states, '2001' is contradicted, and the real service model (a site visit locally, a worksheet farther away) goes unstated, though it is exactly what qualifies a lead.",
+   "evidence": "src/app/contact/page.tsx:80-83 'Serving California and nationwide since 2001. We welcome visits to our Atascadero studio to view samples and discuss your project in person.' Source FAQ 'How do I measure my Fireplace?': 'If you are local to our area of California, our sales staff will schedule an appointment to visit your residence or jobsite to verify the measurements. If you are out of the area, please download our Fireplace Surround Worksheet...' about-us: 'summer of 2006'. home: 'Atascadero Showroom', 'Factory Showroom Hours:'. 'Nationwide' and 'samples' appear nowhere in the source.",
+   "proposal": "SAFE NOW. Replace contact/page.tsx:81-82 with: \"Visitors are welcome at our Atascadero factory showroom. Local to our area of California? Our sales staff will visit your home or jobsite to verify measurements. For a mantel farther afield, we work from our Fireplace Surround Worksheet.\"",
+   "source_for_any_new_copy": "faq: 'If you are local to our area of California, our sales staff will schedule an appointment to visit your residence or jobsite to verify the measurements. If you are out of the area, please download our Fireplace Surround Worksheet' / home: 'Atascadero Showroom', 'Factory Showroom Hours:'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Invented week counts (6-12 weeks before install) contradict the owner's '2 to 3 weeks for production and installation' and '~one day' in the mould",
+   "why_it_matters": "Lead time is a top qualifying question. The site promises a 3-6 week cure the process doesn't need, and it would scare off clients with a deadline that the owner's own FAQ says can be met in 2-3 weeks.",
+   "evidence": "process/page.tsx:33-39 'Timeline: Initial consultation and site assessment / Custom mould creation: 2-4 weeks / Casting and curing: 3-6 weeks / Hand finishing and detailing: 1-2 weeks'. commissions/page.tsx:16 feature '2-4 week design phase'. Source FAQ: 'please allow 2 to 3 weeks for production and installation of your fireplace mantel. If you require a different time frame, please let us know and we will do whatever we can to accommodate you.' Process step 6: 'The molds are then left to dry for approximately one day depending on the particular detail.' Step 4: 'If needed, any molds that may be required to be created or modified...' (moulds are not always new).",
+   "proposal": "SAFE NOW (the owner's own live wording). process/page.tsx:35-38 \u2192 four items: \"Design: we work through your requirements with you; local clients receive a visit to verify measurements.\" / \"Moulds: made or modified in our Custom Mold Shop, only when your design needs it.\" / \"Casting: packed by hand and left in the mould for approximately one day, depending on the detail.\" / \"Fireplace mantels: allow 2 to 3 weeks for production and installation. Need a different time frame? Tell us, and we will do whatever we can to accommodate you.\" commissions/page.tsx:16 '2-4 week design phase' \u2192 \"Quoted with installation by our team\". Optionally restore the FAQ 'What is the lead time for my mantel?' in faq/page.tsx with the verbatim answer.",
+   "source_for_any_new_copy": "faq: 'Our cast stone items are a custom product made by hand. With that in mind, please allow 2 to 3 weeks for production and installation of your fireplace mantel. If you require a different time frame...' / design-manufacturing-process steps 2, 4, 6 / faq: 'All of our fireplace products are quoted with installation by our team of professionals.'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Process page describes a method the source contradicts: 'pour', 'mockups', 'tolerances', 'hand finishing', and a philosophy built on lintels",
+   "why_it_matters": "/process is where architects and builders check how the work is made. The source says material is packed by hand into the mould, never poured, and names no mockups, tolerances or lintels. The real composition, which a specifier wants, is missing.",
+   "evidence": "process/page.tsx:18 'Our process balances classical geometry with modern tolerances.' :25-28 Materials: 'Materials sourced for permanence and patina.' 'Mockups and moulds engineered before pour.' 'Hand finishing for edges that whisper, not shout.' 'Each piece designed for a specific architectural context.' :8 meta 'custom moulds engineered before the pour ... and hand finishing.' :74-79 Philosophy 'Every column, every lintel, every mantel ... proportioned not just to architectural standards, but to light, room, and human scale. We work with architects, designers, and homeowners...'. Source step 6: 'packed by hand into the mold in a specific fashion to achieve the desired finish. Following the cast stone, a very specific mix of fiberglass materials is then packed by hand'. FAQ: 'Included in the mix are Portland Cement, Crushed Quartz, Color Pigment, Fiberglass Reinforcing Materials and Polymer.' Customers (about-us): 'developers, building contractors and residential customers'.",
+   "proposal": "SAFE NOW. :18 \u2192 \"Dialogue \u2192 Mould \u2192 Cast \u2192 Finish. Each piece is made by hand in Atascadero, from the first conversation to installation.\" :25-28 Materials \u2192 \"Portland cement, crushed quartz and color pigment.\" / \"Fiberglass reinforcing materials and polymer.\" / \"Non-combustible: can sit directly next to the firebox opening.\" / \"Porous, so sealing is recommended but not required.\" :8 description \u2192 \"How each piece is made in Atascadero: design with our team, moulds from our own mould shop, hand-packed casting with fiberglass reinforcement, quality control, delivery and installation.\" :74-79 Philosophy \u2192 \"A home stands as a testament to the people who live in it. Our part is the stone: excellent products and service for homeowners, builders and developers, from the first conversation to installation.\"",
+   "source_for_any_new_copy": "design-manufacturing-process steps 1-8 (esp. 4 'Custom Mold Shop', 6 'packed by hand', 7 'checked by Quality Control', 8 'deliver and install') / faq 'What is the Fireplace Mantel made of?' and 'Do I need to seal' ('Sealing is recommended but not required. Cast Stone products are porous') / about-us: 'A person's home is their castle and stands as a testament to their elegance and personality.' 'Our mission and our passion is to continue to provide our customers with excellent products & service' 'developers, building contractors and residential customers'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Commissions page process copy contradicts the source: 'The pour fills the mould', 'Applied patinas', 'Hand-tooled edges', 'Mockups'",
+   "why_it_matters": "These four steps are the commission pitch. Antique or faux finishes are, per the FAQ, work by the client's own artist, so 'Applied patinas where appropriate' promises a service 101 does not describe offering.",
+   "evidence": "commissions/page.tsx:74-75 'Materials sourced for permanence and patina. Mockups and moulds engineered before pour. Hand finishing for edges that whisper, not shout.'; :73 'architects, designers, and homeowners'; :122 'Custom moulds engineered for precision. Whether matching existing profiles or creating new vocabularies.'; :123 'Mineral aggregates, careful formulation. The pour fills the mould; the cure develops strength.'; :124 'Hand-tooled edges. Applied patinas where appropriate. The surface refined until it whispers.'; :37 Outdoor feature 'Old World and Rustic textures' (omits Classic). Source FAQ: 'if you wish to have an artist antique or faux finish the mantel, our products will accept their materials.' Products: 'All of our cast stone products are offered in a choice of seven colors and three texture finishes.' Step 1: 'a custom configuration utilizing our current stock or generate something completely new.'",
+   "proposal": "SAFE NOW. :72-75 \u2192 \"Each commission begins as dialogue. We listen to your vision, your space, your story. From concept to installation, we work alongside homeowners, architects and builders. Every piece is packed by hand into its mould, reinforced with fiberglass and checked by Quality Control before it reaches you.\" :122 Mould \u2192 \"New or modified moulds are made in our own Custom Mold Shop: a custom configuration of current designs, or something completely new.\" :123 Cast \u2192 \"Portland cement, crushed quartz and color pigment, mixed in the color you specify and packed by hand into the mould, then backed with fiberglass.\" :124 Finish \u2192 \"Cured, released from the mould and checked by Quality Control, then delivered and installed by our crew.\" :37 \u2192 \"Seven colors, three texture finishes\". Keep :121 Dialogue as is.",
+   "source_for_any_new_copy": "design-manufacturing-process steps 1, 4, 6, 7, 8 / faq composition list and 'Is there a finish required?' / products: 'offered in a choice of seven colors and three texture finishes' / technical-info: 'for consumers, architects and installers' / about-us customers",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Home and Collections taglines claim '21st-century precision', 'ancient techniques', 'contemporary tolerances', 'engineered for accuracy', 'hand-tooled'",
+   "why_it_matters": "These are the first factual sentences a visitor reads. The FAQ says the process is 'modern-day Cast Stone ... in use for over 70 years', and the source makes no precision or tolerance claim. The 'Columns & Lintels' pillar names a product that is not in the line.",
+   "evidence": "page.tsx:35 'hand-finished with 21st-century precision'; :92 'Where ancient techniques meet 21st-century precision ... cast with mineral permanence, and finished by hand.'; :104 'Columns & Lintels' / 'Classical geometry, contemporary tolerances.'; :123 'Mould \u2014 engineered for accuracy.'; :125 'Finish \u2014 hand-tooled to whisper.'; collections/page.tsx:49 and collections/layout.tsx:7 'hand-finished with California precision'. Source FAQ: 'modern-day Cast Stone, a process that has been in use for over 70 years'; 'The earliest known use of cast stone dates to around 1138 A.D. in Carcassonne, France.'; 'a custom product made by hand'. Products page: 'feel of old world design'.",
+   "proposal": "SAFE NOW. page.tsx:35 \u2192 \"Architectural cast stone, made by hand in Atascadero. Designed for estates, private residences, and visionaries who prefer silence to spectacle.\" :92 \u2192 \"A material first used around 1138 in Carcassonne, made the modern way. Every piece begins with dialogue, takes shape in our own mould shop, and is packed by hand in the color you choose.\" :104 \u2192 { t: \"Columns & Balustrades\", d: \"Old World profiles, packed by hand.\" } :123 \u2192 \"Mould \u2014 made in our own mould shop.\" :124 \u2192 \"Cast \u2014 packed by hand, backed with fiberglass.\" :125 \u2192 \"Finish \u2014 inspected, then installed by our crew.\" collections/page.tsx:49 and layout.tsx:7 \u2192 \"Architectural cast stone, made by hand in Atascadero. Each element designed for proportion, patina, and permanence.\"",
+   "source_for_any_new_copy": "faq: 'earliest known use of cast stone dates to around 1138 A.D. in Carcassonne, France', 'modern-day Cast Stone', 'custom product made by hand' / design-manufacturing-process steps 4, 6, 7, 8 / products: 'adds a feel of old world design' / fireplace-mantels-1: 'OLD WORLD'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Contact details: the email isn't on the live site, and the phone shown everywhere is the secondary number, not the showroom line every live CTA uses",
+   "why_it_matters": "If info@ isn't a monitored mailbox, every mailto-fallback inquiry and the default Resend recipient silently lose the lead. The phone number also diverges from the live site's NAP (name, address, phone) data, which local SEO and existing customers rely on.",
+   "evidence": "Every scraped page: 'Atascadero Showroom / 1720 El Camino Real / Atascadero, CA 93422 / (805) 460-6060', then a bare '(805) 610-9278'. Every live call to action uses 460-6060: home 'Call us today at (805) 460-6060', products, colors, faq 'Please call us at (805) 460-6060'. New site uses 610-9278 at layout.tsx:135-136, contact/page.tsx:54-57, faq/page.tsx:137-138, InquiryForm.tsx:22-23 and StructuredData.tsx:12. An email regex over all scraped content finds zero addresses. 'info@101caststone.com' first appears in AI commit 81c7546 (2025-10-26, while contacts were still placeholders) and was carried into 4a6fd07 'Add real contact info from 101caststone.com'. That same commit invented 'Saturday: By appointment / Sunday: Closed' and 'nationwide since 2001'. It is also the default INQUIRY_TO_EMAIL (.env.example) and INQUIRY_EMAIL in src/lib/inquiry.ts.",
+   "proposal": "OWNER CONFIRMS. (a) Is info@101caststone.com a real, monitored mailbox? Until confirmed, don't rely on the mailto fallback. (b) Which number to publish? Recommended: show \"(805) 460-6060\" labelled as the Atascadero Showroom (it matches the live site), keep 610-9278 as a second line if wanted, and set StructuredData.tsx:12 telephone to the showroom number.",
+   "source_for_any_new_copy": "home/products/faq/stone-colors-finishes: 'Atascadero Showroom ... (805) 460-6060', '(805) 610-9278', 'Call us today at (805) 460-6060'",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": true
+  },
+  {
+   "title": "Response-time promise 'We typically respond within 1\u20132 business days' appears three times with no source",
+   "why_it_matters": "It is a service commitment shown at the moment of inquiry. If the team can't meet it, the first impression is a broken promise. The owner has never stated it.",
+   "evidence": "src/components/ProductModal.tsx:110; src/components/InquiryForm.tsx:150 (thank-you panel) and :328 (under Send). No response-time statement anywhere in scraped-data.json. The live site's equivalent: 'Call us today at (805) 460-6060 to discuss your unique project requirements.' Hours: 'Monday-Friday: 8am to 5pm', 'Weekend Appointments Available'.",
+   "proposal": "OWNER sets the figure. Safe interim: ProductModal.tsx:110 and InquiryForm.tsx:328 \u2192 \"Prefer to talk? Call us, Monday\u2013Friday, 8am to 5pm.\" (with the number the owner confirms). InquiryForm.tsx:150 \u2192 \"Your inquiry is on its way to our team.\"",
+   "source_for_any_new_copy": "home: 'Factory Showroom Hours: Monday-Friday: 8am to 5pm', 'Call us today ... to discuss your unique project requirements.'",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": true
+  },
+  {
+   "title": "LocalBusiness JSON-LD asserts unsourced facts: alternateName 'Maison California', priceRange '$$$', and approximate geo coordinates",
+   "why_it_matters": "Structured data is fed straight to Google's knowledge panel and Maps. A coined trading name, a price tier the source frames the other way ('cost-effective', 'much cheaper than natural stone'), and an unsourced pin are all claims the business never made.",
+   "evidence": "StructuredData.tsx:9 \"alternateName\": \"Maison California\"; :36 \"priceRange\": \"$$$\"; :23-27 geo 35.4894, -120.6707. These appear to be Atascadero's city-centre coordinates rather than a geocode of 1720 El Camino Real; no source gives coordinates. Source home: 'appealing, durable and cost-effective alternative to natural cut limestone...'; FAQ: 'It is also much cheaper than natural stone.' layout.tsx:21 keyword 'cornices' (no cornice product; the line has 'Crown Molding').",
+   "proposal": "SAFE NOW: delete alternateName, priceRange and geo from StructuredData.tsx (all optional for LocalBusiness), and drop the 'cornices' and 'maison california' keywords in layout.tsx:17-33. Re-add geo only from the owner's Google Business Profile pin.",
+   "source_for_any_new_copy": "none (deletions only)",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Home photo text says more than the photos show: hero 'Wine country estate', 'Stone Veneer Entry', 'Garden Ornaments \u2026 courtyards'",
+   "why_it_matters": "Rule: photos may only be described by what is visible. The hero alt names a scene that isn't in the picture. Veneer and natural stone can't be told apart in a photo, and 'Garden Ornaments' names a product range that doesn't exist.",
+   "evidence": "page.tsx:19 alt 'Wine country estate with architectural cast stone elements'. public/images/hero/winecountry.jpg (2688x1358, also og-default.jpg) shows an interior: a man and a woman (she holds red wine) beside a lit fireplace with a pale stone mantel in a fieldstone chimney wall, with a dining table, shaded windows and a coffered ceiling behind. Unlike the scraped gallery photos (project-1..6, cambridge.jpg, fountains.jpg), it carries no '101' shield watermark. page.tsx:143 'Stone Veneer Entry' / 'Stone veneer wall around an arched entry door' (project-6: stone wall with a brick arch around an arched wood door). page.tsx:57 'Garden Ornaments' / 'Weathered finishes for courtyards and water features': the card photo is an octagonal fountain in an open gravel garden with hills, and #outdoor holds fireplaces, fire pits, fountains, benches and pavers. Not user-facing: the page.tsx:130 comment 'same titles as the matching photos on /works' is stale, because the working-tree /works no longer shows those titles.",
+   "proposal": "SAFE NOW. page.tsx:19 alt \u2192 \"A man and a woman with a glass of red wine beside a lit fireplace with a pale stone mantel set in a fieldstone chimney wall, a dining room behind them\" (no provenance claim; ask the owner whether this is their installation). :143 \u2192 title \"Stone Entry\", desc \"Stone wall with a brick arch around an arched wood door\". :57 \u2192 name \"Outdoor & Garden\", desc \"Fountains, fireplaces, fire pits and benches for patios, courtyards and gardens\".",
+   "source_for_any_new_copy": "visible content of public/images/hero/winecountry.jpg, gallery/project-6.jpg, collections/outdoor/fountains.jpg / products.ts:268 outdoor description (from live categories: Outdoor Fireplaces, Outdoor Firepits, Custom Fountains, Customs/benches, Pavers) / products: 'We also specialize in Stone Masonry ... natural stone or stone veneer'",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "'Studio' and 'California contractor license' relabel facts the source states differently ('Factory Showroom', 'License #892542')",
+   "why_it_matters": "A 15-plus-person factory with a mould shop is undersold as a 'studio', and people searching for 'showroom' won't match. The license type is an inference the source doesn't make.",
+   "evidence": "contact/page.tsx:7 title 'Contact & Visit Our Atascadero Studio', :9 'visit our studio', :36 'Studio Location'; layout.tsx:149 footer heading 'Studio'; about/page.tsx:7 and :52 'About the Studio', :69 'Today the studio has a staff of over 15'. Source: 'Atascadero Showroom', 'Factory Showroom Hours:', process 'Custom Mold Shop', 'Manufacturing floor', about-us heading 'About 101 Cast Stone'. License: layout.tsx:201 and about/page.tsx:118 'California contractor license #892542' vs source 'License #892542' on every page.",
+   "proposal": "SAFE NOW. contact :7 \u2192 \"Contact & Visit Our Atascadero Showroom\"; :9 'visit our studio' \u2192 \"visit our showroom\"; :36 \u2192 \"Showroom\"; layout.tsx:149 \u2192 \"Showroom\"; about :69 \u2192 \"Today the company has a staff of over 15 full- and part-time employees.\"; layout.tsx:201 and about :118 \u2192 \"License #892542\" (add 'California contractor' only if the owner confirms the license class). OWNER (voice): 'About the Studio' \u2192 live heading \"About 101 Cast Stone\"; 'Atelier'.",
+   "source_for_any_new_copy": "home: 'Atascadero Showroom', 'Factory Showroom Hours:', 'License #892542' / about-us: 'About 101 Cast Stone', 'With his staff of over 15 full and part-time employees'",
+   "impact": "low",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "'Deeply carved foliage' implies hand carving; everything 101 makes is cast",
+   "why_it_matters": "The old 'hand-carved limestone' error had exactly this shape. A buyer comparing makers could read 'carved' as a method claim. The FAQ is explicit that every piece is cast stone.",
+   "evidence": "products.ts:124 Royal Acanthus 'Deeply carved foliage spirals from the corbel brackets'. 'leaf-carved' as a form word at products.ts:138,185,199,341, commissions/page.tsx:22,23,30,43,44 and page.tsx:56; 42 uses in alt text. FAQ: 'Everything we make is made of modern-day Cast Stone'. The served (stale) build still shows 'Hand-carved limestone mantels'; src no longer does.",
+   "proposal": "SAFE NOW. products.ts:124 \u2192 \"Deep-relief foliage spirals from the corbel brackets, creating an interplay of light and shadow. A frieze of repeating leaves runs beneath the shelf.\" Optional polish: 'leaf-carved capitals/corbels/friezes' \u2192 \"leaf capitals\", \"leaf corbels\", \"leaf friezes\" in descriptions and features. Leave alt text as is, since it describes appearance.",
+   "source_for_any_new_copy": "faq: 'Everything we make is made of modern-day Cast Stone'; visible content of products/royal-acanthus/card.jpg",
+   "impact": "low",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "The :3001 build and final/*.png screenshots predate the fidelity commits; claims they show are already fixed in src (and /about 404s)",
+   "why_it_matters": "Anyone judging copy from localhost:3001 or the screenshots will re-flag fixed claims and miss the live ones above. The verified-OK list below stops already-settled claims being argued again.",
+   "evidence": ".next/BUILD_ID modified 2026-10-09 08:48:34; screenshots 08:49-08:51; HEAD 7a1eb6e at 23:53, with uncommitted works/page.tsx and data/portfolio.ts on top. curl :3001/about \u2192 404 although src/app/about/page.tsx exists. The served HTML still contains 'Hand-carved limestone mantels with classical proportions', 'Saturday: By appointment Sunday: Closed', 'engineered for structural integrity', 'Corbels for structural support' and colors 'Cream ... Buff ...'; none of these remain in src. VERIFIED AS SOURCED, keep: 'seven colors' (products: 'a choice of seven colors and three texture finishes'; the board shows 7 swatches); swatch names Limestone, Bisque and Carmel Sand (legible on stone-colors-finishes_cast-stone-colors_2.png; the rest are cropped); textures Classic, Old World and Rustic (live image filenames); hours in src (Mon-Fri 8-5, 'Weekend appointments available'); 'Hand-crafted' (FAQ 'made by hand'); 'Non-combustible' and 'Quoted with installation'; mantel grouping Contemporary/Traditional/Old World (fireplace-mantels-1); all 11 mantel descriptions and the 15 other product descriptions match their card photos; the Genoa\u2190/tangled, Tangled\u2190/tangled-arched, Santa Barbara\u2190/royal and Contemporary Surround\u2190/daou mapping follows live page titles.",
+   "proposal": "Next session (the task can't be done in this read-only pass): run next build on the current tree on a fresh port, then re-shoot every route at 390 and 1440 before any further copy or visual review.",
+   "source_for_any_new_copy": "none",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Sourced facts the new site drops, plus owner questions the live site raises (limestone installs, Casa Blanca, Barcelona, demolition)",
+   "why_it_matters": "Restoring sourced specifics (composition, lead time) answers architects' first questions without inventing anything. The live site also lists offerings the new site silently omits; one of them may be where the bad 'limestone' copy came from.",
+   "evidence": "fireplace-mantels-1 lists OLD WORLD 'Casa Blanca' and 'Barcelona' (no pages or photos scraped) and a CUSTOM group 'Custom Ordered Limestone Installations / Cast Stone (101 manufactured)'. Neither appears in src. FAQ 'Do you do demolition of existing fireplace?' has no answer on the live site. faq/page.tsx:19-20 leaves out lead time and 'made of'. faq/page.tsx:37 'Is there a finish required?' now reads 'No. However, ...' because the color sentence was cut.",
+   "proposal": "SAFE NOW: add the FAQ \"What is cast stone made of?\" \u2192 \"Everything we make is modern-day cast stone, a process in use for over 70 years. The mix includes Portland cement, crushed quartz, color pigment, fiberglass reinforcing materials and polymer.\" (omit the source's 'much stronger' / 'much cheaper' comparisons). faq :37 \u2192 \"No. Our cast stone comes in a choice of standard colors and three texture finishes. However, if you wish to have an artist antique or faux finish the mantel, our products will accept their materials.\" OWNER: (1) Are Casa Blanca and Barcelona still offered, and are there photos? (2) What are 'Custom Ordered Limestone Installations': does 101 supply and install natural limestone? If yes, a sourced line can say so. (3) The answer to the demolition question.",
+   "source_for_any_new_copy": "faq 'What is the Fireplace Mantel made of?' and 'Is there a finish required?' / fireplace-mantels-1 mantel index",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": true
+  }
+ ],
+ "sources": [
+  "/home/user/101caststone/scraped-content/scraped-data.json (pages: https://www.101caststone.com, /products, /cast-stone, /fireplace-mantels-1, /about-us, /stone-colors-finishes, /design-manufacturing-process, /technical-info, /faq)",
+  "/home/user/101caststone/scraped-content/BRAND-CONTENT.md (brand rewrite; origin of Est. 2001, Maison California, Lintel Method, invented color names)",
+  "/home/user/101caststone/scraped-content/images/stone-colors-finishes/stone-colors-finishes_cast-stone-colors_2.png",
+  "/home/user/101caststone/src/app/layout.tsx",
+  "/home/user/101caststone/src/app/page.tsx",
+  "/home/user/101caststone/src/app/process/page.tsx",
+  "/home/user/101caststone/src/app/commissions/page.tsx",
+  "/home/user/101caststone/src/app/contact/page.tsx",
+  "/home/user/101caststone/src/app/about/page.tsx",
+  "/home/user/101caststone/src/app/faq/page.tsx",
+  "/home/user/101caststone/src/app/collections/page.tsx",
+  "/home/user/101caststone/src/app/collections/layout.tsx",
+  "/home/user/101caststone/src/app/works/page.tsx",
+  "/home/user/101caststone/src/components/StructuredData.tsx",
+  "/home/user/101caststone/src/components/ProductModal.tsx",
+  "/home/user/101caststone/src/components/InquiryForm.tsx",
+  "/home/user/101caststone/src/lib/inquiry.ts",
+  "/home/user/101caststone/src/data/products.ts",
+  "/home/user/101caststone/src/data/portfolio.ts",
+  "/home/user/101caststone/.env.example",
+  "git history: commits 81c7546, 4a6fd07, 7a1eb6e",
+  "http://localhost:3001 (served build, BUILD_ID 2026-10-09 08:48; HTML saved to /tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/copy-fidelity/html/)",
+  "Contact sheets: /tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/copy-fidelity/sheets/ (A-home, B-mantel-cards, C-arch-func, D-outdoor-process, E-finishes, colorboard, hero, p1, camb)",
+  "Deduplicated source text: /tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/copy-fidelity/source.txt"
+ ]
+}

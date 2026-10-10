@@ -1,0 +1,189 @@
+{
+ "findings": [
+  {
+   "title": "Home hero: put the H1 and primary CTA in the first viewport and fit the hero under the header",
+   "why_it_matters": "Benchmarks (Haddonstone, Chesney's, Loro Piana) state who they are and offer one action in the first screen. Here, a 1440x900 visitor sees only a photo, and the hero's bottom 80px is cut off because a 100vh section sits under an 80px sticky header.",
+   "evidence": "src/app/page.tsx:15 `h-[60svh] md:h-screen p-4 md:p-6 lg:p-8`. The brand statement is a separate section at :29. A Playwright audit of the current build (localhost:3002) measured the H1 top at y=1085 on desktop and y=651 on a 390x844 phone, where the CTAs fall under the fixed tab bar. The H1 is `text-clay/90`, which renders #82715D and measures 4.07:1 on ivory. I tested the change by moving the existing block onto the frame in the live DOM: H1, intro and both CTAs fit in the first 900px (scratchpad/discovery/visual-ux/hero-proposal.png). Note that port 3001 serves a stale build from before the About/licence commits; all measurements use 3002, which matches HEAD.",
+   "proposal": "1) Section :15: `relative h-[60svh] ... md:h-screen` -> `relative md:h-[calc(100svh-5rem)] p-4 md:p-6 lg:p-8` (5rem is the header height). Frame div: `relative h-full` -> `relative h-[60svh] md:h-full`. 2) Move the statement block (:30-44) inside the hero section after the frame, so one node serves every breakpoint: wrapper `text-center px-6 animate-fade-in-up max-w-4xl mx-auto` -> `px-2 pt-10 pb-14 text-center md:absolute md:left-14 md:bottom-14 md:max-w-[34rem] md:p-10 md:pb-11 md:text-left md:bg-ivory/90 md:backdrop-blur-sm md:rounded-[3px]`. 3) H1 `text-4xl md:text-5xl lg:text-6xl font-display mb-6 text-clay/90 tracking-tight` -> `font-display text-[40px] md:text-[52px] leading-[1.05] tracking-[-0.015em] text-basalt text-balance mb-4`. P: `max-w-2xl mx-auto text-base md:text-lg` -> `max-w-2xl mx-auto md:mx-0 text-[17px] leading-[1.65]`. CTA row: `justify-center` -> `justify-center md:justify-start`, `mt-8` -> `mt-7`. 4) Image at md: add `md:object-[68%_85%]` so the panel clears the subjects. 5) Delete the now-empty section at :29. Optional, owner decision: public/images/hero/winecountry.jpg is not from the live site and shows visible grain. A real installation photo would read more authentic, but that swap is not part of this CSS change.",
+   "source_for_any_new_copy": "No new copy. Moves the existing H1, paragraph and CTA labels from src/app/page.tsx:31-43.",
+   "impact": "high",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "Fix the hole in the home 'Featured Installations' masonry",
+   "why_it_matters": "An empty 2x2 block in the bottom-right corner of a showcase grid looks broken. On a luxury site an unfinished gallery undermines the craftsmanship it is meant to show.",
+   "evidence": "src/app/page.tsx:136-144: a 4-column grid with auto-rows-[200px] and spans [2x2, 1, 1, col-2, 1, row-2] leaves 5 empty cells (screens scratchpad/discovery/visual-ux/s2/home-d-3.png and -d-4.png). I verified the fix by reordering in the live DOM: grid height went from 848px to 632px and fill (tile area / grid area) from 0.65 to 0.95, a perfect rectangle (masonry-after.png).",
+   "proposal": "Reorder the array to: Mantel & Overmantel (`md:col-span-2 md:row-span-2`), Courtyard Fountain (``), Stone Veneer Entry (`md:row-span-2`), Corbel Mantel (``), Pergola Columns (`md:col-span-2`), Garden Steps (`` -> `md:col-span-2`, sizes -> `(min-width: 1280px) 640px, 50vw`). With grid auto-flow the layout becomes rows 1-2: [mantel 2x2][fountain][veneer tall] / [corbel]; row 3: [pergola wide][steps wide]. The 2-column mobile grid stays three even rows. Optionally `auto-rows-[200px]` -> `auto-rows-[200px] md:auto-rows-[220px]`.",
+   "source_for_any_new_copy": "No new copy. The existing titles and alt text at src/app/page.tsx:138-143 are only reordered.",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Contact page: halve the form's visual length and fix the inverted label hierarchy",
+   "why_it_matters": "The inquiry form is the site's conversion point. Nine stacked full-width fields make it look like paperwork. Luxury benchmarks pair short fields and keep the form card wide enough to breathe.",
+   "evidence": "src/components/InquiryForm.tsx:228 `space-y-6` renders 9 single-column fields. At 1440 the Send Inquiry button sits around y=1690 (s2/contact-d-0.png, -d-1.png). src/app/contact/page.tsx:29 `md:grid-cols-2` gives the form card about 512px. In the info column (:36, :52, :62, :72) the labels are `font-medium text-basalt` at 18px, larger than the 16px values under them.",
+   "proposal": "1) contact/page.tsx:29 `mt-16 grid gap-12 md:grid-cols-2` -> `mt-12 grid gap-12 lg:gap-16 md:grid-cols-[5fr_7fr]`. 2) InquiryForm.tsx:228 `space-y-6` -> `grid gap-x-5 gap-y-6 sm:grid-cols-2`. The existing field order already pairs cleanly: Name|Email, Phone|I am a, Project type|Piece of interest, Project city or ZIP|Timeline. Add `sm:col-span-2` to the required-fields note, the Message block, the honeypot div and the submit block. FIELD_ORDER and focus order are unchanged. This saves about 4 rows (roughly 440px). 3) Info labels: `font-medium text-basalt mb-1` -> `text-[11px] uppercase tracking-[0.16em] font-medium text-sienna-700 mb-2` (4.96:1). Values: `text-[16px]` -> `text-[18px] text-basalt`. 4) CONTROL: `rounded-lg bg-white` -> `rounded-[3px] bg-ivory-50`. Keep `border-sienna`, because it is the only palette border that clears 3:1 for form-field outlines.",
+   "source_for_any_new_copy": "No new copy. Existing labels in src/components/InquiryForm.tsx and src/app/contact/page.tsx.",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "One typographic scale and heading colour, defined as tokens",
+   "why_it_matters": "Benchmark sites use 3-4 sizes with a clear step between levels. Here the same level renders at five sizes depending on the page, and headings share the body colour, so hierarchy depends on size alone.",
+   "evidence": "Computed styles from Playwright, 1440px: H1 is 60px clay/90 on home, 60px clay on /collections and 40px basalt on the 6 SectionTitle pages. H2 renders at 60, 48, 36, 30 and 24px: 'Ready to Begin?' is 30px on /process but 36px on /commissions, and 'Begin a Commission' is 36px clay on /collections. Heading colour flips between clay #76634E (the body colour) and basalt by page. Body sizes in the tsx files: text-[16px] x29, [14px] x13, sm x11, [15px] x9, xs x8, lg x8, xl x7, [18px] x7, [13px] x4, [17px] x3, which is 10 distinct sizes. The base rules in globals.css (`h1 text-6xl md:text-[72px]`, `h2 text-sienna-700`) are overridden everywhere.",
+   "proposal": "tailwind.config.ts theme.extend.fontSize: `display:['3.5rem',{lineHeight:'1.05',letterSpacing:'-0.015em'}]`, `title:['2.75rem',{lineHeight:'1.12',letterSpacing:'-0.01em'}]`, `heading:['1.5rem',{lineHeight:'1.25'}]`, `lead:['1.1875rem',{lineHeight:'1.65'}]`, `body:['1.0625rem',{lineHeight:'1.7'}]`, `small:['0.9375rem',{lineHeight:'1.6'}]`, `caption:['0.8125rem',{lineHeight:'1.5'}]`, `eyebrow:['0.6875rem',{lineHeight:'1.4',letterSpacing:'0.16em'}]`. In globals.css replace the h1/h2/h3 rules with `h1{@apply font-display text-[2.5rem] leading-[1.08] md:text-display text-basalt}` `h2{@apply font-display text-[2rem] leading-[1.15] md:text-title text-basalt}` `h3{@apply font-display text-heading text-basalt}`, and body `text-[18px] leading-[1.85]` -> `text-body`. Then delete the per-instance size and colour overrides on headings: page.tsx:31 `text-clay/90`, :52 `text-clay`, :92 `text-5xl md:text-6xl ... text-clay`, :129 and :192, collections h1/h2, commissions:91/126/140, and SectionTitle's `text-[34px] md:text-[40px]`, so all page H1s match. Map body sizes: 13/14 -> caption, 15/sm -> small, 16/17/18/base/lg -> body, xl -> lead. Use `text-eyebrow uppercase font-medium text-sienna-700` for the style tags, footer column heads and contact labels.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "high",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "One button system: 48px, hairline, colour-only hover",
+   "why_it_matters": "Button height, weight and border change from section to section, and the scale-on-hover with a heavy shadow reads as template rather than atelier. The benchmarks use a single quiet button with a colour change on hover.",
+   "evidence": "Measured CTA heights: 52px (header), 59px (home hero), 60px (Step Inside Our Atelier), 65px (Send Inquiry, Start Your Project) and 69px (Schedule Consultation). Font weights are 400 and 500; borders are 0, 1 and 2px. All buttons inherit the body's 1.85 line-height (a 29.6px line box). Hover is `hover:scale-[1.01] hover:shadow-lg duration-500` (page.tsx:39). globals.css has an unused gradient `.btn`, and a global `a, button { transition: all 0.3s ease }`. The class string is copy-pasted about 14 times.",
+   "proposal": "globals.css: replace `.btn` and `.btn.secondary` with `@layer components{.btn{@apply inline-flex items-center justify-center gap-2 h-12 px-7 rounded-[3px] text-[15px] font-medium leading-none tracking-[0.01em] no-underline transition-colors duration-200} .btn-primary{@apply bg-sienna-700 text-ivory-50 hover:bg-basalt active:bg-basalt/90} .btn-secondary{@apply border border-clay/50 text-basalt hover:border-basalt hover:bg-basalt hover:text-ivory-50} .btn-sm{@apply h-10 px-5 text-[14px]}}`. Replace `a, button { transition: all .3s }` with `transition-property: color, background-color, border-color, text-decoration-color, opacity; transition-duration: .2s`. Then: page.tsx:39 `px-6 py-3 bg-sienna-700 text-ivory-50 rounded-lg shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-500 no-underline` -> `btn btn-primary`. Every `px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 ...` -> `btn btn-secondary`. layout.tsx header CTA `px-5 py-2.5 text-[16px] rounded-lg ...` -> `btn btn-primary btn-sm`. Navigation.tsx Menu -> `btn btn-secondary btn-sm`. InquiryForm PRIMARY_BUTTON/SECONDARY_BUTTON -> `btn btn-primary w-full sm:w-auto` / `btn btn-secondary w-full sm:w-auto`. Result: every button is 48px (40px in the header) with a 1px border.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Vertical rhythm: close the 200-290px dead zones, tighten page tops on mobile, and fix the H1 rule",
+   "why_it_matters": "Luxury layouts use generous but deliberate space. Here space piles up by accident: every page ends in a void before the footer, and on phones a fifth of the first screen is empty.",
+   "evidence": "From the last content element to the footer: 208-289px on desktop and 192-265px on mobile, because footer `mt-32` (layout.tsx:111) adds 128px on top of the page's `py-24` (96px). Inner-page H1 tops are at 177px at both 1440 and 390 (`py-24`). Section paddings in use: py-14, py-16, py-20, py-24, min-h-[70vh] (page.tsx:84) and min-h-[60vh] (:175). `.etched::after` (globals.css) sits 22px under the H1 box while the intro paragraph starts 24px below it (`mt-6`), so the hairline reads as an underline on the paragraph (s2/works-d-0.png, process-d-0.png, faq-d-0.png).",
+   "proposal": "layout.tsx:111 footer `mt-32` -> `mt-0`. Inner-page wrappers (works, process, contact, faq, about) `py-24` -> `pt-12 pb-20 md:pt-20 md:pb-28`. Major sections `py-14|py-16|py-20` -> `py-20 md:py-28`. Delete `min-h-[70vh]` (page.tsx:84) and `min-h-[60vh]` (:175). globals.css `.etched::after{left:0;right:0;bottom:-14px;transform:translateY(8px);background:linear-gradient(...)}` -> `left:0; right:auto; width:56px; bottom:-20px; transform:none; background:#9C8066`. SectionTitle: add `mb-5`, so the rule sits 20px under the title and the intro starts about 44px below. Target: 112px from content to footer on desktop, 80px on mobile.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Header: align to the page grid, ship a clean wordmark, and slim the mobile chrome",
+   "why_it_matters": "The wordmark is the first brand impression. It sits inside a visible light box, is only 23px tall, and lines up with nothing on the page. On phones, header plus tab bar take 17% of the screen.",
+   "evidence": "oneline.png has 134,843 pixels at alpha 1-31, which form a visible pale rectangle behind the wordmark on ivory (scratchpad/discovery/visual-ux/hdr-logo.png, ftr-logo.png). The glyph bounding box is x 77-951, y 86-231 of 1024x250, so in the 180x40 box the letters are 23px tall and inset 12px from the tagline. The header container is `max-w-6xl px-8` (layout.tsx:85), so the glyphs start at x=188, while content starts at x=168 on 6xl pages and x=104 on home and /collections (max-w-7xl px-6): misaligned by 20-84px. Mobile chrome: 80px header + 64px tab bar = 144 of 844px.",
+   "proposal": "Asset fix (sharp, no visual change to the art): `sharp('public/images/logos/oneline.png').extract({left:77,top:86,width:875,height:146})`, then a raw pass setting alpha<32 to 0, saved as oneline-trim.png. Same for shield-nobg.png with extract {left:184,top:61,width:670,height:624}. layout.tsx:87 `relative h-10 w-[180px]` -> `relative h-[22px] w-[132px] md:h-[26px] md:w-[156px]` (ratio 5.99) with the trimmed src. Tagline `text-xs md:text-sm text-clay italic mt-1` -> `hidden sm:block mt-1.5 text-[12px] italic text-clay`. Container :85 `max-w-6xl h-20 px-8 md:pl-8` -> `max-w-7xl h-16 md:h-20 px-6 md:px-10`. Use the same `mx-auto max-w-7xl px-6 md:px-10` on the footer and every section container (inner-page text keeps its measure through `max-w-prose` children), so logo, H1 and grids share one left edge.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "high",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Collections cards: catalogue-grade tiles (eyebrow, aligned CTAs, larger images, no white boxes)",
+   "why_it_matters": "The product grid is where architects and designers browse. Haddonstone and Chesney's let the photo dominate, set the name in the display face with a small eyebrow, and keep rows aligned. Here the pill fights the title, and CTAs float at different heights.",
+   "evidence": "src/app/collections/page.tsx:49-80 (renderCard, current working tree): pure white box on ivory. The style pill beside the title forces wraps on 'Contemporary Surround' and on the 'Entry & Fenestration' pill itself (s2/collections-d-1.png, -d-3.png). Mantel cards now sit under style sub-headings (:112 h3 group.style), so each pill repeats its own group heading. 'View Details' lands at different heights within a row because the body is not a flex column. `xl:grid-cols-4` gives about 251px images at 1440. Hover is shadow-xl plus scale-105 over 700ms.",
+   "proposal": "Card div: `group relative overflow-hidden rounded-lg bg-white border border-[#e8dfcf] hover:shadow-xl transition-all duration-500 cursor-pointer ...` -> `group relative flex flex-col cursor-pointer ...` (keep the ring/target/scroll-mt classes). Image wrapper: add `rounded-[3px] bg-ivory-200`. Img: `group-hover:scale-105 ... duration-700` -> `group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out`. Body `p-6` -> `flex flex-1 flex-col pt-5`. Replace the `flex items-start justify-between` row and pill with `{Heading === 'h3' && <p className=\"mb-2 text-[11px] uppercase tracking-[0.16em] font-medium text-sienna-700\">{item.style}</p>}`, then Heading `font-display text-xl text-clay` -> `font-display text-[22px] leading-tight text-basalt`. Description `text-sm text-clay leading-relaxed` -> `mt-2 text-[15px] leading-[1.6] text-clay line-clamp-3` (the full text stays in the modal). Button `mt-4` -> `mt-auto pt-3`, plus `group-hover:underline underline-offset-4 decoration-sienna`. Grids (:113, :121) `md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6` -> `sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-14`. Image sizes -> `(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px`.",
+   "source_for_any_new_copy": "No new copy. Existing item.style, name and description from src/data/products.ts.",
+   "impact": "high",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "Commissions: lead each category with a photo and resolve the orphan card",
+   "why_it_matters": "The highest-intent page shows no product imagery: seven text cards of bullets. Every benchmark opens a category with a photograph, and matching curated photos already exist in the repo.",
+   "evidence": "src/app/commissions/page.tsx:84-118: seven `bg-white p-8` text cards in a 3-column grid, so the 7th (Stone Masonry) sits alone in its row (s2/commissions-d-1.png). I checked candidate images in a contact sheet (scratchpad/discovery/visual-ux/cat-sheet.png) and each shows its category. balustrades/card.jpg shows the same entry as columns/card.jpg, so I used door-window-trims instead.",
+   "proposal": "Add `image` to each commissionCategories entry: Mantels & Fireplaces /images/products/royal-acanthus/card.jpg; Columns & Capitals /images/products/columns/card.jpg; Architectural Details /images/products/door-window-trims/card.jpg; Outdoor & Garden /images/products/outdoor-fireplaces/card.jpg; Kitchen Hoods /images/products/kitchen-hoods/card.jpg; Functional Elements /images/products/stair-treads/card.jpg; Stone Masonry /images/gallery/project-6.jpg. Card `flex flex-col rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl ...` -> `group flex flex-col`, preceded by `<div className=\"relative aspect-[4/3] overflow-hidden rounded-[3px] bg-ivory-200\"><Image src={category.image} alt=\"\" fill sizes=\"(max-width:768px) 100vw, (max-width:1024px) 50vw, 400px\" className=\"object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03]\"/></div>` and body `pt-6`. The alt is empty because the h2 names the card. Grid `gap-8` -> `gap-x-8 gap-y-14`. Stone Masonry (the one non-cast-stone service) becomes a full-width band: `lg:col-span-3 lg:grid lg:grid-cols-3 lg:gap-8`, with the image in column 1 and the text in columns 2-3.",
+   "source_for_any_new_copy": "No new copy. Images are existing curated files in public/images/products/ and public/images/gallery/.",
+   "impact": "medium",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "States and motion: define the missing animations, brand the focus ring, give FAQ a real affordance",
+   "why_it_matters": "Dialogs pop in without a transition, staggered entrances collapse, and keyboard focus is Chrome's hard black box. These details separate premium sites from templates.",
+   "evidence": "`animate-fade-in` on both dialog overlays (PortfolioGrid.tsx:65, ProductModal.tsx:23) is never defined. `data-[state=open]:animate-fade-in-up` produces no CSS because that animation is a plain class in globals.css, not a Tailwind animation; the measured animationName on the open product dialog is 'none'. `animate-delay-400/500/600` are used on /commissions and /works, but only 100/150/200/300 exist. Above-the-fold blocks (contact info, process lists) start at opacity-0 for a 1.4s fade. Focus uses the default black auto outline (scratchpad/discovery/visual-ux/focus-faq.png, focus-header.png). The FAQ '+' is a 20px Cormorant glyph, about 8px visible, at the end of a 720px row, and the summary has no hover state (faq/page.tsx:131-135).",
+   "proposal": "tailwind.config.ts: `keyframes:{'fade-in':{from:{opacity:'0'},to:{opacity:'1'}}, rise:{from:{opacity:'0',translate:'0 12px'},to:{opacity:'1',translate:'0 0'}}}`, `animation:{'fade-in':'fade-in .25s ease-out both', rise:'rise .7s cubic-bezier(.2,.7,.2,1) both'}`. The individual `translate` property composes with the dialogs' -translate-x/y-1/2 centring. ProductModal and PortfolioGrid: `data-[state=open]:animate-fade-in-up` -> `data-[state=open]:animate-rise`; the overlay's `animate-fade-in` now resolves. Replace `opacity-0 animate-fade-in-up animate-delay-N` with `animate-rise [animation-delay:Nms]` capped at 0/80/160ms, and drop it from above-the-fold content. globals.css: `:focus-visible{outline:2px solid #76634E;outline-offset:3px;border-radius:3px}`. FAQ summary: add `hover:text-sienna-700 transition-colors`; replace the '+' span with `<svg aria-hidden className=\"mt-1.5 h-4 w-4 shrink-0 text-sienna-700 transition-transform duration-300 group-open:rotate-45\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"1.25\"><path d=\"M8 2v12M2 8h12\"/></svg>`. Home image hovers (page.tsx:68, :151): `group-hover:scale-105 duration-700` -> `group-hover:scale-[1.03] duration-[1200ms] ease-out`, and drop `hover:shadow-2xl` / `hover:shadow-xl` on cards.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Home middle: swap empty and duplicated bands for one workshop section with a real photo",
+   "why_it_matters": "About 1,300px of the home page repeats itself or shows nothing: a blurred-blob band, three cards restating the collections above, then a boxed four-step list. Benchmarks use this space to show the atelier.",
+   "evidence": "page.tsx:84-98: Workshop section `min-h-[70vh]`, text only, plus two `blur-3xl` blobs (:86-87), about 630px of near-empty band (s2/home-d-2.png). :100-115: 'Three pillars' cards repeat Mantels / Columns / Garden from Signature Collections. :117-128: a Lintel Method box repeats the steps shown on /process and /commissions; on mobile its `gap-8` spreads four short lines over about 300px (s2/home-m-1.png).",
+   "proposal": "Workshop becomes `section className=\"py-20 md:py-28\"` > container > `grid md:grid-cols-12 gap-10 md:gap-16 items-center`. Left, `md:col-span-7`: `<div className=\"relative aspect-[3/2] overflow-hidden rounded-[3px]\"><Image src=\"/images/process/workshop-floor.jpg\" alt=\"Rows of moulds on the floor being filled by hand, with shelves of moulds behind\" fill sizes=\"(max-width:768px) 100vw, 700px\" className=\"object-cover\"/></div>`. Right, `md:col-span-5`: the existing h2, p and CTA, left-aligned, then the existing Lintel steps as a ruled list: `ol className=\"mt-8 border-y border-nickel/40 divide-y divide-nickel/40\"`, each li `flex gap-4 py-3`, step name `w-24 shrink-0 font-display text-xl text-basalt`, rest `text-[16px] text-clay`. Delete the Three Pillars section (:100-115), the standalone Lintel box (:117-128) and all four blob divs (:86-87, :179-180).",
+   "source_for_any_new_copy": "No new copy. Existing strings at src/app/page.tsx:93-97 and :121-126; the alt text is reused from src/app/process/page.tsx.",
+   "impact": "medium",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "One closing CTA band, site-wide, in basalt",
+   "why_it_matters": "Every page ends with a differently styled closer. A single dark band before the footer gives each page a confident finish and a predictable place to act, the way Chesney's and Loro Piana close pages.",
+   "evidence": "Seven different closers: the home split puts a brown gradient with a 40%-opacity logo on the left half (page.tsx:175-217; about 550x690px with no content, s2/home-d-5.png). /collections uses 36px clay centred; /works has no heading; /process uses 30px 'Ready to Begin?'; /commissions uses 36px 'Ready to Begin?'; /about and /faq use boxed cards with shadow-lintel. The button labels also differ: Schedule Consultation, Start a Conversation, Start Your Project, Begin a Conversation, Contact us.",
+   "proposal": "New src/components/ClosingCta.tsx taking {heading, body, primary, secondary}: `section className=\"bg-basalt\"` > `div className=\"mx-auto max-w-7xl px-6 md:px-10 py-20 md:py-28 grid gap-8 md:grid-cols-12 md:items-end\"`. H2 `md:col-span-7 font-display text-[2rem] md:text-title text-ivory-50`. Right column `md:col-span-5`: body `text-[17px] leading-[1.7] text-ivory/80`, then buttons primary `btn bg-ivory-50 text-basalt hover:bg-ivory-200` and secondary `btn border border-ivory/40 text-ivory-50 hover:bg-ivory-50 hover:text-basalt`. Basalt on ivory measures 12.18:1. Each page passes its existing heading and body strings. This replaces the home split section (and its timeless-logo image), collections :CTA, works :24-35, process 'Ready to Begin?', commissions CTA, about showroom box and faq box. Optional, owner's choice: standardise the primary label to the header's existing 'Begin a Conversation'.",
+   "source_for_any_new_copy": "No new copy. Each page keeps its current closing heading, body and button labels; the optional label unification reuses 'Begin a Conversation' from src/app/layout.tsx.",
+   "impact": "medium",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "Footer: remove the mobile strip, make the shield legible, and align everything to one grid",
+   "why_it_matters": "The footer is the trust zone (address, licence, phone) and is seen on every page. Today it has a visible colour seam on phones, a near-invisible brand mark, and mixed alignment.",
+   "evidence": "On mobile, the wrapper's `pb-16` (layout.tsx:83) leaves a 64px #F3EEE6 strip below the #f7f3ed footer (s2/home-m-2.png, about-m-1.png). The shield is #7C593A art on a #2E2B28 disc, 2.24:1, and only about 26px wide inside a 56px disc (layout.tsx:167, `p-2` on both the box and the img). Contact and address links pick up the global nickel underline while the page links do not. Columns are left-aligned while the nav and copyright are centred. Column heads are 14px basalt sans, the same as the content.",
+   "proposal": ":83 remove `pb-16 md:pb-0 [@media(max-height:500px)]:pb-0` from the wrapper. :111 footer `mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]` -> `border-t border-ecru bg-ivory-50 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 [@media(max-height:500px)]:pb-0`. Add `viewportFit: 'cover'` to the viewport export, and `pb-[env(safe-area-inset-bottom)]` to the MobileBottomNav nav (Navigation.tsx). Shield: drop the disc and use `<div className=\"relative h-10 w-[43px] opacity-90\">` with the trimmed shield; brown on #FBF9F6 is roughly 6:1. Grid `md:grid-cols-3` -> `md:grid-cols-4`; move the existing page list into a 4th left-aligned column (`ul className=\"space-y-2\"`). Copyright row -> `mt-12 pt-6 border-t border-ecru md:flex md:justify-between text-left`. Column h2s (:125, :142) -> `text-[11px] uppercase tracking-[0.16em] font-medium text-sienna-700 mb-4`. tel, mailto and maps links: add `no-underline hover:underline underline-offset-4`.",
+   "source_for_any_new_copy": "No new copy. All footer strings exist in src/app/layout.tsx.",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  },
+  {
+   "title": "Surfaces: one card and panel recipe, no pure white, two section tones, one radius",
+   "why_it_matters": "The palette is ivory, ecru and basalt, but the build mixes pure white boxes, five shadow styles, three radii and 1-2% background shifts. The site reads as assembled rather than art-directed.",
+   "evidence": "Five card treatments: home collection cards (bg-ivory, hover:shadow-2xl), pillars (rounded-lg2 16px, #f7f3ed, shadow-[0_10px_30px]), collections (bg-white, hover:shadow-xl), commissions (bg-white, resting shadow plus hover:shadow-xl), about services (bg-white). Radii in use: 8px (rounded-lg x46), 12px (rounded-xl dialogs), 16px (rounded-lg2). There are 31 shadow utilities, 10 uses of `bg-white` (#FFFFFF is not in the palette), and 13 arbitrary hex backgrounds (#f5efe4, #f7f3ed, plus ivory to #f5efe4 gradients) whose tiny luminance steps read as banding (s2/home-d-2.png).",
+   "proposal": "tailwind.config.ts: `borderRadius:{DEFAULT:'3px'}`, and delete `lg2`. Use `rounded` for images, cards, inputs and buttons; keep `rounded-full` only for chips and icon buttons. Replace every `bg-white` and `bg-[#f7f3ed]` with `bg-ivory-50`. Alternate sections only between `bg-ivory` and `bg-ecru/50`, replacing `bg-[#f5efe4]` and the `bg-gradient-to-b from-[#f5efe4] to-ivory` bands on the collections and commissions heroes. Card recipe: `bg-ivory-50 border border-ecru` with no resting shadow and `hover:border-nickel`. Keep `shadow-2xl` for dialogs only, and remove `shadow-lintel` from cards (process:85, about CTA box, faq box, contact form card).",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "medium",
+   "effort": "M",
+   "needs_owner": false
+  },
+  {
+   "title": "Works: stop the 21:9 crop of the featured mantel and set an editorial header",
+   "why_it_matters": "The lead photo of the portfolio loses the mantel's shelf and hearth, the parts that show proportion. Benchmarks show the hero piece whole.",
+   "evidence": "src/components/PortfolioGrid.tsx:42 `aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9]` crops /images/works/featured.jpg (1700x1275, 4:3) to the middle 57% of its height on desktop, cutting the cornice shelf and the hearth (s2/works-d-0.png vs scratchpad/discovery/visual-ux/featured-full.png). On mobile, 4:5 cuts off the ginger jars at the sides. The title block is a narrow column above a full-width strip.",
+   "proposal": "Add a `featuredClassName` prop to PortfolioGrid (or render the featured trigger separately) and set the featured frame `aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9]` -> `aspect-[4/3]` (the native ratio, so nothing is cropped). In src/app/works/page.tsx wrap the header and featured photo in `md:grid md:grid-cols-12 md:gap-12 md:items-end`: SectionTitle plus intro in `md:col-span-5`, featured photo in `md:col-span-7`. The masonry grid follows with `mt-12 md:mt-16`. Featured sizes -> `(max-width: 768px) 100vw, 680px`.",
+   "source_for_any_new_copy": "No new copy.",
+   "impact": "medium",
+   "effort": "S",
+   "needs_owner": false
+  }
+ ],
+ "sources": [
+  "/home/user/101caststone/src/app/page.tsx",
+  "/home/user/101caststone/src/app/layout.tsx",
+  "/home/user/101caststone/src/app/globals.css",
+  "/home/user/101caststone/tailwind.config.ts",
+  "/home/user/101caststone/src/app/fonts.ts",
+  "/home/user/101caststone/src/components/Navigation.tsx",
+  "/home/user/101caststone/src/components/SectionTitle.tsx",
+  "/home/user/101caststone/src/app/collections/page.tsx (working-tree version with style sub-groups)",
+  "/home/user/101caststone/src/app/commissions/page.tsx",
+  "/home/user/101caststone/src/app/contact/page.tsx",
+  "/home/user/101caststone/src/components/InquiryForm.tsx",
+  "/home/user/101caststone/src/app/faq/page.tsx",
+  "/home/user/101caststone/src/app/about/page.tsx",
+  "/home/user/101caststone/src/app/process/page.tsx",
+  "/home/user/101caststone/src/app/works/page.tsx",
+  "/home/user/101caststone/src/components/PortfolioGrid.tsx",
+  "/home/user/101caststone/src/components/ProductModal.tsx",
+  "/home/user/101caststone/src/components/PhotoGallery.tsx",
+  "/home/user/101caststone/src/data/products.ts",
+  "/home/user/101caststone/src/data/portfolio.ts",
+  "/home/user/101caststone/public/images/logos/oneline.png (alpha histogram and glyph bbox measured with sharp)",
+  "/home/user/101caststone/public/images/logos/shield-nobg.png",
+  "/home/user/101caststone/public/images/works/featured.jpg",
+  "/home/user/101caststone/public/images/products/*/card.jpg (contact sheet)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/final/*.png (stale build on :3001, reviewed then superseded)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/shots/*.png (fresh full-page captures of http://localhost:3002, which matches HEAD; mobile 390 and desktop 1440)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/s2/*.png (sliced views)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/audit.json (computed heading/button styles, H1 positions, content-to-footer gaps)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/hero-proposal.png (live DOM test of the hero overlay)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/masonry-before.png and masonry-after.png (live DOM test of the grid fix)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/focus-faq.png, focus-header.png, menu-open.png, modal-no-preference.png",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/cat-sheet.png (commissions category image check)",
+  "/tmp/claude-0/-home-user-101caststone/a8201c90-cacf-5cf5-8294-4ea8da0ac593/scratchpad/discovery/visual-ux/{shoot,slice,audit,states,masonry,hero}.js (capture and audit scripts)"
+ ]
+}

@@ -1,0 +1,477 @@
+{
+ "heritage": {
+  "name": "Heritage",
+  "visible_features": [
+   "flat pilasters with a recessed rectangular panel and simple cap and base blocks",
+   "plain unornamented frieze",
+   "stepped, molded mantel shelf (cornice profile)",
+   "two opening treatments appear in the folder: a shallow arched inner molding over the firebox (04, 06, 08, 10, 11, 15, 16, 03) and a square opening (01, 02, 05, 07, 09, 12, 13, 14)",
+   "raised box hearth in several installs (02, 04, 05, 09, 15)",
+   "tall overmantel panel above the shelf in one install (08)",
+   "pitted cast surface texture visible in close-ups (14)"
+  ],
+  "warnings": [
+   "01 (0de6c12c, current card) and 07 (7c39481c): wood braces/cardboard in firebox, rosin paper and blue tape on floor - job site",
+   "11 (f6dd770f): unfinished subfloor, dim; 05 (5d238308): unfinished walls, pellet stove insert; 09 (c8aa4b6a): empty grey room",
+   "15 (e644de5a) and 13 (39d49c6b): large PNGs that are soft at 100% (upscaled); 13 also reads as a painted white piece with reeded panels unlike the rest",
+   "TVs directly above the mantel in 03, 08, 10 and fireplace-mantels-1 10 (50772fee)",
+   "04 (57574175): black leather recliner and a cable/outlet intrude; yellow wall cast",
+   "16 (f7196873): pumpkin decor; 06 (7aada258): mantel small and surrounded by furniture",
+   "no duplicate media ids inside this folder; by-eye matches fireplace-mantels-1 50772fee (clean frontal, TV above) and 45642be9 (white painted, dining clutter) are alternates only"
+  ]
+ },
+ "provence": {
+  "name": "Provence",
+  "visible_features": [
+   "thick molded shelf/entablature with a stepped cornice profile",
+   "segmental-arched (gently curved) frieze beneath the shelf",
+   "jambs shaped as curved consoles that sweep outward into a wide foot (01, 03, 04, 08, 11, 13, 14, 16, 17, 19, 20, 21); a second variant with straight jambs and only a curved bracket at the top (02, 05, 07, 09, 10, 18, 22)",
+   "raised or stepped stone hearth with a rounded edge in most installs",
+   "no keystone on any arched frieze",
+   "pitted aggregate surface texture visible at 100% (08, 01)",
+   "shown in cream, tan and white colours"
+  ],
+  "warnings": [
+   "01 (c8d659bb, current card, = fireplace-mantels-1 f48979d2): wires, unfinished floor, wood strip on hearth",
+   "03 (163da197): cardboard taped over the firebox, bare subfloor; 09 (8693133c): no firebox installed, cables, grey panel at right; 20 (8fd68b82): TV bracket wires above, dusty floor; 02 (00fb5081): drop cloth; 19 (56bf3c7d): moving boxes; fireplace-mantels-1 7b1f5a31: bedroom with unfinished floor",
+   "21 (a0c00b7b): strong tungsten yellow cast; 22 (fbf9ea9a): yellow cast, red tape dots on floor, blown-out wall; 16 (e7622913): dim",
+   "TV directly above in 06, 12, 21, fireplace-mantels-1 bc199e6f and b1fbc55e; heavy clutter in fireplace-mantels-1 62c05e25",
+   "exact duplicates: 01 = fm1 f48979d2; 05 = fm1 104ed5d4; near-dup 06 ~ fm1 bc199e6f (use one)",
+   "large PNGs 8fd68b82 (5.5MB), a0c00b7b (6.8MB), fbf9ea9a (4.6MB) need re-encoding"
+  ]
+ },
+ "pacifica": {
+  "name": "Pacifica",
+  "visible_features": [
+   "molded cornice shelf with square returns",
+   "rectangular outer frame with stepped (not chamfered) moldings",
+   "raised segmental-arched band framing the firebox opening - every one of the 16 photos shows an arched opening",
+   "plain square plinth blocks at the base of each jamb",
+   "raised box hearth (01, 06, 08, 14, 15) or flat hearth pad (03, 10, 11, 12)",
+   "shown in white, cream and tan; 07 (505287fb) in a grey tone with a marble slab surround inside the arch"
+  ],
+  "warnings": [
+   "05 (1404e173, = fm1 e35c78a5): strong orange/yellow cast, dated interior; 14 (9b719909): red wall colour cast; 15 (d87ed679): dim olive wall; 13 (98d013c5): dim, blanket and basket in frame",
+   "06 (21cdba3f, = fm1 6888f35e) and 08 (530050b9) are the same scene (candles, vases, TV at right) - use at most one; both are older low-detail captures",
+   "09 (83ecacd7), 16 (fd3bc1dc) and fm1 4abbc6b5 are the same iron-grille scene - use 09 only",
+   "04 (fd73efc4): wide room with TV above, mantel very small; 07 (505287fb): round disc left on the hearth, grey tone",
+   "01 (4df2ffad) has a small black junction box on the wall above the shelf - removed by the top=350 crop",
+   "nine of 16 files are 3-7.7MB PNGs (1404e173, 21cdba3f, 858647484, 970b0bd0, 98d013c5, 9b719909, d87ed679) and must be re-encoded as JPEG/WebP before use"
+  ]
+ },
+ "milagro": {
+  "name": "Milagro",
+  "visible_features": [
+   "wide rounded/stepped bolection-style frame around a rectangular opening - all 16 photos show a rectangular, not arched, opening",
+   "simple molded shelf on top in most installs (01, 03, 05, 06, 07, 10, 12, 15, 16); a frame-only version without a shelf (02, 04, 08, 11, 13, 14)",
+   "square plinth feet at the base of each jamb",
+   "raised stone hearth in most installs; flat hearth pad in 05 and 15",
+   "shown in cream, tan and grey-white",
+   "09 (d5d07625) shows an additional carved scroll band inside the frame - a different design or add-on, not seen on any other Milagro photo"
+  ],
+  "warnings": [
+   "job-site photos: 07 (6f6acf59) bare subfloor and open outlet box; 08 (9d1cb31c, ~ fm1 e10bc9af) plastic wrap in firebox, subfloor; 10 (ea870ec6) black subfloor, cardboard in firebox; 12 (fbdbe46f, = fm1 1c6b227d) foam and plastic in firebox; 13 (21e89d69) taped glass, bare floor; 14 (35b2e95b) tools, bucket and mop on the floor",
+   "09 (d5d07625): different carved-band design, job site - exclude",
+   "16 (a0e089e3): TV showing a broadcast above the mantel, cluttered; 02 (4d663d5d): TV and soundbar directly above",
+   "03 (562c4c6f) and 01 warm lamp cast; 06 (66bf9ff7) empty TV niche above and no decor",
+   "01 (hero) has two outlet plates above the shelf (cropped out at top=300); 15 has four wall plates at left",
+   "large PNGs 21e89d69 (9.3MB) and a0e089e3 (6.9MB) are job-site/cluttered anyway; skip them"
+  ]
+ },
+ "cambridge": {
+  "name": "Cambridge",
+  "visible_features": [
+   "molded shelf with a stepped cove underneath",
+   "plain, uncarved flat frieze",
+   "tall S-scroll corbel legs with deep leaf carving on the face, ending in a small rolled volute above a square plinth block",
+   "rectangular firebox opening (no arch)",
+   "raised rectangular hearth slab with a rounded front edge",
+   "black metal fireplace insert in every install",
+   "cream/off-white smooth finish in all four photos"
+  ],
+  "warnings": [
+   "All 4 are 1920x1920 square phone shots (350\u2013540 KB JPEG); mild softness",
+   "#1 00631ff2: TV, soundbar, visible cables, shelves of ornaments, weathervane in front of the firebox",
+   "#2 1e3672e3: unfinished room, bare concrete floor, slightly dim warm cast",
+   "#3 5495ec43: duplicate of tangled-arched #4; fluted corbels; card version carries a '101' watermark",
+   "#4 e8382e24: sun flare in the window at right, TV directly above the shelf (crop it out)"
+  ]
+ },
+ "french-chateau": {
+  "name": "French Chateau",
+  "visible_features": [
+   "wide molded shelf with a stepped cove beneath",
+   "smooth, uncarved flat frieze and jambs",
+   "plain legs that sweep outward in a concave curve to a wider foot/plinth",
+   "rectangular firebox opening; some installs fitted with an arched-door insert (4291e18c, c8d659bb)",
+   "raised rectangular hearth slab (most installs)",
+   "finishes: smooth cream (most) and a heavily pitted rustic finish (c8d659bb/df263fec)",
+   "outliers on the same page: 153aae86 arched opening with keystone and flat pilasters; 15dbde90 carved frieze band; bbe68b4e leaf-carved scroll legs with carved inner surround"
+  ],
+  "warnings": [
+   "Job-site shots: 2ced55b3 (cardboard over firebox), bc466fb7 and d508de9c (plastic over insert, paint cans), a0775ccf (blue tape, cardboard floor protection), 153aae86 and 7d507bec (debris, bare rooms), 3cc3b479 and 4291e18c (plastic sheeting)",
+   "Near-duplicates: c8d659bb \u2248 df263fec (same shot, tighter crop); 60f3f513 \u2248 fireplace-mantels-1 62c05e25; c8d659bb = fireplace-mantels-1 f48979d2",
+   "11 of 16 are PNGs of 4.5\u20137.1 MB \u2014 re-encode before use",
+   "bbe68b4e: strong yellow tungsten cast, low resolution look",
+   "15dbde90 and bbe68b4e are different mantel designs mixed into this page"
+  ]
+ },
+ "royal-acanthus": {
+  "name": "Royal Acanthus",
+  "visible_features": [
+   "flat shelf with a molded edge",
+   "continuous carved frieze band of repeating fan-shaped leaf / palmette motifs under the shelf",
+   "large S-scroll corbels with deep leaf carving ending in a rolled volute on a square plinth",
+   "rectangular firebox opening",
+   "raised hearth in most installs; carved hearth face in 4befa0c6 (overview page)",
+   "finishes photographed: white/cream, tan, dark ochre-brown",
+   "732b2145 (and overview #7) is a different design: twisted (spiral) columns with leafy capitals under the same style of carved frieze"
+  ],
+  "warnings": [
+   "732b2145: job site (concrete floor, paint splatter, religious statue) and a different design (twisted columns)",
+   "7fe5ef55: bare job-site room; c5c54b46: job site with cardboard boxes and lattice panels, dark stained finish",
+   "78d72aa0: busy wallpaper, TV, clock; colour balance warm",
+   "2bb3c327 (7.4 MB) and 89aff2f3 (5 MB) are large PNGs",
+   "colour differs widely between finish variants \u2014 card and gallery should state which finish is shown only if the site has that information (it does not)"
+  ]
+ },
+ "tangled": {
+  "name": "Tangled",
+  "visible_features": [
+   "molded shelf with a stepped cove beneath",
+   "segmental-arched (gently curved) frieze line over the opening on 13 of 14 photos",
+   "fluted (reeded) S-scroll corbels ending in a rolled volute on square plinth blocks \u2014 no leaf or vine carving",
+   "rectangular firebox opening behind the arched frieze",
+   "hearth either raised slab (5c1e4e4c, c808c60b) or flush (5208ba03)",
+   "finishes photographed: smooth cream and heavily mottled rustic (5c1e4e4c)"
+  ],
+  "warnings": [
+   "456fc076: job site (plastic over firebox, cardboard, tape)",
+   "00cf1bcd: very cluttered room (wall of guns and frames), warm cast",
+   "5208ba03 = d5585753 (identical); 145f06e7 = cambridge 5495ec43 (identical)",
+   "PNGs 3115ba8f (7.4 MB), 5208ba03/d5585753 (6 MB), 66c22554 (5.8 MB), d065b4fa (4.2 MB) need re-encoding",
+   "adbd865c is a showroom-style shot on a concrete floor with a display stand at left",
+   "current card source 3115ba8f has the shelf cut off at the top of the frame"
+  ]
+ },
+ "genoa": {
+  "name": "Genoa",
+  "visible_features": [
+   "rectangular, shelf-less surround with a flat face and a stepped/recessed inner border",
+   "square top edge (no mantel shelf, no legs or corbels)",
+   "grey, lightly mottled smooth surface",
+   "raised hearth built from matching slabs; corner/angled hearth in a132fb90",
+   "black rectangular fireplace insert"
+  ],
+  "warnings": [
+   "8afaecdc: cardboard in firebox, piece cropped, dog bed in niche",
+   "1ad6067d: moving boxes, blue tape, unfinished floor",
+   "dcad5ee6: empty room, carpet, flat light",
+   "grey surface shows mottling/efflorescence-like patches on the hearth in a132fb90"
+  ]
+ },
+ "santa-barbara": {
+  "name": "Santa Barbara",
+  "visible_features": [
+   "molded shelf with a cove beneath",
+   "plain, uncarved frieze and jambs",
+   "legs that sweep outward into a wide plinth foot at the floor",
+   "rectangular firebox opening lined with herringbone tile",
+   "raised hearth slab",
+   "two small stepped blocks on the chimney breast above the shelf",
+   "white smooth finish"
+  ],
+  "warnings": [
+   "Single phone photo; slight tilt; television at right edge; patterned stools in the foreground; a candle lantern sits on the hearth"
+  ]
+ },
+ "contemporary-surround": {
+  "name": "Contemporary Surround",
+  "visible_features": [
+   "flat-faced rectangular frame with an inward bevel (mitered picture-frame profile)",
+   "no shelf, no legs, no carving",
+   "fits both linear (dc3e35e1, b959b460, 7a57c416) and standard (4d8d923a, 49a93da1) fireboxes",
+   "optional low raised hearth (dc3e35e1, 7a57c416); otherwise flush to the wall",
+   "light grey/cream smooth surface"
+  ],
+  "warnings": [
+   "7a57c416: construction site (plastic sheeting, tape, drop cloth, unpainted wall)",
+   "49a93da1: visible TV cables and bracket at top",
+   "b959b460 and 4d8d923a: large black TV dominates the frame",
+   "c9e5a25b: surround occupies a small part of the frame"
+  ]
+ },
+ "columns": {
+  "name": "Columns",
+  "visible_features": [
+   "smooth round shafts with plain molded capitals and bases (a70460f7, 5dd21615, d2df0faa, 48a72806, 3a016175, b47d2011, daf1f52d)",
+   "square columns/piers with molded cap and base (5ed6e977, 4c2979b0)",
+   "spiral-twisted shafts with leaf-carved capitals used as window mullions (e62506df, c156139f, cast-stone 61b8cf6c)",
+   "columns with leaf-and-small-scroll carved capitals at entries (32d33b5c, 8985c4ba, f253554e)",
+   "paired columns on a shared stone-clad pedestal (a70460f7)",
+   "engaged half-columns on a door surround (9e788f40)",
+   "columns carrying a pergola (3a016175, b47d2011) and porch beams (1fd433fb)",
+   "interior columns in living rooms (daf1f52d, f253554e)"
+  ],
+  "warnings": [
+   "card columns.jpg carries a baked-in '101' shield watermark bottom-right (as do all six architectural cards)",
+   "three frames of one commercial building with 'SURGICAL ARTS' signage: 1bf8c747 (current card), 4441b537, bf05872e",
+   "job-site shots: 1fd433fb (pickup truck, trailer, bare lot), 819999f1 and 5dd21615 and 4c2979b0 (bare dirt/unfinished grading), 1f413a47 (column half in hard shadow)",
+   "duplicates: ded58982 is pixel-identical to door-trims baf3902b; e62506df identical to cast-stone 4cdb58a4; c156139f ~ cast-stone 61b8cf6c; d2df0faa/48a72806 same porch; 3a016175/b47d2011 same pergola",
+   "f253554e is a low-resolution older photo with a TV and clutter; daf1f52d also shows a TV",
+   "a70460f7 has a trash receptacle at far left and reads as a hotel/commercial drive-through",
+   "no files in this folder are letterboxed - all 24 are edge-to-edge 1920x1920 square crops (trim detection found no bars)"
+  ]
+ },
+ "corbels": {
+  "name": "Corbels",
+  "visible_features": [
+   "egg-and-dart band on the top block (ae7321a0)",
+   "acanthus-type leaf scroll on the face with a bead/drop at the lower tip (ae7321a0, 026ef685)",
+   "plain large S-scroll with spiral curl and a rolled bottom (39dae150)",
+   "tall tapering bracket covered in layered leaves ending in a small scroll (d4a012df)",
+   "molded, stepped top blocks on all four",
+   "pitted, open-textured surface visible at close range",
+   "in situ: paired brackets under kitchen hoods (cae1756c, 82b11968) and under a mantel shelf (columns daf1f52d)"
+  ],
+  "warnings": [
+   "all four corbel files are cut-outs on solid black with visible jagged masking fringe along the edges (see fin-corbels-1.jpg)",
+   "current card shows the piece at ~35% of frame plus a '101' watermark",
+   "026ef685 is small after trim (537x732) and partly in shadow",
+   "the only in-situ corbel photos (cast-stone cae1756c) show unfinished drywall and construction debris; 82b11968 has the brackets at small scale"
+  ]
+ },
+ "balustrades": {
+  "name": "Balustrades",
+  "visible_features": [
+   "turned (vase-profile) balusters with square top and bottom blocks",
+   "plain molded handrail and base rail",
+   "paneled square end piers / newel posts",
+   "pineapple finials on posts (32d33b5c, 8985c4ba)",
+   "curved descending stair rail (32d33b5c)",
+   "curving balustrade run following a terrace edge (86fa91fb)",
+   "balustrades used on balconies (1e4b6843, 8a7258bc), upper loggia (58b37bf5), terraces (355fe9ae, 59b503a2, 058055f0) and entry porches (8985c4ba)",
+   "iron pickets fitted between balusters (355fe9ae)",
+   "pierced screen-block parapet panels, not balusters (4c7c6717)"
+  ],
+  "warnings": [
+   "current card (a8ef674b) and ad66998a are job-site: black membrane, drain rings, pallets, tarps",
+   "1e4b6843 has scaffolding and a ladder in the lower right; 819999f1 bare dirt and a bucket; 4c7c6717 cable on the ground",
+   "86fa91fb is soft/hazy with a 51px white bar; ad66998a 33px bar; 58b37bf5/ffc5019c 6px bar",
+   "058055f0 is dark (interior-lit) and the balustrade is small in frame",
+   "8a7258bc has flat light and a blue-grey cast",
+   "duplicates by media id across pages: 32d33b5c, 8985c4ba, 819999f1, 1f413a47 also sit in the columns folder; 355fe9ae=fd5d953e and 58b37bf5=ffc5019c are pixel-identical under different media ids",
+   "all six cards carry a '101' shield watermark"
+  ]
+ },
+ "pilaster-caps": {
+  "name": "Pilaster Caps",
+  "visible_features": [
+   "flat square pier caps with a molded (ogee/cove) edge (e652f166, d30b6676, 582b1110, 809b4300)",
+   "peaked/pyramid pier cap with stepped molded base (02172668)",
+   "stacked stepped cap used as a finial base (3d80b9fc)",
+   "ball finial (3d80b9fc) and pineapple finial (809b4300) on caps",
+   "caps on stucco piers, a stone-clad pier and white painted piers",
+   "two-tone orange-topped caps on parapet piers with an iron railing (d30b6676)",
+   "no classical capital (leaf, volute or echinus) on any pilaster in any photo"
+  ],
+  "warnings": [
+   "current card has a faint '101' watermark bottom-right",
+   "e652f166 has a 171px blue letterbox bar at top (the only bar in this folder)",
+   "d30b6676 is flat-lit with dull two-tone caps and a railing in the way; 3d80b9fc is backlit; 1c837761 is a studio shot on carpet",
+   "02172668's pier shows scuffs and a mortar line below the cap",
+   "cast-stone 582b1110 has a white painted pier that reads as plaster, and a driveway edge in frame"
+  ]
+ },
+ "crown-molding": {
+  "name": "Crown Molding",
+  "visible_features": [
+   "scrolling leaf/vine frieze band (a47c570e)",
+   "twisted rope band above the frieze (a47c570e)",
+   "repeating leaf-and-dart band (57d0bc9f)",
+   "high-relief curling leaf scroll with fan/palmette motif (f663675d)",
+   "plain stepped (fillet-and-cove) profile (6dbcd708)",
+   "pitted, open surface texture on all four",
+   "installed at a wall/ceiling junction (57d0bc9f); the other three are close-ups with no room context"
+  ],
+  "warnings": [
+   "blue-grey colour cast on a47c570e, 6dbcd708 and f663675d (bar/mean colours 168-228 R vs 203-249 B); only 57d0bc9f is neutral/warm",
+   "6dbcd708 has 309px bars top and bottom, heavy pitting and a visible seam line across the upper fillet",
+   "f663675d shows a loose fragment with a gap/shadow beneath it, not an installation",
+   "no installed-room or exterior photo exists for this product anywhere in the scraped set",
+   "current card carries a '101' watermark"
+  ]
+ },
+ "door-window-trims": {
+  "name": "Door & Window Trims",
+  "visible_features": [
+   "pilastered door surround with flat entablature (773abb62, eb784ac9)",
+   "keystone blocks on flat and arched surrounds (773abb62, baf3902b, bacc127b, 57f7abc0)",
+   "eyebrow-arched door surround with sidelights (baf3902b)",
+   "arched door surrounds with continuous molded profile (9e788f40, 3c89c89b, 57f7abc0, 0f2c8919, 6869d3dd)",
+   "engaged half-columns on a door surround (9e788f40)",
+   "eared/crossette window surround with projecting sill (1fa3ce98)",
+   "arched window surrounds with sills on a brick wall (cast-stone 2a219b81) and on stucco (57f7abc0, 6869d3dd)",
+   "flat trim surround with lintel around French doors (fccd724c)",
+   "plain garage-door surround with keystone (bacc127b)"
+  ],
+  "warnings": [
+   "current card is a 1882x1549 watermarked export of the baf3902b scene (older, dark photo)",
+   "773abb62 is slightly soft (looks upscaled from a smaller original)",
+   "bacc127b is a garage door; 0f2c8919 and 6869d3dd are job-site (bare dirt, stickers still on the windows)",
+   "cast-stone 2a219b81 window surrounds are blind (filled with herringbone brick) on an interior wall",
+   "cast-stone 3c89c89b has a video doorbell in frame",
+   "letterbox bars: eb784ac9 238px top/bottom (blue), 6869d3dd 217px, 1fa3ce98 21px; the rest are edge-to-edge squares",
+   "door-trims baf3902b is pixel-identical to columns ded58982"
+  ]
+ },
+ "outdoor-fireplaces": {
+  "name": "Outdoor Fireplaces",
+  "visible_features": [
+   "arched firebox openings with a smooth molded surround (mv2_1, mv2_8, mv2_4)",
+   "raised hearth slab / hearth bench with rounded edge (mv2_1, mv2_8)",
+   "stacked-stone or split-face stone bodies with capped chimneys (mv2_1, mv2_8, mv2_10)",
+   "rendered/stucco bodies with tapered chimney breasts (mv2_4, mv2_2, mv2_3)",
+   "herringbone and running-bond brick firebox linings",
+   "mantel shelves on jambs or corbel blocks (mv2_7, mv2_3, mv2_2)",
+   "side wood-storage niche (mv2_6)",
+   "wood fires, gas log set and fire-glass firebox visible",
+   "pergola and loggia settings"
+  ],
+  "warnings": [
+   "No file in this folder is letterboxed; scripts/build-photos.mjs trim({threshold:40}) would wrongly remove sky from mv2_10 (35 px) and mv2_2 (8 px) \u2014 use explicit focus boxes.",
+   "Five of ten files are upscaled low-res PNGs (Laplacian variance < 120: mv2_4 48, mv2_5 41, mv2_3 86, mv2_2 113).",
+   "mv2_9 (river-rock oven): plastic step stool, broom, rake and fencing in frame \u2014 exclude.",
+   "mv2_5: dark, soft (41), tools and a bucket in frame; mv2_6: stucco scratch coat and boxes on the shelf.",
+   "Current card JPEG has a '101' shield badge composited bottom-right."
+  ]
+ },
+ "fire-pits": {
+  "name": "Fire Pits",
+  "visible_features": [
+   "round bowl with wide flat rim (mv2_5)",
+   "gas burner rings / inserts (mv2_5, mv2_2)",
+   "square pit with slab top (mv2_2)",
+   "round stone-faced pits with flat caps (mv2_3, mv2_1)",
+   "curved seat walls with coping and capped piers (mv2_6)",
+   "paver, brick and concrete patio settings"
+  ],
+  "warnings": [
+   "No letterboxing in this folder; trim is a no-op on all six files.",
+   "mv2_1 (current card): job-site shot \u2014 ash, bare dirt, tree stumps, plastic chair; exclude.",
+   "mv2_3: overexposed sky, tilted; mv2_4: tilted, dark bowl.",
+   "mv2_2: no finished context, lava rock and burner exposed."
+  ]
+ },
+ "fountains": {
+  "name": "Fountains",
+  "visible_features": [
+   "quatrefoil molded basin with stepped profile (mv2_2, benches mv2_9)",
+   "tiered upper bowl on pedestal with central jet",
+   "octagonal basin with central column and four iron spouts (mv2_1)",
+   "round raised basin with flat coping (mv2_4)",
+   "wall fountain with curved tiled back, medallion and scalloped bowl spout (mv2_3)",
+   "flanking bench/seat walls (mv2_3)"
+  ],
+  "warnings": [
+   "mv2_1 (octagonal fountain, current card) is a low-res upscale and the repo trim step chops 241 px of sky from it.",
+   "mv2_4: soil-filled basin, drip tubing, red hose \u2014 job-site.",
+   "benches mv2_9: ladder/tripod inside the doorway; slight warm cast."
+  ]
+ },
+ "benches": {
+  "name": "Benches",
+  "visible_features": [
+   "straight bench: slab seat with bevelled edge on two fluted pedestal legs (mv2_3)",
+   "curved seat walls with flat or rounded-edge caps (mv2_2, mv2_1)",
+   "inset decorative tiles in a seat wall (mv2_1)",
+   "square pier cap with pineapple finial (mv2_4)",
+   "fountains (4 photos shared with the Fountains product)"
+  ],
+  "warnings": [
+   "Only one bench photo exists; it carries a visible nursery plant tag and a potted plant at the edge.",
+   "mv2_1 (current card) is dim and soft; mv2_4 has a cool cast and private initials on the pier.",
+   "No letterboxing; trim is a no-op except on mv2_8 (= fountains mv2_1), where threshold-40 trim cuts 241 px of sky."
+  ]
+ },
+ "pavers": {
+  "name": "Pavers",
+  "visible_features": [
+   "large square pavers, pale smooth face, crisp square edges",
+   "grid layout with lawn/grass joints",
+   "square tiles set diagonally (diamond pattern) as wall cladding with molded surrounds (mv2_3, mv2_2, mv2_4)",
+   "framed niche in the cladding (mv2_3)"
+  ],
+  "warnings": [
+   "mv2_5: worker, hose, blue cooler and ball in frame.",
+   "mv2_4: strong blue colour cast (R-B -31), very soft (52), crooked framing \u2014 exclude.",
+   "mv2_2: stainless-steel doors dominate the frame, tilted \u2014 exclude.",
+   "No letterboxing; trim is a no-op on all five.",
+   "Current card JPEG has a '101' badge composited bottom-right."
+  ]
+ },
+ "kitchen-hoods": {
+  "name": "Kitchen Hoods",
+  "visible_features": [
+   "tapered (pyramid) hood profiles with stepped crown tops (mv2_11, mv2_10, mv2_13)",
+   "curved-shoulder profile (mv2_9) and arched-opening profile with scrolled jambs (mv2_1, mv2_12)",
+   "molded bands and shelves",
+   "carved leaf / acanthus / leaf-and-dart friezes (mv2_13, mv2_6, mv2_8, mv2_2, mv2_3)",
+   "carved corbel brackets (mv2_11, mv2_6, mv2_2)",
+   "iron scroll ornament applied to a plain hood (mv2_10)",
+   "patterned, diamond-set and mural tile backsplashes"
+  ],
+  "warnings": [
+   "Job-site shots: mv2_1 (current card), mv2_6, mv2_7, mv2_8, mv2_12 (blue tape, unfinished drywall), mv2_5 (counter covered).",
+   "Very soft upscales: mv2_3 (Laplacian 10), mv2_4 (9), mv2_1 (80), mv2_2 (87), mv2_14 (127).",
+   "Threshold-40 trim would cut real content from mv2_11 (18 px), mv2_14 (291 px ceiling), mv2_3 (51 px) \u2014 use explicit boxes.",
+   "mv2_5 and mv2_13 are the same installation (dedupe by eye); mv2_9 has cardboard and a radio on the counter."
+  ]
+ },
+ "stair-treads": {
+  "name": "Stair Treads",
+  "visible_features": [
+   "rounded bullnose nosings on every tread",
+   "curved (radius) entry steps (mv2_3, mv2_1)",
+   "straight interior stair (mv2_2)",
+   "tile risers (mv2_3, mv2_2) and wood-edged risers (mv2_2)",
+   "matching curved wall cap alongside steps (mv2_1)"
+  ],
+  "warnings": [
+   "mv2_4: dark, backlit, wet-looking treads, iron rail in shadow (Laplacian 101) \u2014 exclude.",
+   "mv2_1: unfinished site (bare dirt, tyre tracks).",
+   "No letterboxing; trim is a no-op on all four."
+  ]
+ },
+ "window-sills": {
+  "name": "Window Sills",
+  "visible_features": [
+   "projecting molded sills with an undercut/drip profile (mv2_4, mv2_2)",
+   "sill on stepped corbel blocks (mv2_2)",
+   "continuous slim sill under paired windows (mv2_1)",
+   "matching molded head trim above windows (mv2_4)",
+   "sills following a curved wall (mv2_3)"
+  ],
+  "warnings": [
+   "mv2_2: window sticker and film visible on the glass; soft (89).",
+   "mv2_1 (current card): dim, sill is small in frame.",
+   "No letterboxing; trim is a no-op on all four."
+  ]
+ },
+ "wall-caps": {
+  "name": "Wall Caps",
+  "visible_features": [
+   "flat caps with mitred corners on stepped stucco walls (mv2_1)",
+   "curved caps with a rounded (bullnose) edge (mv2_3)",
+   "square pier caps with chamfered edge and overhang (mv2_4)",
+   "cap on a stone-faced wall (mv2_3)",
+   "rounded rail cap on a balustrade (mv2_2)"
+  ],
+  "warnings": [
+   "mv2_2: the only genuinely letterboxed file in this whole group (49-px white strip at top); also soft and hazy.",
+   "mv2_4: strong blue colour cast.",
+   "Threshold-40 trim would wrongly cut 130 px from mv2_1 and 55 px from mv2_2 \u2014 use explicit boxes.",
+   "mv2_1 (current card): freshly mulched, unplanted bed."
+  ]
+ }
+}
