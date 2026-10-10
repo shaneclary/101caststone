@@ -10,183 +10,151 @@
   --ink-clay: #76634E;
   --edge-ecru: #EAE1D2;
   --rule-nickel: #BBAE9B;
-  --loro-opacity-soft: 0.55;
-
-  /* Maison Palette Tokens */
-  --sienna: #9C8066;
-  --clay: #76634E;
-  --ivory: #F3EEE6;
 }
 
-/* Base */
-html, body {
-  background: var(--bg-ivory);
-  color: var(--ink-basalt);
-}
+@layer base {
+  html,
+  body {
+    background: var(--bg-ivory);
+    color: var(--ink-basalt);
+  }
 
-/* Subtle gradient overlay for depth */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, #F3EEE6 0%, #EDE3D2 100%);
-  pointer-events: none;
-  z-index: -1;
-}
+  body {
+    @apply text-body text-clay;
+  }
 
-::selection {
-  background: #E9DFC9;
-}
+  ::selection {
+    background: #E9DFC9;
+  }
 
-/* Copy rhythm - refined */
-.prose {
-  @apply text-[18px] leading-[1.85] text-clay;
-}
+  /* One type scale (tailwind.config.ts fontSize). Pages add text-heading for sub-sections. */
+  h1 {
+    @apply font-display text-[2.5rem] leading-[1.08] tracking-[-0.015em] md:text-display text-basalt;
+  }
 
-.prose h1, h1 {
-  @apply font-display tracking-[-0.015em] text-6xl md:text-[72px] leading-[1.05] text-basalt;
-}
+  h2 {
+    @apply font-display text-[2rem] leading-[1.15] tracking-[-0.01em] md:text-title text-basalt;
+  }
 
-.prose h2, h2 {
-  @apply font-display text-4xl tracking-[-0.01em] leading-snug text-sienna-700;
-}
+  h3 {
+    @apply font-display text-heading text-basalt;
+  }
 
-.prose h3, h3 {
-  @apply font-display text-2xl leading-snug text-basalt;
-}
+  /* Links: hairline underline in body copy; components opt out with no-underline */
+  a {
+    @apply underline decoration-[0.75px] decoration-nickel underline-offset-[6px];
+  }
 
-/* Body text */
-body {
-  @apply text-[18px] leading-[1.85] text-clay;
-}
+  a:hover {
+    @apply decoration-sienna;
+  }
 
-/* Links & interactive - refined hairline underlines */
-a {
-  @apply underline decoration-[0.75px] decoration-nickel underline-offset-[6px];
-  transition: all 0.3s ease;
-}
+  nav a {
+    @apply no-underline;
+  }
 
-a:hover {
-  @apply decoration-sienna;
-}
+  a,
+  button,
+  summary {
+    transition-property: color, background-color, border-color, text-decoration-color, opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+  }
 
-/* Navigation links - no underline */
-nav a {
-  @apply no-underline;
-}
+  /* One focus ring for every control, in the brand ink */
+  :focus-visible {
+    outline: 2px solid #76634E;
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
 
-/* Buttons - refined quieter luxury */
-.btn {
-  @apply inline-flex items-center justify-center px-7 py-3 rounded-lg text-sm tracking-wide font-medium;
-  background: linear-gradient(180deg, #F7F2E9 0%, #EDE3D2 100%);
-  color: #7D6A55;
-  border: 0.5px solid #D7CBB9;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 6px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s ease;
-}
-
-.btn:hover {
-  color: #9C8066;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 6px 14px rgba(0, 0, 0, 0.06);
-  transform: scale(1.01);
-}
-
-.btn.secondary {
-  background: transparent;
-  color: var(--ink-sienna);
-  border: 0.75px solid var(--rule-nickel);
-}
-
-.btn.secondary:hover {
-  color: #8B715A;
-  border-color: #9C8066;
-}
-
-/* "Etched" title underline - refined */
-.etched {
-  position: relative;
-}
-
-.etched::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -14px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(187, 174, 155, 0.7), rgba(187, 174, 155, 0));
-  transform: translateY(8px);
-}
-
-/* ---------- Loro utilities & refinements ---------- */
-
-/* Soft ivory gradient usable on hero/feature banners */
-.bg-loro-gradient {
-  background:
-    radial-gradient(1600px 800px at 40% 20%, #EAE1D2 0%, transparent 70%),
-    linear-gradient(#F3EEE6, #EFE7DA);
-}
-
-/* Maison palette utility classes */
-.text-clay { color: var(--clay); }
-.bg-sienna { background-color: var(--sienna); }
-.text-ivory { color: var(--ivory); }
-
-/* Smoother UX + consistent scroll anchoring */
-html {
-  scroll-behavior: smooth;
-  overscroll-behavior-y: none;
-}
-
-/* Keep keyboard-focused elements clear of the fixed mobile tab bar (h-16), shown below md on screens taller than 500px */
-@media (max-width: 767px) and (min-height: 501px) {
   html {
-    scroll-padding-bottom: 5rem;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
+  }
+
+  /* Keep keyboard-focused elements clear of the fixed mobile tab bar (h-16), shown below md on screens taller than 500px */
+  @media (max-width: 767px) and (min-height: 501px) {
+    html {
+      scroll-padding-bottom: 5rem;
+    }
+  }
+
+  section {
+    scroll-margin-top: 120px;
   }
 }
 
-section {
-  scroll-margin-top: 120px;
-}
-
-a, button {
-  transition: all 0.3s ease;
-}
-
-/* Fade-in utilities for staggered reveals - catalog-style entrance */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+@layer components {
+  /* Page container shared by the header, footer and every section, so everything shares one left edge */
+  .wrap {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  /* Eyebrow labels: style tags, column heads, form captions */
+  .eyebrow {
+    @apply text-eyebrow uppercase font-medium text-sienna-700;
+  }
+
+  /* One button system: 48px, hairline, colour-only hover */
+  .btn {
+    @apply inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded px-7 text-[15px] font-medium leading-none tracking-[0.01em] no-underline;
+  }
+
+  .btn-primary {
+    @apply bg-sienna-700 text-ivory-50 hover:bg-basalt;
+  }
+
+  .btn-secondary {
+    @apply border border-clay/50 text-basalt hover:border-basalt hover:bg-basalt hover:text-ivory-50;
+  }
+
+  /* On the basalt closing band */
+  .btn-inverse {
+    @apply bg-ivory-50 text-basalt hover:bg-ivory-200;
+  }
+
+  .btn-inverse-secondary {
+    @apply border border-ivory/40 text-ivory-50 hover:border-ivory-50 hover:bg-ivory-50 hover:text-basalt;
+  }
+
+  .btn-sm {
+    @apply h-10 px-5 text-[14px];
+  }
+
+  /* Text links inside copy and card footers */
+  .text-link {
+    @apply text-sienna-700 no-underline hover:text-basalt;
+  }
+
+  /* One card recipe: no pure white, no resting shadow */
+  .card {
+    @apply rounded border border-ecru bg-ivory-50 hover:border-nickel;
+    transition: border-color 0.2s ease;
+  }
+
+  /* Short brand rule under a page title */
+  .etched {
+    position: relative;
+  }
+
+  .etched::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    width: 56px;
+    height: 1px;
+    background: #9C8066;
+  }
+
+  /* Image hover: a slow, slight drift rather than a zoom */
+  .img-drift {
+    @apply transition-transform duration-[1200ms] ease-out group-hover:scale-[1.03];
   }
 }
 
-.animate-fade-in-up {
-  animation: fade-in-up 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-.animate-delay-100 {
-  animation-delay: 100ms;
-}
-
-.animate-delay-150 {
-  animation-delay: 150ms;
-}
-
-.animate-delay-200 {
-  animation-delay: 200ms;
-}
-
-.animate-delay-300 {
-  animation-delay: 300ms;
-}
-
-/* Ultra-slow background drift - Maison Motion.
-   Applied to the hero image inside its overflow-hidden frame; the 1.05 scale
+/* Ultra-slow background drift on the hero image inside its overflow-hidden frame; the 1.05 scale
    overhangs the frame by 2.5% per side, so the ±2% pan never exposes an edge at any frame height. */
 @keyframes pan-bg {
   0% {
@@ -210,9 +178,8 @@ a, button {
   }
 }
 
-/* Respect reduced motion: animations jump straight to their end state, so
-   entrance reveals (opacity-0 + animate-fade-in-up, fill-mode forwards) still
-   finish visible instead of staying hidden. */
+/* Respect reduced motion: animations jump straight to their end state (fill-mode both),
+   so entrance reveals finish visible instead of staying hidden. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

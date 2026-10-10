@@ -6,6 +6,7 @@ import Link from "next/link";
 import { DesktopMenu, MobileBottomNav } from "@/components/Navigation";
 import StructuredData from "@/components/StructuredData";
 import { shareImage } from "./share-image";
+import { showroom } from "@/data/company";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://101caststone.com'),
@@ -71,35 +72,46 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: 'cover',
 };
+
+const DIRECTIONS_URL =
+  "https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422";
+
+const FOOTER_PAGES = [
+  ["/collections", "Collections"],
+  ["/works", "Works"],
+  ["/process", "Process"],
+  ["/commissions", "Commissions"],
+  ["/about", "About"],
+  ["/faq", "FAQ"],
+  ["/technical-info", "Technical Information"],
+  ["/contact", "Contact"],
+];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${fontSans.variable} ${fontDisplay.variable}`}>
       <body className="bg-ivory text-basalt antialiased">
         <StructuredData />
-        {/* pb-16 clears the fixed mobile tab bar below the footer; short viewports hide the bar */}
-        <div className="min-h-dvh flex flex-col pb-16 md:pb-0 [@media(max-height:500px)]:pb-0">
-          <header className="sticky top-0 z-50 [@media(max-height:500px)]:static backdrop-blur-lg bg-[#f3eee6cc] border-b border-[#e8dfcf80] supports-[backdrop-filter]:bg-[#f3eee6bf] transition-colors">
-            <div className="mx-auto max-w-6xl h-20 px-8 md:pl-8 flex items-center justify-between">
-              <Link href="/" className="flex flex-col hover:opacity-80 transition-opacity no-underline">
-                <div className="relative h-10 w-[180px]">
+        <div className="min-h-dvh flex flex-col">
+          <header className="sticky top-0 z-50 [@media(max-height:500px)]:static border-b border-ecru/80 bg-ivory/90 backdrop-blur-lg supports-[backdrop-filter]:bg-ivory/80">
+            <div className="wrap flex h-16 items-center justify-between md:h-20">
+              <Link href="/" className="flex flex-col no-underline hover:opacity-80 transition-opacity">
+                <div className="relative h-[22px] w-[132px] md:h-[26px] md:w-[156px]">
                   <Image
-                    src="/images/logos/oneline.png"
+                    src="/images/logos/oneline-trim.png"
                     alt="101 Cast Stone"
                     fill
-                    sizes="180px"
+                    sizes="156px"
                     className="object-contain object-left"
                     priority
                   />
                 </div>
-                <span className="text-xs md:text-sm text-clay italic mt-1 whitespace-nowrap">Maison California · Est. 2001</span>
+                <span className="mt-1.5 whitespace-nowrap text-[11px] italic text-clay sm:text-[12px]">Maison California · Est. 2001</span>
               </Link>
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="hidden md:inline-flex px-5 py-2.5 text-[16px] rounded-lg border border-sienna-700 bg-sienna-700 text-ivory-50 hover:shadow-lg transition-all duration-500 no-underline whitespace-nowrap"
-                >
+              <div className="flex items-center gap-3">
+                <Link href="/contact" className="btn btn-primary btn-sm hidden md:inline-flex">
                   Begin a Conversation
                 </Link>
                 <DesktopMenu />
@@ -107,98 +119,84 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </header>
           <main className="flex-1">{children}</main>
-          <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
-            <div className="mx-auto max-w-6xl px-6 py-12">
-              {/* Main footer content */}
-              <div className="grid gap-10 md:grid-cols-3 mb-10">
-                {/* Logo & Tagline */}
-                <div className="text-center md:text-left">
-                  <div className="relative h-8 w-[140px] mx-auto md:mx-0 mb-3">
+          {/* The bottom padding clears the fixed mobile tab bar (h-16 plus the home indicator); short viewports hide the bar */}
+          <footer className="border-t border-ecru bg-ivory-50 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 [@media(max-height:500px)]:pb-0">
+            <div className="wrap py-14 md:py-16">
+              <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+                {/* Brand */}
+                <div>
+                  <div className="relative mb-3 h-[22px] w-[132px]">
                     <Image
-                      src="/images/logos/oneline.png"
+                      src="/images/logos/oneline-trim.png"
                       alt=""
                       fill
-                      sizes="140px"
-                      className="object-contain object-center md:object-left"
+                      sizes="132px"
+                      className="object-contain object-left"
                     />
                   </div>
-                  <p className="text-[14px] text-clay italic">Maison California · Est. 2001</p>
-                  <p className="text-[13px] text-clay mt-2">Proportion. Patina. Permanence.</p>
+                  <p className="text-caption italic text-clay">Maison California · Est. 2001</p>
+                  <p className="mt-2 text-caption text-clay">Proportion. Patina. Permanence.</p>
                 </div>
 
-                {/* Contact Info */}
-                <div className="text-center md:text-left">
-                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Contact</h2>
-                  <div className="space-y-1 text-[14px] text-clay">
-                    <p>
-                      <a href="tel:+18056109278" className="hover:text-basalt transition-colors">
+                {/* Contact */}
+                <div>
+                  <h2 className="eyebrow mb-4 font-sans">Contact</h2>
+                  <ul className="space-y-1.5 text-small text-basalt">
+                    <li>
+                      <a href="tel:+18056109278" className="no-underline hover:underline underline-offset-4">
                         (805) 610-9278
                       </a>
-                    </p>
-                    <p>
-                      <a href="mailto:info@101caststone.com" className="hover:text-basalt transition-colors">
+                    </li>
+                    <li>
+                      <a href="mailto:info@101caststone.com" className="no-underline hover:underline underline-offset-4">
                         info@101caststone.com
                       </a>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="text-center md:text-left">
-                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Showroom</h2>
-                  <div className="text-[14px] text-clay">
-                    <a
-                      href="https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block hover:text-basalt transition-colors"
-                    >
-                      1720 El Camino Real<br />
-                      Atascadero, CA 93422
-                    </a>
-                    <p className="text-clay mt-2 text-[13px]">Mon–Fri: 8am–5pm · Weekend appointments available</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Centered Shield Logo */}
-              <div className="flex justify-center mb-4 pt-6 border-t border-[#e8dfcf50]">
-                <div className="relative h-14 w-14 rounded-full bg-[#2E2B28] p-2 hover:bg-[#3a3632] transition-colors">
-                  <Image
-                    src="/images/logos/shield-nobg.png"
-                    alt=""
-                    fill
-                    sizes="56px"
-                    className="object-contain p-2"
-                  />
-                </div>
-              </div>
-
-              {/* Page links */}
-              <nav aria-label="Footer" className="mb-6">
-                <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-[14px]">
-                  {[
-                    ["/collections", "Collections"],
-                    ["/works", "Works"],
-                    ["/process", "Process"],
-                    ["/commissions", "Commissions"],
-                    ["/about", "About"],
-                    ["/faq", "FAQ"],
-                    ["/technical-info", "Technical Info"],
-                    ["/contact", "Contact"],
-                  ].map(([href, label]) => (
-                    <li key={href}>
-                      <Link href={href} className="text-clay hover:text-basalt transition-colors">
-                        {label}
-                      </Link>
                     </li>
-                  ))}
-                </ul>
-              </nav>
+                  </ul>
+                </div>
+
+                {/* Showroom: address and hours from src/data/company.ts */}
+                <div>
+                  <h2 className="eyebrow mb-4 font-sans">{showroom.name}</h2>
+                  <a
+                    href={DIRECTIONS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-small text-basalt no-underline hover:underline underline-offset-4"
+                  >
+                    {showroom.street}<br />
+                    {showroom.locality}
+                    <span className="sr-only"> (opens Google Maps in a new tab)</span>
+                  </a>
+                  <p className="mt-3 text-caption text-clay">
+                    <span className="block font-medium text-basalt">Factory Showroom Hours</span>
+                    {showroom.hours}
+                    <br />
+                    {showroom.weekend}
+                  </p>
+                </div>
+
+                {/* Pages */}
+                <nav aria-label="Footer">
+                  <h2 className="eyebrow mb-4 font-sans">Pages</h2>
+                  <ul className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-small md:grid-cols-1">
+                    {FOOTER_PAGES.map(([href, label]) => (
+                      <li key={href}>
+                        <Link href={href} className="text-basalt hover:text-sienna-700">
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
 
               {/* Copyright and licence (the licence number appears on every page of the original site) */}
-              <div className="text-center text-clay text-[13px]">
-                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved. · License #892542
+              <div className="mt-12 flex flex-col gap-4 border-t border-ecru pt-6 text-caption text-clay sm:flex-row sm:items-center sm:justify-between">
+                <p>© {new Date().getFullYear()} 101 Cast Stone. All rights reserved. · License #892542</p>
+                <div className="relative h-9 w-[39px] opacity-90" aria-hidden="true">
+                  <Image src="/images/logos/shield-trim.png" alt="" fill sizes="39px" className="object-contain" />
+                </div>
               </div>
             </div>
           </footer>

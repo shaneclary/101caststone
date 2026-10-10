@@ -41,7 +41,7 @@ export function DesktopMenu() {
   }, [isMenuOpen]);
 
   const itemClass =
-    "block px-6 py-3 text-clay hover:bg-clay/5 hover:text-basalt aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
+    "block px-6 py-3 text-small text-clay hover:bg-ecru/60 hover:text-basalt aria-[current=page]:text-basalt aria-[current=page]:font-medium no-underline";
   const close = () => setIsMenuOpen(false);
 
   return (
@@ -60,7 +60,7 @@ export function DesktopMenu() {
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-expanded={isMenuOpen}
         aria-controls={MENU_PANEL_ID}
-        className="px-6 py-2.5 text-[16px] text-clay border border-clay/30 rounded-lg hover:bg-clay/5 hover:border-clay/50 transition-all duration-500"
+        className="btn btn-secondary btn-sm"
       >
         Menu
       </button>
@@ -68,7 +68,7 @@ export function DesktopMenu() {
       {isMenuOpen && (
         <div
           id={MENU_PANEL_ID}
-          className="absolute right-0 top-full mt-2 w-72 max-w-[calc(100vw-4rem)] bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden"
+          className="absolute right-0 top-full z-50 mt-2 w-72 max-w-[calc(100vw-4rem)] overflow-hidden rounded border border-ecru bg-ivory-50 shadow-2xl animate-fade-in"
         >
           <nav aria-label="Site menu" className="py-2">
             <Link
@@ -82,7 +82,7 @@ export function DesktopMenu() {
             <Link href="/#workshop" className={itemClass} onClick={close}>
               The Workshop
             </Link>
-            <div className="my-2 border-t border-[#e8dfcf]" />
+            <div className="my-2 border-t border-ecru" />
             <Link
               href="/works"
               aria-current={isActive("/works") ? "page" : undefined}
@@ -123,11 +123,19 @@ export function DesktopMenu() {
             >
               FAQ
             </Link>
-            <div className="my-2 border-t border-[#e8dfcf]" />
+            <Link
+              href="/technical-info"
+              aria-current={isActive("/technical-info") ? "page" : undefined}
+              className={itemClass}
+              onClick={close}
+            >
+              Technical Information
+            </Link>
+            <div className="my-2 border-t border-ecru" />
             <Link
               href="/contact"
               aria-current={isActive("/contact") ? "page" : undefined}
-              className="block px-6 py-3 text-sienna-700 hover:bg-sienna/5 aria-[current=page]:text-basalt transition-colors no-underline font-medium"
+              className="block px-6 py-3 text-small font-medium text-sienna-700 hover:bg-ecru/60 hover:text-basalt aria-[current=page]:text-basalt no-underline"
               onClick={close}
             >
               Begin a Conversation
@@ -142,12 +150,12 @@ export function DesktopMenu() {
 export function MobileBottomNav() {
   const isActive = useIsActive();
   const tabClass =
-    "flex flex-col items-center gap-1 min-w-[44px] text-clay hover:text-basalt aria-[current=page]:text-basalt aria-[current=page]:font-medium transition-colors no-underline";
+    "flex min-w-[44px] flex-col items-center gap-1 text-clay no-underline hover:text-basalt aria-[current=page]:font-medium aria-[current=page]:text-basalt";
 
   return (
     <nav
       aria-label="Primary"
-      className="md:hidden [@media(max-height:500px)]:hidden fixed bottom-0 left-0 right-0 z-40 bg-ivory/95 border-t border-[#e8dfcf] backdrop-blur-lg shadow-[0_-2px_10px_rgba(0,0,0,0.05)]"
+      className="fixed bottom-0 left-0 right-0 z-40 border-t border-ecru bg-ivory/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg md:hidden [@media(max-height:500px)]:hidden"
     >
       <div className="flex justify-around items-center h-16 px-4">
         <Link
@@ -158,7 +166,7 @@ export function MobileBottomNav() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
-          <span className="text-xs">Collections</span>
+          <span className="text-[11px]">Collections</span>
         </Link>
 
         <Link
@@ -169,7 +177,7 @@ export function MobileBottomNav() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          <span className="text-xs">Works</span>
+          <span className="text-[11px]">Works</span>
         </Link>
 
         <Link
@@ -180,7 +188,7 @@ export function MobileBottomNav() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
-          <span className="text-xs">Process</span>
+          <span className="text-[11px]">Process</span>
         </Link>
 
         <Link
@@ -191,7 +199,7 @@ export function MobileBottomNav() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
           </svg>
-          <span className="text-xs">Commissions</span>
+          <span className="text-[11px]">Commissions</span>
         </Link>
 
         <Link
@@ -202,7 +210,7 @@ export function MobileBottomNav() {
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
-          <span className="text-xs">Contact</span>
+          <span className="text-[11px]">Contact</span>
         </Link>
       </div>
     </nav>

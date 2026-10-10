@@ -30,19 +30,37 @@ const config: Config = {
         sans: ["var(--font-sans)"],
         display: ["var(--font-display)"],
       },
+      // One typographic scale: display (page titles), title (section titles), heading
+      // (sub-sections), lead (intros), body, small, caption and eyebrow (labels).
+      fontSize: {
+        display: ["3.5rem", { lineHeight: "1.05", letterSpacing: "-0.015em" }],
+        title: ["2.5rem", { lineHeight: "1.12", letterSpacing: "-0.01em" }],
+        heading: ["1.5rem", { lineHeight: "1.25" }],
+        lead: ["1.1875rem", { lineHeight: "1.65" }],
+        body: ["1.0625rem", { lineHeight: "1.7" }],
+        small: ["0.9375rem", { lineHeight: "1.6" }],
+        caption: ["0.8125rem", { lineHeight: "1.5" }],
+        eyebrow: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.16em" }],
+      },
       letterSpacing: {
         wide2: ".06em",
         micro: ".01em"
       },
-      boxShadow: {
-        lintel: "0 1px 0 rgba(0,0,0,0.04), 0 10px 30px rgba(60,58,54,0.06)",
-        emboss: "inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.08)",
-      },
+      // One radius for images, cards, inputs and buttons; rounded-full stays for chips and icon buttons.
       borderRadius: {
-        lg2: "16px"
+        DEFAULT: "3px",
+      },
+      keyframes: {
+        "fade-in": { from: { opacity: "0" }, to: { opacity: "1" } },
+        // `translate` composes with the dialogs' -translate-x/y-1/2 centring (a transform).
+        rise: { from: { opacity: "0", translate: "0 12px" }, to: { opacity: "1", translate: "0 0" } },
+      },
+      animation: {
+        "fade-in": "fade-in .25s ease-out both",
+        rise: "rise .7s cubic-bezier(.2,.7,.2,1) both",
       },
       maxWidth: {
-        prose: "72ch"
+        prose: "68ch"
       }
     }
   },
