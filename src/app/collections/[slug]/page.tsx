@@ -62,13 +62,13 @@ export default function ProductPage({ params }: { params: Params }) {
           <nav aria-label="Breadcrumb" className="mb-8">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-clay">
               <li>
-                <Link href="/collections" className="text-clay hover:text-basalt transition-colors">
+                <Link href="/collections" className="text-sienna-700 hover:text-basalt transition-colors">
                   Collections
                 </Link>
               </li>
               <li className="flex items-center gap-2">
                 <span aria-hidden="true">›</span>
-                <Link href={collectionHref} className="text-clay hover:text-basalt transition-colors">
+                <Link href={collectionHref} className="text-sienna-700 hover:text-basalt transition-colors">
                   {collection.title}
                 </Link>
               </li>
@@ -118,7 +118,7 @@ export default function ProductPage({ params }: { params: Params }) {
 
               <div className="mt-10 flex flex-col items-start gap-5">
                 <Link
-                  href={`/contact?product=${encodeURIComponent(product.name)}`}
+                  href={`/contact?product=${encodeURIComponent(product.name)}#inquiry`}
                   className="block w-full sm:inline-block sm:w-auto text-center px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
                 >
                   Inquire About This Piece

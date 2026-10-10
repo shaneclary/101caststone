@@ -121,7 +121,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Royal Acanthus",
-        description: "Deeply carved foliage spirals from the corbel brackets, creating an interplay of light and shadow. A frieze of repeating leaves runs beneath the shelf.",
+        description: "Deep-relief foliage spirals from the corbel brackets, creating an interplay of light and shadow. A frieze of repeating leaves runs beneath the shelf.",
         style: "Old World",
         image: "/images/products/royal-acanthus/card.jpg",
         gallery: [

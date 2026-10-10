@@ -16,8 +16,9 @@ export default function TechnicalInfo() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-24">
       <SectionTitle>Technical Information</SectionTitle>
-      <p className="mt-3 font-display text-xl text-clay">Drawings, worksheets and brochures</p>
-      <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
+      {/* mt-8 clears the etched rule SectionTitle draws about 22px below the heading */}
+      <p className="mt-8 font-display text-xl text-clay">Drawings, worksheets and brochures</p>
+      <p className="mt-4 max-w-prose text-clay text-[18px] leading-[1.85]">
         Technical documents for consumers, architects and installers.
       </p>
 
@@ -31,7 +32,7 @@ export default function TechnicalInfo() {
             <li key={doc} className="flex items-center justify-between gap-6 border-b border-ecru py-3">
               <span className="text-[16px] text-basalt">{doc}</span>
               <Link
-                href={`/contact?product=${encodeURIComponent(doc)}`}
+                href={`/contact?product=${encodeURIComponent(doc)}#inquiry`}
                 className="shrink-0 inline-flex min-h-[44px] items-center text-[16px] font-medium text-sienna-700 hover:text-basalt transition-colors no-underline"
               >
                 Request<span className="sr-only"> the {doc}</span>&nbsp;<span aria-hidden="true">→</span>

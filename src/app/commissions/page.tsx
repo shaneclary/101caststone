@@ -104,7 +104,7 @@ export default function Commissions() {
                       View pieces<span className="sr-only"> of {category.title}</span> <span aria-hidden="true">→</span>
                     </Link>
                   )}
-                  <Link href={`/contact?product=${encodeURIComponent(category.title)}`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
+                  <Link href={`/contact?product=${encodeURIComponent(category.title)}#inquiry`} className="text-sienna-700 hover:text-basalt transition-colors no-underline">
                     Inquire<span className="sr-only"> about {category.title}</span> <span aria-hidden="true">→</span>
                   </Link>
                 </div>

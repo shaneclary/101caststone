@@ -285,7 +285,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
       </div>
 
       <div>
-        {renderLabel("product", "Piece of interest")}
+        {renderLabel("product", "Interested in")}
         <input type="text" autoComplete="off" {...control("product")} />
         {renderError("product")}
       </div>

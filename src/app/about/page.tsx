@@ -34,7 +34,7 @@ export default function About() {
             </p>
             <p>
               After moving to Atascadero, he saw the need for a high-end cast stone facility on the Central Coast and
-              started 101 Cast Stone. Today the studio has a staff of over 15 full- and part-time employees.
+              started 101 Cast Stone. Today the company has a staff of over 15 full- and part-time employees.
             </p>
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function About() {
       <section className="mt-20 grid gap-12 md:grid-cols-2" aria-label="Credentials and documents">
         <div>
           <h2 className="font-display text-2xl tracking-normal text-basalt mb-4">Licensed</h2>
-          <p className="text-[16px] text-clay leading-relaxed">California contractor license #892542.</p>
+          <p className="text-[16px] text-clay leading-relaxed">License #892542.</p>
         </div>
         <div>
           <h2 className="font-display text-2xl tracking-normal text-basalt mb-4">For architects and builders</h2>
@@ -111,7 +111,7 @@ export default function About() {
             <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
               See technical information
             </Link>
-            <Link href="/contact?product=Technical%20documents" className="text-sienna-700 hover:text-basalt transition-colors">
+            <Link href="/contact?product=Technical%20documents#inquiry" className="text-sienna-700 hover:text-basalt transition-colors">
               Request the documents
             </Link>
           </p>

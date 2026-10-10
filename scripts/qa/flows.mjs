@@ -27,13 +27,14 @@ const mobile = await browser.newContext({ viewport: { width: 390, height: 844 },
 
 // Redirects from the old live site.
 for (const [from, expected] of [
-  ["/heritage", "/collections#heritage"],
-  ["/tangled-arched", "/collections#tangled"],
-  ["/door-trims", "/collections#door-window-trims"],
+  ["/heritage", "/collections/heritage"],
+  ["/tangled-arched", "/collections/tangled"],
+  ["/door-trims", "/collections/door-window-trims"],
+  ["/daou", "/collections/contemporary-surround"],
   ["/fireplace-mantels-1", "/collections#mantels"],
   ["/gallery", "/works"],
   ["/design-manufacturing-process", "/process"],
-  ["/technical-info", "/faq"],
+  ["/about-us", "/about"],
 ]) {
   await check(`redirect ${from}`, async () => {
     const response = await fetch(baseUrl + from, { redirect: "manual" });
@@ -44,7 +45,7 @@ for (const [from, expected] of [
   });
 }
 
-for (const path of ["/icon.png", "/apple-icon.png", "/images/og/og-default.jpg", "/faq", "/sitemap.xml"]) {
+for (const path of ["/icon.png", "/apple-icon.png", "/images/og/og-default.jpg", "/faq", "/about", "/technical-info", "/collections/provence", "/sitemap.xml"]) {
   await check(`asset ${path} is served`, async () => {
     const response = await fetch(baseUrl + path);
     assert(response.status === 200, `status ${response.status}`);
@@ -100,7 +101,7 @@ await check("product inquiry carries the product into the form", async () => {
   await page.screenshot({ path: join(outDir, "modal-mobile.png") });
   await page.getByRole("link", { name: /Inquire About This Piece/i }).click();
   await page.waitForURL(/\/contact\?product=/);
-  const value = await page.getByLabel(/Piece of interest/i).inputValue();
+  const value = await page.getByLabel(/Interested in/i).inputValue();
   assert(value === "Royal Acanthus", `prefill ${value}`);
   await page.close();
 });
@@ -203,7 +204,7 @@ await check("home: featured tiles link to works; no dead buttons", async () => {
 await check("redirect /surrounds goes to window & door trims", async () => {
   const response = await fetch(baseUrl + "/surrounds", { redirect: "manual" });
   const location = response.headers.get("location") ?? "";
-  assert(location.endsWith("/collections#door-window-trims"), `location ${location}`);
+  assert(location.endsWith("/collections/door-window-trims"), `location ${location}`);
 });
 
 await check("API refuses non-JSON bodies (cross-site form posts)", async () => {
@@ -272,6 +273,30 @@ await check("product dialog shows a photo gallery", async () => {
   assert(thumbs >= 3, `thumbnails ${thumbs}`);
   await page.close();
   return `${thumbs} photos`;
+});
+
+await check("product page: gallery, specification and an inquiry link that carries the piece", async () => {
+  const page = await desktop.newPage();
+  await page.goto(baseUrl + "/collections/provence");
+  const h1 = await page.getByRole("heading", { level: 1 }).textContent();
+  assert(/Provence/.test(h1 ?? ""), `h1 ${h1}`);
+  const thumbs = await page.getByRole("button", { name: /^Show photo \d+ of/ }).count();
+  assert(thumbs >= 3, `thumbnails ${thumbs}`);
+  assert((await page.locator("dl dt").count()) >= 5, "specification rows missing");
+  const href = await page.getByRole("link", { name: /Inquire About This Piece/i }).getAttribute("href");
+  assert(href === "/contact?product=Provence#inquiry", `cta ${href}`);
+  const ld = await page.$$eval('script[type="application/ld+json"]', (s) => s.map((x) => JSON.parse(x.textContent)["@type"]));
+  assert(ld.includes("Product"), `json-ld ${ld}`);
+  await page.close();
+  return `${thumbs} photos`;
+});
+
+await check("technical information lists the three documents with request links", async () => {
+  const page = await desktop.newPage();
+  await page.goto(baseUrl + "/technical-info");
+  const requests = await page.locator('a[href*="/contact?product="]').count();
+  assert(requests >= 3, `request links ${requests}`);
+  await page.close();
 });
 
 await browser.close();

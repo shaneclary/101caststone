@@ -80,7 +80,7 @@ export default function ProductModal({ item, category, children, open, onOpenCha
               {/* CTA: pinned to the bottom of the scrolling dialog (the specification makes the column taller than the dialog at every width) */}
               <div className="sticky bottom-0 -mx-8 px-8 md:-mx-10 md:px-10 py-4 bg-ivory border-t border-ecru">
                 <Link
-                  href={`/contact?product=${encodeURIComponent(item.name)}`}
+                  href={`/contact?product=${encodeURIComponent(item.name)}#inquiry`}
                   className="block w-full text-center px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
                 >
                   Inquire About This Piece

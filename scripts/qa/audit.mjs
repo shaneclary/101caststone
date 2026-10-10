@@ -10,7 +10,7 @@ const baseUrl = process.argv[2] ?? "http://localhost:3000";
 const outDir = process.argv[3] ?? "./qa-out";
 mkdirSync(outDir, { recursive: true });
 
-const routes = ["/", "/collections", "/works", "/process", "/commissions", "/contact", "/faq", "/does-not-exist"];
+const routes = ["/", "/collections", "/collections/provence", "/works", "/process", "/commissions", "/about", "/technical-info", "/contact", "/faq", "/does-not-exist"];
 const viewports = {
   mobile: { width: 390, height: 844, isMobile: true, hasTouch: true },
   desktop: { width: 1440, height: 900 },

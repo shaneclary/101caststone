@@ -13,12 +13,11 @@ export const metadata: Metadata = {
     default: "101 Cast Stone — Maison California",
     template: "%s | 101 Cast Stone"
   },
-  description: "Architectural cast stone from California. Hand-crafted fireplace mantels, columns, balustrades, and custom stonework. Serving California since 2001.",
+  description: "Architectural cast stone from Atascadero, California: fireplace surrounds and mantels, columns, balustrades, architectural trim and stone masonry.",
   keywords: [
     'cast stone',
     'architectural elements',
     'columns',
-    'cornices',
     'mantels',
     'fireplaces',
     'balustrades',
@@ -199,7 +198,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Copyright and licence (the licence number appears on every page of the original site) */}
               <div className="text-center text-clay text-[13px]">
-                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved. · California contractor license #892542
+                © {new Date().getFullYear()} 101 Cast Stone. All rights reserved. · License #892542
               </div>
             </div>
           </footer>

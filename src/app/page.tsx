@@ -19,7 +19,7 @@ export default function Home() {
         <div className="relative h-full w-full overflow-hidden rounded-lg bg-ecru">
           <Image
             src={heroImg}
-            alt="Wine country estate with architectural cast stone elements"
+            alt="A couple with a glass of red wine beside a lit fireplace with a pale stone mantel set in a fieldstone chimney wall"
             fill
             placeholder="blur"
             className="object-cover object-[center_85%] portrait:object-[78%_85%] animate-pan-bg"
