@@ -4,7 +4,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import Link from "next/link";
 import PhotoGallery from "@/components/PhotoGallery";
-import { collections, type Product } from "@/data/products";
+import ProductSpec, { ProductOptions } from "@/components/ProductSpec";
+import { collections, slugify, type Product } from "@/data/products";
 
 interface ProductModalProps {
   item: Product;
@@ -16,6 +17,7 @@ interface ProductModalProps {
 }
 
 export default function ProductModal({ item, category, children, open, onOpenChange }: ProductModalProps) {
+  const isMantel = category === collections.mantels.title;
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
@@ -71,33 +73,12 @@ export default function ProductModal({ item, category, children, open, onOpenCha
                 {item.description}
               </Dialog.Description>
 
-              {/* Features */}
-              <div className="border-t border-ecru pt-6 mb-8">
-                <h3 className="font-sans text-[18px] leading-[1.85] font-medium text-basalt mb-4">Available Options</h3>
-                <ul className="space-y-2 text-[15px] text-clay">
-                  {/* Wording from the live site's products, colors and FAQ pages */}
-                  {[
-                    "Standard and custom styles and dimensions",
-                    "Seven standard colors and three texture finishes: Classic, Old World, Rustic",
-                    "Custom colors and finishes on request",
-                    ...(category === collections.mantels.title
-                      ? [
-                          "Non-combustible: can be used directly next to the firebox opening",
-                          "Quoted with installation by our team",
-                        ]
-                      : []),
-                    "Packed by hand and cast in Atascadero, California",
-                  ].map((option) => (
-                    <li key={option} className="flex items-start gap-2">
-                      <span aria-hidden="true" className="text-sienna-700 mt-1">•</span>
-                      <span>{option}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ProductOptions isMantel={isMantel} headingLevel={3} className="mb-8" />
 
-              {/* CTA: pinned to the bottom of the scrolling dialog on phones */}
-              <div className="sticky bottom-0 -mx-8 px-8 py-4 bg-ivory border-t border-ecru md:static md:mx-0 md:px-0 md:py-0 md:border-0">
+              <ProductSpec isMantel={isMantel} headingLevel={3} layout="stacked" className="border-t border-ecru pt-6 mb-8" />
+
+              {/* CTA: pinned to the bottom of the scrolling dialog (the specification makes the column taller than the dialog at every width) */}
+              <div className="sticky bottom-0 -mx-8 px-8 md:-mx-10 md:px-10 py-4 bg-ivory border-t border-ecru">
                 <Link
                   href={`/contact?product=${encodeURIComponent(item.name)}`}
                   className="block w-full text-center px-8 py-4 rounded-lg bg-sienna-700 text-ivory-50 font-medium no-underline hover:shadow-lg transition-all duration-500"
@@ -108,6 +89,12 @@ export default function ProductModal({ item, category, children, open, onOpenCha
 
               <p className="text-[13px] text-clay text-center mt-4">
                 We typically respond within 1–2 business days.
+              </p>
+
+              <p className="text-center mt-3">
+                <Link href={`/collections/${slugify(item.name)}`} className="text-[15px] text-sienna-700 hover:text-basalt transition-colors">
+                  View full page<span className="sr-only"> for {item.name}</span>&nbsp;<span aria-hidden="true">→</span>
+                </Link>
               </p>
             </div>
           </div>

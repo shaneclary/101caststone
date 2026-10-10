@@ -70,50 +70,23 @@ export default function Collections() {
               <p className="text-lg text-clay max-w-3xl leading-relaxed">{collection.description}</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {collection.items.map((item) => {
-                const slug = slugify(item.name);
-                // The trigger's ::after stretches over the card, so a tap anywhere opens the piece
-                return (
-                  <div
-                    key={item.name}
-                    id={slug}
-                    className="group relative overflow-hidden rounded-lg bg-white border border-[#e8dfcf] hover:shadow-xl transition-all duration-500 cursor-pointer has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sienna/40 scroll-mt-28 md:scroll-mt-40 target:ring-2 target:ring-sienna/40"
-                  >
-                    {/* Product Image */}
-                    <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-clay/5 to-sienna/5">
-                      <Image
-                        src={item.image}
-                        alt={`${item.name} – ${collection.title}, cast stone`}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                      />
-                    </div>
-
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-display text-xl text-clay">{item.name}</h3>
-                        <span className="text-xs text-sienna-700 bg-sienna/10 px-2 py-1 rounded">
-                          {item.style}
-                        </span>
-                      </div>
-                      <p className="text-sm text-clay leading-relaxed">{item.description}</p>
-                      <ProductModal
-                        item={item}
-                        category={collection.title}
-                        open={openSlug === slug}
-                        onOpenChange={(open) => (open ? openItem(slug) : closeItem())}
-                      >
-                        <button className="mt-4 inline-flex min-h-[44px] items-center text-sienna-700 text-sm hover:text-basalt transition-colors after:absolute after:inset-0">
-                          View Details<span className="sr-only"> – {item.name}</span>&nbsp;<span aria-hidden="true">→</span>
-                        </button>
-                      </ProductModal>
+            {/* Mantels follow the original site's grouping under style sub-headings, so their card names step down to h4 */}
+            {key === "mantels" ? (
+              <div className="space-y-14">
+                {groupByStyle(collection.items).map((group) => (
+                  <div key={group.style}>
+                    <h3 className="font-display text-2xl tracking-normal text-basalt mb-6">{group.style}</h3>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {group.items.map((item) => renderCard(item, collection.title, "h4"))}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {collection.items.map((item) => renderCard(item, collection.title, "h3"))}
+              </div>
+            )}
           </div>
         </section>
       ))}

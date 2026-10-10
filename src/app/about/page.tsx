@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
+import { customers, services, showroom, technicalDocuments } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "About the Studio",
@@ -10,41 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-// All copy below restates the original 101 Cast Stone site (About, Home and Products pages).
-const customers = [
-  "American Premier Homes",
-  "Daou Winery",
-  "Midland Pacific Builders",
-  "Barefoot Pools",
-  "Embers Fireplaces & Grills",
-  "Nostalgic's Inc",
-  "City of Atascadero",
-  "Fordens",
-  "Paso Robles Community Church",
-  "City of Paso Robles",
-  "Gary Kramer Guitar Cellars",
-  "Shea Homes",
-  "Coastal Community Builders",
-  "Halsell Builders",
-  "Stalwork Construction",
-];
-
-const services = [
-  {
-    title: "Architectural cast stone",
-    text: "Custom cast stone that serves as architectural features, trim, ornamentation and facing for buildings, in standard and custom styles and dimensions.",
-  },
-  {
-    title: "Fireplace surrounds and mantels",
-    text: "A full line of fireplace surrounds and mantels in a wide variety of styles, quoted with installation by our team.",
-  },
-  {
-    title: "Stone masonry",
-    text: "Natural stone and stone veneer, for the interior or exterior of your home.",
-  },
-];
-
-const technicalDocuments = ["Fireplace Surround Worksheet", "Cast Stone Product Installation sheet", "Cast Stone Fireplace Installation sheet"];
+// All copy below restates the original 101 Cast Stone site (About, Home and Products pages); the shared
+// facts (customers, services, technical documents, showroom) live in src/data/company.ts.
 
 export default function About() {
   return (
@@ -90,8 +58,19 @@ export default function About() {
         </h2>
         <ul className="grid gap-6 md:grid-cols-3">
           {services.map((service) => (
-            <li key={service.title} className="rounded-lg border border-[#e8dfcf] bg-white p-8">
-              <h3 className="font-display text-xl text-basalt mb-3">{service.title}</h3>
+            <li
+              key={service.title}
+              className="relative rounded-lg border border-[#e8dfcf] bg-white p-8 hover:shadow-lg transition-shadow duration-500 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sienna/40"
+            >
+              <h3 className="font-display text-xl text-basalt mb-3">
+                {/* The title link covers the whole card (after:inset-0) */}
+                <Link
+                  href={service.href}
+                  className="text-basalt no-underline hover:text-sienna-700 transition-colors after:absolute after:inset-0"
+                >
+                  {service.title} <span aria-hidden="true" className="text-sienna-700">→</span>
+                </Link>
+              </h3>
               <p className="text-[15px] text-clay leading-relaxed">{service.text}</p>
             </li>
           ))}
@@ -128,7 +107,10 @@ export default function About() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-[16px] text-clay">
+          <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-[16px] text-clay">
+            <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
+              See technical information
+            </Link>
             <Link href="/contact?product=Technical%20documents" className="text-sienna-700 hover:text-basalt transition-colors">
               Request the documents
             </Link>
@@ -139,7 +121,7 @@ export default function About() {
       <div className="mt-20 rounded-lg2 bg-[#f5efe4] border border-[#e3d9c8] p-10 md:p-12 shadow-lintel text-center">
         <h2 className="font-display text-3xl tracking-normal text-basalt mb-4">Visit the Atascadero showroom</h2>
         <p className="text-clay text-[17px] leading-relaxed">
-          1720 El Camino Real, Atascadero, CA 93422 · Monday–Friday, 8am to 5pm · Weekend appointments available
+          {showroom.street}, {showroom.locality} · {showroom.hours} · {showroom.weekend}
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/contact" className="px-8 py-4 bg-sienna-700 text-ivory-50 rounded-lg hover:shadow-lg transition-all duration-500 font-medium no-underline">

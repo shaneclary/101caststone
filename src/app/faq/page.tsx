@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
+import { mantelLeadTime } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
-    "Ordering, measuring, installation, sealing and care for 101 Cast Stone mantels and architectural cast stone.",
+    "Ordering, measuring, lead time, installation, materials, sealing and care for 101 Cast Stone mantels and architectural cast stone.",
   alternates: { canonical: "/faq" },
 };
 
@@ -16,8 +17,9 @@ type Faq = {
   link?: { text: string; href: string };
 };
 
-// Answers restate the owner's FAQ from the previous site. Lead time, demolition, the "made of" comparison
-// and the color count are left out until the owner reconciles them with the current copy.
+// Answers restate the owner's FAQ from the previous site. Demolition (no answer on the old page), the
+// "in use for over 70 years" and price comparison in "made of", and the color count are left out until
+// the owner reconciles them with the current copy.
 const faqs: Faq[] = [
   {
     q: "How do I order a fireplace mantel?",
@@ -27,6 +29,11 @@ const faqs: Faq[] = [
   {
     q: "How do I measure my fireplace?",
     a: "If you are local to our area of California, our sales staff will schedule an appointment to visit your residence or jobsite to verify the measurements. If you are out of the area, ask us for our Fireplace Surround Worksheet; once you have taken the measurements, our sales staff will review the worksheet with you to confirm accuracy.",
+    link: { text: "Fireplace Surround Worksheet", href: "/technical-info" },
+  },
+  {
+    q: "What is the lead time for my mantel?",
+    a: mantelLeadTime,
   },
   {
     q: "Who installs the fireplace products?",
@@ -47,6 +54,10 @@ const faqs: Faq[] = [
   {
     q: "How do I clean my cast stone?",
     a: "With lukewarm water and a clean white cloth.",
+  },
+  {
+    q: "What is the fireplace mantel made of?",
+    a: "Everything we make is made of modern-day cast stone. The mix includes Portland cement, crushed quartz, color pigment, fiberglass reinforcing materials and polymer. The result is stronger than, and similar in appearance to, natural stone, and it is non-combustible, so it can be used directly next to the firebox opening.",
   },
   {
     q: "Can cast stone be used next to the firebox?",
@@ -105,6 +116,13 @@ export default function FaqPage() {
       <SectionTitle>Frequently Asked Questions</SectionTitle>
       <p className="mt-6 max-w-prose text-clay text-[18px] leading-[1.85]">
         Here are the answers to common questions that we receive about our cast stone products.
+      </p>
+      <p className="mt-4 max-w-prose text-[16px] text-clay">
+        Technical documents for consumers, architects and installers are on our{" "}
+        <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
+          technical information
+        </Link>{" "}
+        page.
       </p>
 
       <div className="mt-12 max-w-3xl border-t border-ecru">

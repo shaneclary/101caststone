@@ -2,12 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
+import { mantelLeadTime, specification } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "Our Process: Dialogue, Mould, Cast, Finish",
-  description: "How each piece is made: consultation and site assessment, custom moulds engineered before the pour, casting, and hand finishing.",
+  description:
+    "How each piece is made: our sales and design professionals work with you on the design, moulds are made in our custom mould shop, the cast stone is packed by hand, and every piece is checked by Quality Control.",
   alternates: { canonical: "/process" },
 };
+
+const specValue = (label: string) => specification.find((row) => row.label === label)?.value ?? "";
+const material = specValue("Material");
+const colors = specValue("Colors and textures");
 
 export default function Process() {
   return (
@@ -18,27 +24,37 @@ export default function Process() {
           Dialogue → Mould → Cast → Finish. Our process balances classical geometry with modern tolerances.
         </p>
 
+        {/* Materials and lead time: the specification and FAQ wording in src/data/company.ts */}
         <div className="mt-16 grid gap-12 md:grid-cols-2">
-          <div className="opacity-0 animate-fade-in-up">
+          <div>
             <h2 className="font-display text-2xl tracking-normal text-basalt mb-6">Materials</h2>
-            <ul className="space-y-4 text-clay text-[16px] list-none">
-              <li>Materials sourced for permanence and patina.</li>
-              <li>Mockups and moulds engineered before pour.</li>
-              <li>Hand finishing for edges that whisper, not shout.</li>
-              <li>Each piece designed for a specific architectural context.</li>
+            <ul className="space-y-4 text-clay text-[16px] leading-relaxed list-none max-w-prose">
+              <li>{material}</li>
+              <li>
+                {colors}{" "}
+                <Link href="/collections#finishes" className="text-sienna-700 hover:text-basalt transition-colors">
+                  View the standard colors and finishes
+                </Link>
+                .
+              </li>
             </ul>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up animate-delay-200">
-            <h2 className="font-display text-2xl tracking-normal text-basalt mb-6">Timeline</h2>
-            <ul className="space-y-4 text-clay text-[16px] list-none">
-              <li>Initial consultation and site assessment</li>
-              <li>Custom mould creation: 2-4 weeks</li>
-              <li>Casting and curing: 3-6 weeks</li>
-              <li>Hand finishing and detailing: 1-2 weeks</li>
+          <div>
+            <h2 className="font-display text-2xl tracking-normal text-basalt mb-6">Lead time</h2>
+            <ul className="space-y-4 text-clay text-[16px] leading-relaxed list-none max-w-prose">
+              <li>{mantelLeadTime}</li>
+              <li>Once your order is finished being made, we will schedule with you to deliver and install the items.</li>
             </ul>
           </div>
         </div>
+        <p className="mt-8 text-[16px] text-clay">
+          Architects and installers:{" "}
+          <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
+            see the technical information
+          </Link>
+          .
+        </p>
 
         {/* What to Expect — the manufacturing steps from the original 101 Cast Stone site */}
         <div className="mt-20">

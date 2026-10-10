@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
+import { whyCastStone } from "@/data/company";
 
 export const metadata: Metadata = {
   title: "Custom Cast Stone Commissions",
-  description: "Custom mantels and fireplaces, columns and capitals, architectural details, outdoor and garden pieces, kitchen hoods and functional elements. Each commission begins as dialogue.",
+  description: "Custom mantels and fireplaces, columns and capitals, architectural details, outdoor and garden pieces, kitchen hoods, functional elements and stone masonry. Each commission begins as dialogue.",
   alternates: { canonical: "/commissions" },
 };
 
@@ -13,7 +14,7 @@ const commissionCategories = [
   {
     title: "Mantels & Fireplaces",
     description: "A full line of cast stone fireplace surrounds and mantels, from Contemporary to Old World: Contemporary Surround, Genoa, Heritage, Milagro, Pacifica, Provence, Santa Barbara, Royal Acanthus, Cambridge, Chateau and Tangled. Or a custom configuration of current designs, or something entirely new.",
-    features: ["Standard and custom dimensions", "Seven stone colors available", "Three texture finishes", "2-4 week design phase"],
+    features: ["Standard and custom dimensions", "Seven stone colors available", "Three texture finishes", "Quoted with installation by our team"],
     anchor: "mantels",
     delay: "animate-delay-100"
   },
@@ -55,6 +56,7 @@ const commissionCategories = [
   {
     // From the original site: "We also specialize in Stone Masonry ... natural stone or stone veneer"
     title: "Stone Masonry",
+    id: "stone-masonry",
     description: "Natural stone and stone veneer to bring the look and feel of stone to the interior or exterior of your home.",
     features: ["Natural stone", "Stone veneer", "Interior and exterior"],
     delay: "animate-delay-600"
@@ -71,8 +73,7 @@ export default function Commissions() {
           <p className="mt-6 max-w-3xl text-clay text-lg leading-relaxed">
             Each commission begins as dialogue. We listen to your vision, your space, your story.
             From concept to installation, we work alongside architects, designers, and homeowners
-            to create pieces that endure for generations. Materials sourced for permanence and patina.
-            Mockups and moulds engineered before pour. Hand finishing for edges that whisper, not shout.
+            to create pieces that endure for generations.
           </p>
         </div>
       </section>
@@ -84,7 +85,8 @@ export default function Commissions() {
             {commissionCategories.map((category) => (
               <div
                 key={category.title}
-                className={`flex flex-col rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl transition-shadow duration-500 opacity-0 animate-fade-in-up ${category.delay}`}
+                id={category.id}
+                className={`flex flex-col scroll-mt-28 md:scroll-mt-40 target:ring-2 target:ring-sienna/40 rounded-lg border border-[#e8dfcf] bg-white p-8 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-xl transition-shadow duration-500 opacity-0 animate-fade-in-up ${category.delay}`}
               >
                 <h2 className="font-display text-2xl tracking-normal mb-4 text-clay">{category.title}</h2>
                 <p className="text-clay text-sm leading-relaxed mb-6">{category.description}</p>
@@ -112,16 +114,33 @@ export default function Commissions() {
         </div>
       </section>
 
+      {/* Why cast stone: the original Home and Products pages, via src/data/company.ts */}
+      <section className="pb-16" aria-labelledby="why-cast-stone-heading">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 id="why-cast-stone-heading" className="font-display text-2xl tracking-normal text-basalt mb-8">
+            Why cast stone
+          </h2>
+          <ul className="grid gap-8 md:grid-cols-3">
+            {whyCastStone.map((reason) => (
+              <li key={reason} className="border-t border-ecru pt-4 text-[16px] text-clay leading-relaxed">
+                {reason}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Process Overview */}
       <section className="py-16 bg-[#f5efe4]">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="font-display text-3xl text-clay mb-12 text-center">The Commission Process</h2>
           <div className="grid md:grid-cols-4 gap-8">
             {[
-              { step: "01", title: "Dialogue", desc: "We listen first. Understanding the architecture, the setting, the vision that drives the project." },
-              { step: "02", title: "Mould", desc: "Custom moulds engineered for precision. Whether matching existing profiles or creating new vocabularies." },
-              { step: "03", title: "Cast", desc: "Mineral aggregates, careful formulation. The pour fills the mould; the cure develops strength." },
-              { step: "04", title: "Finish", desc: "Hand-tooled edges. Applied patinas where appropriate. The surface refined until it whispers. Quality control before every piece leaves the workshop." }
+              // Descriptions restate the original site's Design & Manufacturing Process page.
+              { step: "01", title: "Dialogue", desc: "Our sales and design professionals work with you to determine the project requirements and the items you are looking for." },
+              { step: "02", title: "Mould", desc: "Any moulds that need to be created or modified are made in our custom mould shop." },
+              { step: "03", title: "Cast", desc: "The cast stone is mixed in the color you specify and packed by hand into the mould, followed by fiberglass reinforcement." },
+              { step: "04", title: "Finish", desc: "After curing, each piece is checked by Quality Control before delivery and installation are scheduled with you." }
             ].map((phase) => (
               <div key={phase.step} className="text-center">
                 <div className="text-4xl font-display text-sienna mb-2">{phase.step}</div>

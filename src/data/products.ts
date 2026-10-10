@@ -404,4 +404,41 @@ export const textureFinishes = [
 ];
 
 export const slugify = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-export const productSlugs = new Set(Object.values(collections).flatMap((c) => c.items.map((item) => slugify(item.name))));
+
+/** A product with its URL slug and the collection it belongs to. */
+export interface ProductEntry {
+  slug: string;
+  product: Product;
+  collectionKey: CollectionKey;
+  collection: Collection;
+}
+
+/** Every product in catalogue order; the slug is the product page path (/collections/<slug>) and the dialog hash. */
+export const productEntries: ProductEntry[] = (Object.entries(collections) as [CollectionKey, Collection][]).flatMap(
+  ([collectionKey, collection]) =>
+    collection.items.map((product) => ({ slug: slugify(product.name), product, collectionKey, collection }))
+);
+
+export const productSlugs = new Set(productEntries.map((entry) => entry.slug));
+
+export const getProductEntry = (slug: string) => productEntries.find((entry) => entry.slug === slug);
+
+/** Groups items by their style field, in the order each style first appears (mantels: Contemporary, Traditional, Old World). */
+export function groupByStyle(items: Product[]): { style: string; items: Product[] }[] {
+  const groups = new Map<string, Product[]>();
+  for (const item of items) groups.set(item.style, [...(groups.get(item.style) ?? []), item]);
+  return Array.from(groups, ([style, grouped]) => ({ style, items: grouped }));
+}
+
+/**
+ * Up to `limit` other pieces from the same collection: same-style pieces first, then the
+ * pieces that follow in catalogue order (wrapping), so every piece is linked from its neighbours.
+ */
+export function relatedProducts(entry: ProductEntry, limit = 4): ProductEntry[] {
+  const siblings = productEntries.filter((other) => other.collectionKey === entry.collectionKey);
+  const start = siblings.findIndex((other) => other.slug === entry.slug);
+  const following = [...siblings.slice(start + 1), ...siblings.slice(0, start)];
+  const sameStyle = following.filter((other) => other.product.style === entry.product.style);
+  const rest = following.filter((other) => other.product.style !== entry.product.style);
+  return [...sameStyle, ...rest].slice(0, limit);
+}
