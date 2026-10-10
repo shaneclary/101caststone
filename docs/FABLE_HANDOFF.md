@@ -105,6 +105,22 @@ contact form. Card photos: some products have a more styled photo in their galle
 than on their card (for example Cambridge `03.jpg`); choose the strongest card photo
 per product in `products.ts` (keep the photo inside the product's own folder).
 
+Open items from the last implementation round that need your judgment:
+
+- `/collections` cards open the dialog through a button, so the catalogue has no
+  crawlable link to the product pages (they are reachable from the sitemap, redirects
+  and the "More …" cards). Decide whether each card should also link visibly to
+  `/collections/<slug>` (for example the product name) without muddying the click target.
+- "Available Options" and "Specification" overlap (dimensions, colors and finishes,
+  non-combustible, installation) in the dialog and on product pages; consider trimming
+  Available Options to what is specific to the piece.
+- `/process` repeats the delivery sentence in "Lead time" and in "What to Expect" step 6.
+- The FAQ's "made of" answer and "Can cast stone be used next to the firebox?" both make
+  the non-combustible point.
+- The footer hours line is typed by hand rather than read from `showroom` in company.ts,
+  and has no "Factory Showroom Hours" label.
+- Commissions cards use `animate-delay-400/500/600`, which globals.css does not define.
+
 ### 3. Brand voice (every string)
 
 "Proportion. Patina. Permanence." Quiet luxury: short declarative sentences,
