@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 import InquiryForm from "@/components/InquiryForm";
+import { showroom } from "@/data/company";
 
 export const metadata: Metadata = {
-  title: "Contact & Visit Our Atascadero Studio",
+  title: "Contact & Visit Our Atascadero Showroom",
   description:
-    "Send a project inquiry or visit our studio at 1720 El Camino Real, Atascadero, CA 93422. Email info@101caststone.com. Open Mon–Fri 8am–5pm.",
+    "Send a project inquiry or visit our showroom at 1720 El Camino Real, Atascadero, CA 93422. Email info@101caststone.com. Open Mon–Fri 8am–5pm.",
   alternates: { canonical: "/contact" },
 };
 
@@ -33,15 +34,15 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
 
           <div className="space-y-6 text-clay">
             <div>
-              <div className="font-medium text-basalt mb-1">Studio Location</div>
+              <div className="font-medium text-basalt mb-1">{showroom.name}</div>
               <a
                 href={DIRECTIONS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[16px] leading-relaxed hover:text-basalt transition-colors"
               >
-                1720 El Camino Real<br />
-                Atascadero, CA 93422
+                {showroom.street}<br />
+                {showroom.locality}
                 <span className="block mt-1 text-[14px] text-sienna-700">
                   Get directions →<span className="sr-only"> (opens Google Maps in a new tab)</span>
                 </span>
@@ -69,24 +70,24 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
             </div>
 
             <div className="pt-4 border-t border-ecru">
-              <div className="font-medium text-basalt mb-1">Hours</div>
+              <div className="font-medium text-basalt mb-1">Factory Showroom Hours</div>
               <p className="text-[16px] leading-relaxed">
-                Monday – Friday: 8am – 5pm<br />
-                Weekend appointments available
+                {showroom.hours}<br />
+                {showroom.weekend}
               </p>
             </div>
 
             <div className="pt-4 border-t border-ecru">
               <p className="text-[15px] text-clay italic leading-relaxed">
-                Serving California and nationwide since 2001. We welcome visits to our Atascadero studio
-                to view samples and discuss your project in person.
+                We welcome visits to our Atascadero showroom to discuss your project in person.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Project Inquiry: rendered visible from the start, since it is the page's main action */}
-        <div>
+        {/* Project Inquiry: rendered visible from the start, since it is the page's main action.
+            Arriving from a piece ("Inquire About This Piece"), phones see the form before the contact details. */}
+        <div id="inquiry" className={product ? "scroll-mt-28 order-first md:order-none" : "scroll-mt-28"}>
           <div className="rounded-lg border border-[#e3d9c8] bg-[#f7f3ed] p-6 sm:p-8 md:p-10 shadow-lintel">
             <h2 className="font-display text-2xl tracking-normal mb-4 text-basalt">Project Inquiry</h2>
             <p className="text-[16px] text-clay mb-6 leading-[1.7]">
@@ -110,6 +111,12 @@ export default function Contact({ searchParams }: { searchParams: { product?: st
               Read our FAQ
             </Link>
             .
+          </p>
+          <p className="mt-2 text-[16px] text-clay leading-relaxed">
+            Architects and builders:{" "}
+            <Link href="/technical-info" className="text-sienna-700 hover:text-basalt transition-colors">
+              technical information
+            </Link>
           </p>
         </div>
       </div>

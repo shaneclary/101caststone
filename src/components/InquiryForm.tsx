@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import {
+  INSTALLATION_OPTIONS,
   PROJECT_TYPE_OPTIONS,
   ROLE_OPTIONS,
   TIMELINE_OPTIONS,
@@ -17,7 +18,18 @@ type FormValues = Inquiry & { website: string };
 type Status = "editing" | "sending" | "sent" | "fallback";
 
 // Order of the fields on the page; the first invalid one receives focus.
-const FIELD_ORDER: InquiryField[] = ["name", "email", "phone", "role", "projectType", "product", "location", "timeline", "message"];
+const FIELD_ORDER: InquiryField[] = [
+  "name",
+  "email",
+  "phone",
+  "role",
+  "projectType",
+  "product",
+  "location",
+  "timeline",
+  "installation",
+  "message",
+];
 
 const PHONE_HREF = "tel:+18056109278";
 const PHONE_DISPLAY = "(805) 610-9278";
@@ -53,6 +65,7 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
     product: initialProduct ?? "",
     location: "",
     timeline: "",
+    installation: "",
     message: "",
     website: "",
   });
@@ -292,6 +305,21 @@ export default function InquiryForm({ initialProduct }: { initialProduct?: strin
           ))}
         </select>
         {renderError("timeline")}
+      </div>
+
+      <div>
+        {renderLabel("installation", "Installation")}
+        {/* Restates the Installation row of the specification in src/data/company.ts. */}
+        <p id="inquiry-installation-help" className={HELP}>
+          Fireplace products are quoted with installation by our team.
+        </p>
+        <select {...control("installation", "inquiry-installation-help", SELECT)}>
+          <option value="">Select…</option>
+          {INSTALLATION_OPTIONS.map((option) => (
+            <option key={option}>{option}</option>
+          ))}
+        </select>
+        {renderError("installation")}
       </div>
 
       <div>

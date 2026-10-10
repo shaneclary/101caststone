@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import heroImg from "../../public/images/hero/winecountry.jpg";
+import { services } from "@/data/company";
+
+const PILLAR_DELAYS = ["animate-delay-100", "animate-delay-200", "animate-delay-300"];
 
 export const metadata: Metadata = {
   title: { absolute: "101 Cast Stone | Cast Stone Mantels & Architectural Elements" },
@@ -97,20 +100,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THREE PILLARS */}
+      {/* THREE PILLARS — the three services named on the original site */}
       <section className="mx-auto max-w-6xl px-6 py-14 grid gap-6 md:grid-cols-3">
-        {[
-          { t: "Mantels & Fireplaces", d: "Proportioned to room, light, and life.", delay: "animate-delay-100" },
-          { t: "Columns & Lintels", d: "Classical geometry, contemporary tolerances.", delay: "animate-delay-200" },
-          { t: "Garden & Water", d: "Weathered grace for courtyards and fountains.", delay: "animate-delay-300" },
-        ].map((x) => (
-          <div
-            key={x.t}
-            className={`rounded-lg2 border border-[#e8dfcf90] bg-[#f7f3ed] p-10 shadow-[0_10px_30px_rgba(60,58,54,0.06)] opacity-0 animate-fade-in-up ${x.delay}`}
+        {services.map((service, i) => (
+          <Link
+            key={service.title}
+            href={service.href}
+            className={`block no-underline rounded-lg2 border border-[#e8dfcf90] bg-[#f7f3ed] p-10 shadow-[0_10px_30px_rgba(60,58,54,0.06)] hover:shadow-lg opacity-0 animate-fade-in-up ${PILLAR_DELAYS[i] ?? ""}`}
           >
-            <div className="font-display text-2xl">{x.t}</div>
-            <p className="mt-3 text-[16px] text-clay">{x.d}</p>
-          </div>
+            <div className="font-display text-2xl">{service.title}</div>
+            <p className="mt-3 text-[16px] text-clay">{service.text}</p>
+          </Link>
         ))}
       </section>
 

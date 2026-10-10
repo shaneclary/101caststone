@@ -146,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
                 {/* Location */}
                 <div className="text-center md:text-left">
-                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Studio</h2>
+                  <h2 className="font-sans font-medium text-basalt text-[14px] leading-[1.85] tracking-normal mb-3">Showroom</h2>
                   <div className="text-[14px] text-clay">
                     <a
                       href="https://www.google.com/maps/search/?api=1&query=1720+El+Camino+Real%2C+Atascadero%2C+CA+93422"
@@ -185,6 +185,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     ["/commissions", "Commissions"],
                     ["/about", "About"],
                     ["/faq", "FAQ"],
+                    ["/technical-info", "Technical Info"],
                     ["/contact", "Contact"],
                   ].map(([href, label]) => (
                     <li key={href}>

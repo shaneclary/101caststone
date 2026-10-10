@@ -11,11 +11,14 @@ export const PROJECT_TYPE_OPTIONS = [
   "Outdoor & garden",
   "Kitchen hood",
   "Functional elements",
+  "Stone masonry",
   "Custom piece",
   "Not sure yet",
 ] as const;
 
 export const TIMELINE_OPTIONS = ["Within 3 months", "3–6 months", "6–12 months", "Just planning"] as const;
+
+export const INSTALLATION_OPTIONS = ["Installation by your team", "Installed by others", "Not sure yet"] as const;
 
 export type InquiryField =
   | "name"
@@ -26,6 +29,7 @@ export type InquiryField =
   | "product"
   | "location"
   | "timeline"
+  | "installation"
   | "message";
 
 export type Inquiry = Record<InquiryField, string>;
@@ -45,15 +49,27 @@ const MAX_LENGTH: Record<InquiryField, number> = {
   product: 120,
   location: 120,
   timeline: 60,
+  installation: 60,
   message: 5000,
 };
 
-const SINGLE_LINE_FIELDS: InquiryField[] = ["name", "email", "phone", "role", "projectType", "product", "location", "timeline"];
+const SINGLE_LINE_FIELDS: InquiryField[] = [
+  "name",
+  "email",
+  "phone",
+  "role",
+  "projectType",
+  "product",
+  "location",
+  "timeline",
+  "installation",
+];
 
 const OPTION_FIELDS: Partial<Record<InquiryField, readonly string[]>> = {
   role: ROLE_OPTIONS,
   projectType: PROJECT_TYPE_OPTIONS,
   timeline: TIMELINE_OPTIONS,
+  installation: INSTALLATION_OPTIONS,
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -100,6 +116,7 @@ const BODY_LABELS: [InquiryField, string][] = [
   ["product", "Product"],
   ["location", "Project location"],
   ["timeline", "Timeline"],
+  ["installation", "Installation"],
 ];
 
 export function composeInquiryEmail(inquiry: Inquiry): { subject: string; text: string } {

@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   INQUIRY_EMAIL,
+  INSTALLATION_OPTIONS,
   MAILTO_MAX_LENGTH,
+  PROJECT_TYPE_OPTIONS,
   mailtoFitsWhole,
   buildMailtoHref,
   composeInquiryEmail,
@@ -160,4 +162,68 @@ test("reports whether the whole message fits in the mailto link", () => {
   if (!short.ok || !long.ok) return;
   assert.equal(mailtoFitsWhole(short.inquiry), true);
   assert.equal(mailtoFitsWhole(long.inquiry), false);
+});
+
+test("offers exactly three installation choices", () => {
+  assert.deepEqual([...INSTALLATION_OPTIONS], ["Installation by your team", "Installed by others", "Not sure yet"]);
+});
+
+test("installation is optional, and each listed choice is accepted", () => {
+  const minimal = validateInquiry({ name: "Ana", email: "ana@example.com", message: "A mantel, please." });
+  assert.equal(minimal.ok, true);
+  if (!minimal.ok) return;
+  assert.equal(minimal.inquiry.installation, "");
+
+  for (const installation of INSTALLATION_OPTIONS) {
+    const outcome = validateInquiry({ ...complete, installation: ` ${installation} ` });
+    assert.equal(outcome.ok, true, installation);
+    if (!outcome.ok) return;
+    assert.equal(outcome.inquiry.installation, installation);
+  }
+});
+
+test("rejects an installation value outside the listed choices", () => {
+  for (const installation of ["DIY", "<script>", "installed by others"]) {
+    const outcome = validateInquiry({ ...complete, installation });
+    assert.equal(outcome.ok, false, installation);
+    if (outcome.ok) return;
+    assert.deepEqual(Object.keys(outcome.errors), ["installation"]);
+  }
+});
+
+test("bounds the installation field length", () => {
+  const outcome = validateInquiry({ ...complete, installation: "x".repeat(5000) });
+  assert.equal(outcome.ok, false);
+  if (outcome.ok) return;
+  assert.match(outcome.errors.installation ?? "", /under \d+ characters/);
+});
+
+test("keeps installation on a single line like the other choice fields", () => {
+  const outcome = validateInquiry({ ...complete, installation: "Installed by\r\nothers" });
+  assert.equal(outcome.ok, true);
+  if (!outcome.ok) return;
+  assert.equal(outcome.inquiry.installation, "Installed by others");
+});
+
+test("lists installation in the email body directly after the timeline, and only when provided", () => {
+  const outcome = validateInquiry({ ...complete, installation: "Installed by others" });
+  assert.equal(outcome.ok, true);
+  if (!outcome.ok) return;
+  const lines = composeInquiryEmail(outcome.inquiry).text.split("\n");
+  const timeline = lines.indexOf("Timeline: 3–6 months");
+  assert.ok(timeline >= 0, "timeline line present");
+  assert.equal(lines[timeline + 1], "Installation: Installed by others");
+
+  const without = validateInquiry(complete);
+  assert.equal(without.ok, true);
+  if (!without.ok) return;
+  assert.doesNotMatch(composeInquiryEmail(without.inquiry).text, /^Installation:/m);
+});
+
+test("accepts stone masonry as a project type, listed after functional elements", () => {
+  const outcome = validateInquiry({ name: "Ana", email: "ana@example.com", projectType: "Stone masonry", message: "Stone veneer for an entry." });
+  assert.equal(outcome.ok, true);
+  if (!outcome.ok) return;
+  assert.equal(composeInquiryEmail(outcome.inquiry).subject, "Project inquiry: Stone masonry (Ana)");
+  assert.equal(PROJECT_TYPE_OPTIONS.indexOf("Stone masonry"), PROJECT_TYPE_OPTIONS.indexOf("Functional elements") + 1);
 });

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { productEntries } from '@/data/products';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://101caststone.com';
@@ -52,5 +53,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly',
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/technical-info`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    },
+    // One page per piece (src/app/collections/[slug])
+    ...productEntries.map(({ slug }) => ({
+      url: `${baseUrl}/collections/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly' as const,
+      priority: 0.6,
+    })),
   ];
 }
