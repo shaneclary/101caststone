@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionTitle from "@/components/SectionTitle";
 import ProductModal from "@/components/ProductModal";
-import { collections, productSlugs, slugify, stoneColors, textureFinishes } from "@/data/products";
+import { collections, groupByStyle, productSlugs, slugify, stoneColors, textureFinishes, type Product } from "@/data/products";
 
 export default function Collections() {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
@@ -37,6 +37,49 @@ export default function Collections() {
     setOpenSlug(null);
     if (window.history.state?.modal) window.history.back();
     else window.history.replaceState(null, "", window.location.pathname + window.location.search);
+  };
+
+  const renderCard = (item: Product, collectionTitle: string, Heading: "h3" | "h4") => {
+    const slug = slugify(item.name);
+    // The trigger's ::after stretches over the card, so a tap anywhere opens the piece
+    return (
+      <div
+        key={item.name}
+        id={slug}
+        className="group relative overflow-hidden rounded-lg bg-white border border-[#e8dfcf] hover:shadow-xl transition-all duration-500 cursor-pointer has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-sienna/40 scroll-mt-28 md:scroll-mt-40 target:ring-2 target:ring-sienna/40"
+      >
+        {/* Product Image */}
+        <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-clay/5 to-sienna/5">
+          <Image
+            src={item.image}
+            alt={`${item.name} – ${collectionTitle}, cast stone`}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          />
+        </div>
+
+        <div className="p-6">
+          <div className="flex items-start justify-between mb-2">
+            <Heading className="font-display text-xl text-clay">{item.name}</Heading>
+            <span className="text-xs text-sienna-700 bg-sienna/10 px-2 py-1 rounded">
+              {item.style}
+            </span>
+          </div>
+          <p className="text-sm text-clay leading-relaxed">{item.description}</p>
+          <ProductModal
+            item={item}
+            category={collectionTitle}
+            open={openSlug === slug}
+            onOpenChange={(open) => (open ? openItem(slug) : closeItem())}
+          >
+            <button className="mt-4 inline-flex min-h-[44px] items-center text-sienna-700 text-sm hover:text-basalt transition-colors after:absolute after:inset-0">
+              View Details<span className="sr-only"> – {item.name}</span>&nbsp;<span aria-hidden="true">→</span>
+            </button>
+          </ProductModal>
+        </div>
+      </div>
+    );
   };
 
   return (
