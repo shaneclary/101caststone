@@ -1,5 +1,6 @@
 import { shareImage } from "@/app/share-image";
 
+// Only facts the original site states; the founding year and price range are left out until the owner confirms them.
 export default function StructuredData() {
   const businessData = {
     "@context": "https://schema.org",
@@ -7,11 +8,10 @@ export default function StructuredData() {
     "@id": "https://101caststone.com",
     "name": "101 Cast Stone",
     "alternateName": "Maison California",
-    "description": "Architectural cast stone from California. Hand-crafted fireplace mantels, columns, balustrades, and custom stonework since 2001.",
+    "description": "Architectural cast stone from Atascadero, California: fireplace surrounds and mantels, columns, balustrades, architectural trim and stone masonry.",
     "url": "https://101caststone.com",
     "telephone": "+1-805-610-9278",
     "email": "info@101caststone.com",
-    "foundingDate": "2001",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "1720 El Camino Real",
@@ -19,11 +19,6 @@ export default function StructuredData() {
       "addressRegion": "CA",
       "postalCode": "93422",
       "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 35.4894,
-      "longitude": -120.6707
     },
     "openingHoursSpecification": [
       {
@@ -33,7 +28,6 @@ export default function StructuredData() {
         "closes": "17:00"
       }
     ],
-    "priceRange": "$$$",
     "image": `https://101caststone.com${shareImage.url}`,
     "sameAs": [],
     "areaServed": {
