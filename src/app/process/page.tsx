@@ -7,7 +7,7 @@ import { mantelLeadTime, specification } from "@/data/company";
 export const metadata: Metadata = {
   title: "Our Process: Dialogue, Mould, Cast, Finish",
   description:
-    "How each piece is made: our sales and design professionals work with you on the design, moulds are made in our custom mould shop, the cast stone is packed by hand, and every piece is checked by Quality Control.",
+    "How each piece is made: design with our team, any new or modified moulds made in our custom mould shop, cast stone packed by hand, and every piece checked by Quality Control.",
   alternates: { canonical: "/process" },
 };
 
