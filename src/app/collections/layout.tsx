@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: { default: "Collections", template: "%s | 101 Cast Stone" },
   description:
-    "Architectural cast stone, made by hand in Atascadero. Each element designed for proportion, patina, and permanence.",
+    "Fireplace mantels, architectural elements, outdoor and garden pieces and functional elements, cast by hand in Atascadero in seven standard colors and three textures.",
   alternates: { canonical: "/collections" },
 };
 

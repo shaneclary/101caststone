@@ -27,11 +27,11 @@ export const collections: Record<CollectionKey, Collection> = {
   // Mantels follow the original site's grouping: Contemporary, Traditional, Old World.
   mantels: {
     title: "Fireplace Mantels",
-    description: "A full line of cast stone fireplace surrounds and mantels in a wide variety of styles, from Contemporary to Old World. Every design comes in seven colors and three texture finishes, in standard or custom dimensions.",
+    description: "A full line of cast stone fireplace surrounds and mantels, from Contemporary to Old World. Every design comes in seven standard colors and three textures, in standard or custom dimensions, and is quoted with installation by our team.",
     items: [
       {
         name: "Contemporary Surround",
-        description: "A flat, beveled surround, mitered at the corners like a picture frame. No shelf, no carving; shown around linear and standard fireboxes.",
+        description: "A flat, beveled surround, mitered at the corners like a picture frame. No shelf and no ornament. Shown around linear and standard fireboxes, flush to the wall or on a low raised hearth.",
         style: "Contemporary",
         image: "/images/products/contemporary-surround/card.jpg",
         gallery: [
@@ -56,9 +56,9 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Heritage",
-        description: "Flat pilasters with recessed panels carry a plain frieze and a stepped, molded shelf. The opening is square-headed or softened by a shallow arch.",
+        description: "Flat pilasters with recessed panels carry a plain frieze and a stepped, molded shelf. The opening is square-headed or softened by a shallow arch. Shown on raised hearths and flush to the floor.",
         style: "Traditional",
-        image: "/images/products/heritage/card.jpg",
+        image: "/images/products/heritage/02.jpg",
         gallery: [
           { src: "/images/products/heritage/01.jpg", alt: "Three-quarter view of a pale stone fireplace mantel with flat paneled pilasters, a plain frieze and a stepped shelf, set on a raised stone hearth beside a window on a light wood floor" },
           { src: "/images/products/heritage/02.jpg", alt: "Front view of a stone mantel whose frieze has a shallow arched molding over an arched black firebox door, with paneled pilasters and a raised hearth on a wood floor" },
@@ -100,7 +100,7 @@ export const collections: Record<CollectionKey, Collection> = {
         name: "Provence",
         description: "Gentle curves replace sharp geometry. The jambs sweep up into a deep molded shelf; on some pieces the frieze lifts in a shallow arch.",
         style: "Traditional",
-        image: "/images/products/provence/card.jpg",
+        image: "/images/products/provence/03.jpg",
         gallery: [
           { src: "/images/products/provence/01.jpg", alt: "Close three-quarter view of a cream stone mantel with a deep molded shelf and a gently arched frieze; the jambs curve outward at the top beneath the shelf, around a black glass firebox on a low stone hearth" },
           { src: "/images/products/provence/02.jpg", alt: "Front view of a tan stone mantel with a thick molded shelf over straight jambs that curve outward at the top, around a black gas insert, on a wood floor against a white wall" },
@@ -121,7 +121,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Royal Acanthus",
-        description: "Deep-relief foliage spirals from the corbel brackets, creating an interplay of light and shadow. A frieze of repeating leaves runs beneath the shelf.",
+        description: "Deep-relief leaves spiral down the corbels and catch the light. A frieze of repeating leaves runs beneath the shelf. Shown in white, tan and a dark ochre-brown finish.",
         style: "Old World",
         image: "/images/products/royal-acanthus/card.jpg",
         gallery: [
@@ -137,7 +137,7 @@ export const collections: Record<CollectionKey, Collection> = {
         name: "Cambridge",
         description: "Tall scroll corbels, leaf-carved on the face, carry a deep molded shelf over a plain frieze. Each corbel ends in a rolled volute above a square plinth.",
         style: "Old World",
-        image: "/images/products/cambridge/card.jpg",
+        image: "/images/products/cambridge/03.jpg",
         gallery: [
           { src: "/images/products/cambridge/01.jpg", alt: "Fireplace mantel with a molded shelf and two tall scrolled corbels carved with leaves, framing a black fireplace insert on a raised stone hearth, beside a window" },
           { src: "/images/products/cambridge/02.jpg", alt: "Straight-on view of a fireplace mantel with leaf-carved scrolled corbels and a molded shelf, with an arched-door insert, on a raised hearth" },
@@ -150,7 +150,7 @@ export const collections: Record<CollectionKey, Collection> = {
         name: "Chateau",
         description: "A deep molded shelf crowns a tall, plain frieze. The jambs curve outward beneath it and rest on stepped bases.",
         style: "Old World",
-        image: "/images/products/french-chateau/card.jpg",
+        image: "/images/products/french-chateau/03.jpg",
         gallery: [
           { src: "/images/products/french-chateau/01.jpg", alt: "Fireplace mantel with a wide molded shelf over a smooth frieze; plain jambs curve outward at the top and rest on small stepped bases, around a black-framed insert with a log set, on a stone hearth beside wood cabinetry" },
           { src: "/images/products/french-chateau/02.jpg", alt: "Fireplace mantel with a molded shelf and curved legs in a furnished room with arched mirrors, lamps and a television above" },
@@ -162,7 +162,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Tangled",
-        description: "Fluted scroll corbels carry a molded shelf—Old World presence with a quiet, rhythmic profile. The frieze runs straight or lifts in a shallow arch.",
+        description: "Fluted scroll corbels carry a molded shelf over a plain frieze that runs straight or lifts in a shallow arch. No leaf carving; the rhythm comes from the flutes.",
         style: "Old World",
         image: "/images/products/tangled/card.jpg",
         gallery: [
@@ -178,12 +178,12 @@ export const collections: Record<CollectionKey, Collection> = {
   },
   architectural: {
     title: "Architectural Elements",
-    description: "Feature, trim and ornament for facades, terraces and rooms. Cast stone in standard and custom styles and dimensions, offered in seven colors and three texture finishes.",
+    description: "Architectural features, trim, ornament and facing for buildings: columns, corbels, balustrades, caps, crown molding and door and window surrounds. Standard and custom styles and dimensions, in seven standard colors and three textures.",
     items: [
       {
         name: "Columns",
-        description: "Round, square and spiral-twisted shafts with plain molded or leaf-carved capitals. Set at entries, between arched windows and indoors.",
-        style: "Round, Square, Twisted",
+        description: "Round, square and spiral-twisted shafts with plain molded or leaf capitals. Set at entries, between arched windows and indoors.",
+        style: "Round, Square & Twisted",
         image: "/images/products/columns/card.jpg",
         gallery: [
           { src: "/images/products/columns/01.jpg", alt: "Two columns with leaf-carved capitals flank an arched iron entry door; a balustrade with a pineapple-topped post and a curved stair rail run along the steps in front." },
@@ -196,7 +196,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Corbels",
-        description: "Scrolled and leaf-carved brackets beneath molded top blocks, one banded in egg-and-dart. Set in pairs under kitchen hoods.",
+        description: "Scrolled and leaf brackets beneath molded top blocks, one banded in egg-and-dart. Set in pairs under kitchen hoods.",
         style: "Scroll & Leaf",
         image: "/images/products/corbels/card.jpg",
         gallery: [
@@ -209,9 +209,9 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Balustrades",
-        description: "Defining the edge where terrace meets sky. Turned balusters between molded rails and paneled piers, run straight, curved or down a stair.",
+        description: "Turned balusters between molded rails and paneled piers, run straight along a terrace, curved around it or down a stair. Some posts carry a pineapple finial.",
         style: "Terrace & Entry",
-        image: "/images/products/balustrades/card.jpg",
+        image: "/images/products/balustrades/05.jpg",
         gallery: [
           { src: "/images/products/balustrades/01.jpg", alt: "A balustrade of turned balusters with a molded rail and paneled end pier wrapping an entry porch, below two columns with leaf-carved capitals and an arched iron door." },
           { src: "/images/products/balustrades/02.jpg", alt: "Close view of turned balusters and a molded rail on a tiled terrace, with a potted tree and red foliage behind." },
@@ -223,7 +223,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Pilaster Caps",
-        description: "Flat and peaked caps with molded edges, finishing square piers at gates and entries. Some carry a ball or pineapple finial on a stepped base.",
+        description: "Flat and peaked caps with molded edges that finish square piers at gates and entries. Some carry a ball or pineapple finial on a stepped base, or a lantern.",
         style: "Pier Caps & Finials",
         image: "/images/products/pilaster-caps/card.jpg",
         gallery: [
@@ -237,7 +237,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Crown Molding",
-        description: "The crown completes the composition. Profiles range from plain and stepped to scrolling leaf friezes and repeating leaf bands.",
+        description: "Profiles from plain and stepped to scrolling leaf friezes, rope bands and repeating leaf-and-dart. Shown in close detail; the surface carries the open texture of the cast.",
         style: "Leaf & Stepped",
         image: "/images/products/crown-molding/card.jpg",
         gallery: [
@@ -249,9 +249,9 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Door & Window Trims",
-        description: "The frame announces what follows. Arched and flat-headed surrounds for doors and windows, some with a keystone, paneled pilasters or engaged columns.",
+        description: "Arched and flat-headed surrounds for doors and windows, some with a keystone, paneled pilasters or engaged columns. Window surrounds with eared corners and projecting sills.",
         style: "Entry & Fenestration",
-        image: "/images/products/door-window-trims/card.jpg",
+        image: "/images/products/door-window-trims/02.jpg",
         gallery: [
           { src: "/images/products/door-window-trims/01.jpg", alt: "Two-storey stucco facade with a pilastered door surround, flat entablature and keystone around an arched wood door, with shuttered windows and arched openings either side." },
           { src: "/images/products/door-window-trims/02.jpg", alt: "Arched double wood door framed by a surround with engaged columns, a molded entablature and two lanterns." },
@@ -265,11 +265,11 @@ export const collections: Record<CollectionKey, Collection> = {
   },
   outdoor: {
     title: "Outdoor & Garden",
-    description: "Fire, water, seating and paving for patios, courtyards and gardens. Cast stone, alongside natural stone and veneer masonry.",
+    description: "Outdoor fireplaces, fire pits, fountains, benches, seat walls and pavers for patios, courtyards and gardens. Cast stone, set alongside our natural stone and stone veneer masonry.",
     items: [
       {
         name: "Outdoor Fireplaces",
-        description: "The hearth moves to the garden. Arched surrounds, mantel shelves, raised hearths and chimney caps in cast stone, set in stacked stone or stucco on patios and under pergolas.",
+        description: "Arched surrounds, mantel shelves, raised hearths and chimney caps in cast stone, set in stacked stone or stucco on patios and under pergolas.",
         style: "Patio & Pergola",
         image: "/images/products/outdoor-fireplaces/card.jpg",
         gallery: [
@@ -283,7 +283,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Fire Pits",
-        description: "Fire at the center. Freestanding round bowls, smooth caps for stone-faced pits, and coping for the seat walls that curve around them.",
+        description: "Freestanding round bowls, smooth caps for stone-faced pits, and coping for the seat walls that curve around them.",
         style: "Bowls & Rings",
         image: "/images/products/fire-pits/card.jpg",
         gallery: [
@@ -296,7 +296,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Fountains",
-        description: "Water speaks in stone. Quatrefoil, octagonal and round basins with pedestal bowls or a spouted pillar, and a wall fountain with a scalloped bowl.",
+        description: "Quatrefoil, octagonal and round basins with pedestal bowls or a spouted pillar, and a wall fountain with a scalloped bowl set between bench walls.",
         style: "Basins & Wall Fountains",
         image: "/images/products/fountains/card.jpg",
         gallery: [
@@ -309,7 +309,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Benches & Seat Walls",
-        description: "Stone invites pause. A straight bench with a beveled slab seat on fluted pedestal legs, and curved seat walls finished with round-edged caps.",
+        description: "A straight bench with a beveled slab seat on fluted pedestal legs, and curved seat walls finished with round-edged caps.",
         style: "Custom Work",
         image: "/images/products/benches/card.jpg",
         gallery: [
@@ -320,7 +320,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Pavers",
-        description: "The ground underfoot deserves intention. Large smooth-faced square pavers with crisp edges, laid in a grass-jointed grid, and diagonal-set square tile for wall cladding.",
+        description: "Large smooth-faced square pavers with crisp edges, laid in a grass-jointed grid, and diagonal-set square tile for wall cladding.",
         style: "Paving & Cladding",
         image: "/images/products/pavers/card.jpg",
         gallery: [
@@ -333,11 +333,11 @@ export const collections: Record<CollectionKey, Collection> = {
   },
   functional: {
     title: "Functional Elements",
-    description: "Kitchen hoods, stair treads, window sills and wall caps. Cast stone in standard and custom dimensions, offered in seven colors and three texture finishes.",
+    description: "Kitchen hoods, stair treads, window sills and wall caps. Cast stone in standard and custom dimensions, in seven standard colors and three textures.",
     items: [
       {
         name: "Kitchen Hoods",
-        description: "The range deserves a crown. Tapered hoods with molded bands, left plain or carved with a leaf frieze, some resting on leaf-carved corbels, and a paneled hood on curved jambs.",
+        description: "Tapered hoods with molded bands, left plain or finished with a leaf frieze, some resting on leaf corbels, and a paneled hood with curved shoulders.",
         style: "Plain & Leaf-Carved",
         image: "/images/products/kitchen-hoods/card.jpg",
         gallery: [
@@ -351,7 +351,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Stair Treads",
-        description: "Each step measured. Bullnose treads for straight interior flights and curved entry steps, some set over patterned tile risers.",
+        description: "Bullnose treads for straight interior flights and curved entry steps, some set over patterned tile risers.",
         style: "Straight & Curved",
         image: "/images/products/stair-treads/card.jpg",
         gallery: [
@@ -362,7 +362,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Window Sills",
-        description: "The sill receives the weather. Projecting molded sills, set under single windows, run continuously beneath a pair, or carried on stepped corbel blocks.",
+        description: "Projecting molded sills, set under single windows, run continuously beneath a pair, or carried on stepped corbel blocks.",
         style: "Single & Continuous",
         image: "/images/products/window-sills/card.jpg",
         gallery: [
@@ -374,7 +374,7 @@ export const collections: Record<CollectionKey, Collection> = {
       },
       {
         name: "Wall Caps",
-        description: "The wall deserves completion. Flat caps mitered at the corners, curved caps with a rounded edge, and pier caps with a molded overhang.",
+        description: "Flat caps mitered at the corners, curved caps with a rounded edge, and pier caps with a molded overhang.",
         style: "Flat & Rounded",
         image: "/images/products/wall-caps/card.jpg",
         gallery: [
@@ -397,9 +397,9 @@ export const stoneColors = [
 
 // Texture photos from the live site; all three samples are cast in the same color.
 export const textureFinishes = [
-  { name: "Classic", desc: "The smoothest of the three: a fine, even surface.", image: "/images/finishes/textures/classic.jpg" },
+  { name: "Classic", desc: "The smoothest of the three. A fine, even surface.", image: "/images/finishes/textures/classic.jpg" },
   { name: "Old World", desc: "A softly weathered surface with shallow pitting.", image: "/images/finishes/textures/old-world.jpg" },
-  { name: "Rustic", desc: "Deep pits and a broken surface for an immediately aged look.", image: "/images/finishes/textures/rustic.jpg" },
+  { name: "Rustic", desc: "Deep pits and a broken surface that reads as aged from the first day.", image: "/images/finishes/textures/rustic.jpg" },
 ];
 
 export const slugify = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");

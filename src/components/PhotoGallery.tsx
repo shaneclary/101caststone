@@ -19,7 +19,7 @@ interface PhotoGalleryProps {
 }
 
 const ARROW_BUTTON =
-  "absolute top-1/2 -translate-y-1/2 z-10 scroll-mt-24 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-clay hover:text-basalt shadow-md flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna-700 focus-visible:ring-offset-2";
+  "absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 scroll-mt-24 items-center justify-center rounded-full bg-ivory-50/90 text-basalt shadow-md hover:bg-ivory-50 hover:text-sienna-700";
 
 /** True when slide `i` is the current photo or a neighbour (with wrap), so only three images load at a time. */
 function isNear(i: number, index: number, count: number) {
@@ -110,12 +110,12 @@ export default function PhotoGallery({
         {count > 1 && (
           <>
             <button type="button" onClick={() => step(-1)} aria-label="Previous photo" className={`${ARROW_BUTTON} left-3`}>
-              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M15 6l-6 6 6 6" />
               </svg>
             </button>
             <button type="button" onClick={() => step(1)} aria-label="Next photo" data-gallery-next className={`${ARROW_BUTTON} right-3`}>
-              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M9 6l6 6-6 6" />
               </svg>
             </button>
@@ -139,8 +139,8 @@ export default function PhotoGallery({
                 aria-label={`Show photo ${i + 1} of ${count}`}
                 aria-current={i === index ? "true" : undefined}
                 onClick={() => setIndex(i)}
-                className={`relative h-14 w-[4.67rem] shrink-0 overflow-hidden rounded-md border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sienna-700 focus-visible:ring-offset-2 ${
-                  i === index ? "border-sienna-700 ring-1 ring-sienna-700" : "border-[#e3d9c8] hover:border-sienna-700"
+                className={`relative h-14 w-[4.67rem] shrink-0 overflow-hidden rounded border ${
+                  i === index ? "border-sienna-700 ring-1 ring-sienna-700" : "border-ecru hover:border-sienna-700"
                 }`}
               >
                 <Image src={photo.src} alt="" fill sizes="80px" className="object-cover" draggable={false} />
