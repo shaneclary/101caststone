@@ -21,7 +21,7 @@ export function DesktopMenu() {
             className="fixed inset-0 z-40"
             onClick={() => setIsMenuOpen(false)}
           />
-          <div className="absolute right-0 md:right-0 left-0 md:left-auto top-full mt-2 md:w-72 bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden">
+          <div className="fixed left-4 right-4 top-20 md:absolute md:left-auto md:right-0 md:top-full md:mt-2 md:w-72 max-h-[calc(100svh-6rem)] overflow-y-auto bg-ivory border border-[#e8dfcf] rounded-lg shadow-xl z-50 overflow-hidden">
             <nav className="py-2">
               <Link
                 href="/collections"
@@ -77,8 +77,8 @@ export function DesktopMenu() {
 
 export function MobileBottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] bg-ivory/95 border-t border-[#e8dfcf] backdrop-blur-lg shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
-      <div className="flex justify-around items-center h-16 px-4">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 z-[100] pb-[env(safe-area-inset-bottom)] bg-ivory/95 border-t border-[#e8dfcf] backdrop-blur-lg shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+      <div className="flex justify-around items-center h-16 px-2">
         <Link
           href="/collections"
           className="flex flex-col items-center gap-1 text-clay hover:text-sienna transition-colors no-underline"

@@ -108,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <DesktopMenu />
             </div>
           </header>
-          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <main className="flex-1 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0">{children}</main>
           <footer className="mt-32 border-t border-[#e8dfcf70] bg-[#f7f3ed]">
             <div className="mx-auto max-w-6xl px-6 py-12">
               {/* Main footer content */}

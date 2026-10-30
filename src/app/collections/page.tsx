@@ -213,20 +213,20 @@ export default function Collections() {
                   className="group relative overflow-hidden rounded-lg bg-white border border-[#e8dfcf] hover:shadow-xl transition-all duration-500"
                 >
                   {/* Product Image */}
-                  <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-br from-clay/5 to-sienna/5">
+                  <div className="aspect-square relative overflow-hidden bg-[#f5efe4]">
                     <Image
                       src={item.image}
                       alt={item.name}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="object-contain group-hover:scale-105 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     />
                   </div>
 
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-display text-xl text-clay">{item.name}</h3>
-                      <span className="text-xs text-sienna/70 bg-sienna/10 px-2 py-1 rounded">
+                    <div className="flex items-start justify-between gap-3 mb-2">
+                      <h3 className="font-display text-xl text-clay min-w-0">{item.name}</h3>
+                      <span className="shrink-0 whitespace-nowrap text-xs text-sienna/70 bg-sienna/10 px-2 py-1 rounded">
                         {item.style}
                       </span>
                     </div>

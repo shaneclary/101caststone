@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <>
       {/* HERO — Full-bleed image sets the brand impression */}
-      <section className="relative h-screen p-4 md:p-6 lg:p-8 bg-ivory">
+      <section className="relative h-[calc(100svh-9rem)] md:h-[calc(100svh-5rem)] min-h-[420px] p-4 md:p-6 lg:p-8 bg-ivory">
         <div className="relative h-full w-full overflow-hidden rounded-lg will-change-transform animate-pan-bg">
           <Image
             src="/images/hero/winecountry.jpg"
@@ -49,7 +49,7 @@ export default function Home() {
               { name: "Garden Ornaments", desc: "Weathered finishes for courtyards and water features", img: "/images/collections/outdoor/fountains.jpg", href: "/collections#outdoor" }
             ].map((product, i) => (
               <a key={i} href={product.href} className="group relative overflow-hidden rounded-lg bg-ivory border border-[#e8dfcf] hover:shadow-2xl transition-all duration-700 no-underline">
-                <div className="aspect-[3/4] relative overflow-hidden bg-gradient-to-br from-clay/10 to-sienna/5">
+                <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-clay/10 to-sienna/5">
                   <Image
                     src={product.img}
                     alt={product.name}
@@ -72,14 +72,14 @@ export default function Home() {
       </section>
 
       {/* CRAFTSMANSHIP SHOWCASE */}
-      <section id="workshop" className="relative h-[70vh] bg-gradient-to-b from-ivory to-[#f5efe4] flex items-center justify-center overflow-hidden">
+      <section id="workshop" className="relative min-h-[70vh] py-20 bg-gradient-to-b from-ivory to-[#f5efe4] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-sienna rounded-full blur-3xl animate-pulse" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-clay rounded-full blur-3xl animate-pulse delay-700" />
         </div>
         <div className="relative z-10 text-center px-6 max-w-4xl">
-          <h2 className="font-display text-5xl md:text-6xl mb-8 text-clay">The Workshop</h2>
-          <p className="text-xl text-clay/80 leading-relaxed mb-12">
+          <h2 className="font-display text-4xl md:text-6xl mb-8 text-clay">The Workshop</h2>
+          <p className="text-lg md:text-xl text-clay/80 leading-relaxed mb-12">
             Where ancient techniques meet 21st-century precision. Every piece begins with dialogue, refined through moulding, cast with mineral permanence, and finished by hand.
           </p>
           <button className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 text-lg font-medium">
@@ -124,14 +124,14 @@ export default function Home() {
           <h2 className="text-center font-display text-4xl md:text-5xl mb-4 text-clay">Featured Installations</h2>
           <p className="text-center text-clay/70 mb-10 max-w-2xl mx-auto">From private estates to public monuments</p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[180px] md:auto-rows-[220px]">
             {[
-              { title: "Napa Valley Estate", category: "Residential", span: "md:col-span-2 md:row-span-2", img: "/images/gallery/project-1.jpg" },
+              { title: "Napa Valley Estate", category: "Residential", span: "col-span-2 row-span-2", img: "/images/gallery/project-1.jpg" },
+              { title: "Historic Manor", category: "Restoration", span: "row-span-2", img: "/images/gallery/project-6.jpg" },
               { title: "Cathedral Restoration", category: "Ecclesiastical", span: "", img: "/images/gallery/project-2.jpg" },
               { title: "Boutique Hotel Lobby", category: "Commercial", span: "", img: "/images/gallery/project-3.jpg" },
-              { title: "Private Garden", category: "Landscape", span: "md:col-span-2", img: "/images/gallery/project-4.jpg" },
-              { title: "Museum Entrance", category: "Institutional", span: "", img: "/images/gallery/project-5.jpg" },
-              { title: "Historic Manor", category: "Restoration", span: "md:row-span-2", img: "/images/gallery/project-6.jpg" }
+              { title: "Private Garden", category: "Landscape", span: "col-span-2", img: "/images/gallery/project-4.jpg" },
+              { title: "Museum Entrance", category: "Institutional", span: "col-span-2", img: "/images/gallery/project-5.jpg" }
             ].map((project, i) => (
               <div
                 key={i}
@@ -144,9 +144,9 @@ export default function Home() {
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-6 bg-gradient-to-t from-black/60 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <span className="text-xs text-ivory/70 mb-1">{project.category}</span>
-                  <h3 className="font-display text-xl text-ivory">{project.title}</h3>
+                  <h3 className="font-display text-lg md:text-xl text-ivory">{project.title}</h3>
                 </div>
               </div>
             ))}
@@ -175,15 +175,15 @@ export default function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="relative h-[60vh] grid md:grid-cols-2 overflow-hidden">
+      <section className="relative grid md:grid-cols-2 md:min-h-[60vh] overflow-hidden">
         {/* Visual Side */}
-        <div className="relative bg-gradient-to-br from-clay via-sienna to-clay overflow-hidden">
+        <div className="relative min-h-[300px] bg-gradient-to-br from-clay via-sienna to-clay overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-ivory rounded-full blur-3xl" />
           </div>
-          <div className="relative h-full flex items-center justify-center px-12">
-            <div className="relative w-full max-w-md h-64 opacity-80">
+          <div className="relative h-full flex items-center justify-center px-8 py-10 md:px-12">
+            <div className="relative w-full max-w-md h-56 md:h-64 opacity-80">
               <Image
                 src="/images/logos/101timelesslogo.png"
                 alt="101 Cast Stone"
@@ -195,23 +195,23 @@ export default function Home() {
         </div>
 
         {/* Content Side */}
-        <div className="flex flex-col justify-center items-center space-y-8 px-12 bg-ivory">
+        <div className="flex flex-col justify-center items-center space-y-8 px-6 py-16 md:px-12 bg-ivory">
           <h2 className="font-display text-4xl md:text-5xl text-clay text-center leading-tight">
             Begin Your Design Journey
           </h2>
           <p className="text-clay/70 text-center max-w-md leading-relaxed">
             From initial consultation to final installation, we guide you through every step of creating architectural elements that endure.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-4">
             <a
               href="/contact"
-              className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 text-center font-medium no-underline"
+              className="px-8 py-4 bg-sienna text-ivory rounded-lg hover:bg-sienna/90 transition-all duration-500 text-center font-medium no-underline whitespace-nowrap"
             >
               Schedule Consultation
             </a>
             <a
               href="/process"
-              className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 text-center font-medium no-underline"
+              className="px-8 py-4 border-2 border-clay text-clay rounded-lg hover:bg-clay/5 transition-all duration-500 text-center font-medium no-underline whitespace-nowrap"
             >
               View Our Process
             </a>

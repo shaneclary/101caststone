@@ -68,7 +68,7 @@ export default function Works() {
 
       {/* Featured Project */}
       <div className="mt-16 opacity-0 animate-fade-in-up">
-        <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-lg overflow-hidden border border-[#e8dfcf90] shadow-[0_10px_30px_rgba(60,58,54,0.08)]">
+        <div className="relative aspect-[4/5] sm:aspect-[16/9] lg:aspect-[21/9] rounded-lg overflow-hidden border border-[#e8dfcf90] shadow-[0_10px_30px_rgba(60,58,54,0.08)]">
           <Image
             src={projects[0].img}
             alt={projects[0].title}
@@ -78,9 +78,9 @@ export default function Works() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+          <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12">
             <div className="text-sienna/90 text-sm tracking-wide uppercase mb-2">Featured Project</div>
-            <div className="font-display text-3xl md:text-4xl text-ivory">{projects[0].title}</div>
+            <div className="font-display text-2xl sm:text-3xl md:text-4xl text-ivory">{projects[0].title}</div>
             <p className="mt-2 text-[16px] text-ivory/80 max-w-xl">{projects[0].desc}</p>
             <p className="mt-3 text-[14px] text-ivory/60">{projects[0].location}</p>
           </div>

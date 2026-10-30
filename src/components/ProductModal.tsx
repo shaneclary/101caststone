@@ -19,8 +19,8 @@ export default function ProductModal({ item, category, children }: ProductModalP
     <Dialog.Root>
       <Dialog.Trigger asChild>{children}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 data-[state=open]:animate-fade-in" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto bg-ivory rounded-xl shadow-2xl data-[state=open]:animate-fade-in-up">
+        <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] data-[state=open]:animate-fade-in" />
+        <Dialog.Content className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[120] w-[95vw] max-w-4xl max-h-[90vh] overflow-y-auto bg-ivory rounded-xl shadow-2xl data-[state=open]:animate-fade-in-up">
           {/* Close Button */}
           <Dialog.Close className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-clay hover:text-basalt transition-colors shadow-md">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -30,12 +30,12 @@ export default function ProductModal({ item, category, children }: ProductModalP
 
           <div className="md:flex">
             {/* Image */}
-            <div className="md:w-1/2 relative aspect-square md:aspect-auto">
+            <div className="md:w-1/2 relative aspect-square md:aspect-auto md:min-h-[420px] bg-[#f5efe4] md:rounded-l-xl overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.name}
                 fill
-                className="object-cover md:rounded-l-xl"
+                className="object-contain"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
